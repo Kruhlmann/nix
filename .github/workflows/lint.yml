@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   check-format:
     name: Check Nix files format
-    runs-on: ubuntu-latest
+    runs-on: nixos/nix:latest
 
     steps:
     - name: Checkout code
@@ -17,7 +17,10 @@ jobs:
         install_options: '--no-daemon'
 
     - name: Install nixfmt
-      run: nix-env -iA nixpkgs.nixfmt
+      run: |
+        nix-channel --add https://nixos.org/channels/nixos-unstable nixos
+        nix-channel --update
+        nix-env -iA nixos.nixpkgs-fmt
 
     - name: Check Nix files formatting
-      run: find . -name '*.nix' -exec nixfmt --check {} +
+      run:  nixpkgs-fmt --check .
