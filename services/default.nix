@@ -1,7 +1,5 @@
 { config, pkgs, ... }: {
-  imports = [
-    ./ssh.nix
-  ];
+  imports = [ ./ssh.nix ];
   services.ntp.enable = true;
   services.blueman.enable = true;
   services.gnome.gnome-keyring.enable = true;

@@ -1,6 +1,1 @@
-{ config, pkgs, ... }: {
-  imports = [
-    ./hyprland.nix
-    ./zsh.nix
-  ];
-}
+{ config, pkgs, ... }: { imports = [ ./hyprland.nix ./zsh.nix ]; }
