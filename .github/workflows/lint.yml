@@ -6,7 +6,6 @@ jobs:
   check-format:
     name: Check Nix files format
     runs-on: ubuntu-latest
-    container: nixos/nix:latest
 
     steps:
     - name: Checkout code
