@@ -1,0 +1,23 @@
+name: Nix Format Check
+
+on: [push, pull_request]
+
+jobs:
+  check-format:
+    name: Check Nix files format
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Nix
+      uses: cachix/install-nix-action@v16
+      with:
+        install_options: '--no-daemon'
+
+    - name: Install nixfmt
+      run: nix-env -iA nixpkgs.nixfmt
+
+    - name: Check Nix files formatting
+      run: find . -name '*.nix' -exec nixfmt --check {} +
