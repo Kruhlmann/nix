@@ -21,7 +21,7 @@ in
   xdg.configHome = ~/.config;
   home.file = {
     #"${config.xdg.configHome}/nvim" = { source = dotfiles/.config/nvim; recursive = true; };
-    "${config.xdg.configHome}/git" = { source = dotfiles/.config/git; recursive = true; };
+    "${config.xdg.configHome}/git" = { source = ~/doc/src/github.com/kruhlmann/dotfiles/lib/.config/git; recursive = true; };
   };
 
   home.sessionVariables = {
