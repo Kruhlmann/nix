@@ -2,7 +2,8 @@
   users.users.ges = {
     isNormalUser = true;
     description = "Andreas Krühlmann";
-    extraGroups = [ "wheel" "docker" "libvirt" "networkmanager" ];
+    extraGroups = [ "audio" "wheel" "docker" "libvirt" "networkmanager" ];
+    shell = pkgs.zsh;
   };
   nix.settings.trusted-users = [ "ges" ];
 }
