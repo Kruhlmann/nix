@@ -7,9 +7,11 @@
     networkmanagerapplet
     feh
     xcape
+    maim
     xorg.xkbcomp
     xorg.xmodmap
     xorg.xrandr
+    xclip
   ];
 
 
@@ -20,6 +22,25 @@
   };
 
   home.sessionVariables = {
+  };
+
+  programs.alacritty.enable = true;
+  programs.alacritty.settings = {
+    font = {
+      size = 12.0;
+      normal = {
+        family = "FiraCode Nerd Font Mono";
+        style = "Regular";
+      };
+      bold = {
+        family = "FiraCode Nerd Font Mono";
+        style = "Bold";
+      };
+      italic = {
+        family = "FiraCode Nerd Font Mono";
+        style = "Italic";
+      };
+    };
   };
 
   xsession = {
@@ -132,7 +153,16 @@
         '';
       }
       nvim-lsputils
-      nvim-tree-lua
+      
+      {
+        plugin = nvim-tree-lua;
+        type = "lua";
+        config = ''
+          require("nvim-web-devicons").setup()
+          require("nvim-tree").setup()
+          vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", {noremap = true})
+        '';
+      }
       nvim-web-devicons
       packer-nvim
       plenary-nvim

@@ -19,6 +19,10 @@
     %wheel ALL=(ALL) NOPASSWD: ALL
   '';
   virtualisation.docker.enable = true;
+  fonts.packages = with pkgs; [
+    terminus-nerdfont
+    fira-code-nerdfont
+  ];
   environment.systemPackages = with pkgs; [
     (pkgsi686Linux.alsaLib)
     (pkgsi686Linux.alsaPlugins)
