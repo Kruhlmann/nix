@@ -1,0 +1,6 @@
+#/usr/bin/env sh
+
+SELECTION=$(cat ~/.cache/repocache | fzf)
+if ! test -z "$SELECTION"; then
+  cd "/home/ges/doc/src$SELECTION"
+fi

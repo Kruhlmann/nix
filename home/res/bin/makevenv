@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+VENVDIR="/tmp/.virtual_envionments"
+VENV="$(pwd | md5sum | tr -d '[:space:]-')"
+
+[ -d "$VENVDIR" ] || mkdir -p "$VENVDIR"
+[ -d "$VENVDIR/$VENV" ] || python -m venv "$VENVDIR/$VENV"
+
+echo "Activating virtual environment $VENVDIR/$VENV"
+. "$VENVDIR/$VENV/bin/activate"
+pip install --upgrade pip
+pip install pre_commit neovim rope black pytest isort

@@ -37,19 +37,13 @@
     (pkgsi686Linux.pulseaudio)
     (pkgsi686Linux.sqlite)
     (pkgsi686Linux.vulkan-loader)
-    python311
-    xwaylandvideobridge
     alacritty
-    tmux
-    killall
-    lazygit
-    less
-    teams-for-linux
     alsaLib
     alsaPlugins
+    caprine-bin
     ckb-next
     curl
-    openssl
+    ruby
     discord
     docker
     docker-compose
@@ -69,6 +63,9 @@
     home-manager
     htop
     jq
+    killall
+    lazygit
+    less
     libgcrypt
     libgpgerror
     libjpeg
@@ -87,9 +84,11 @@
     ocl-icd
     openal
     openldap
+    openssl
     pavucontrol
     powershell
     pulseaudio
+    python311
     qemu
     rofi-wayland
     rustc
@@ -97,9 +96,11 @@
     steam
     sudo
     swww
+    teams-for-linux
     texliveFull
     thefuck
     tldr
+    tmux
     unrar
     unzip
     v4l-utils
@@ -110,7 +111,8 @@
     vulkan-validation-layers
     wget
     wine-staging
-    xorg.xinit
     xorg.xauth
+    xorg.xinit
+    xwaylandvideobridge
   ];
 }

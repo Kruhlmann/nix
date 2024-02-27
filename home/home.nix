@@ -8,6 +8,7 @@
     feh
     xcape
     maim
+    polybar
     xorg.xkbcomp
     xorg.xmodmap
     xorg.xrandr
@@ -15,14 +16,18 @@
   ];
 
 
+  xdg.dataHome = ~/.;
   xdg.configHome = ~/.config;
   home.file = {
     "${config.xdg.configHome}/nvim" = { source = res/nvim; recursive = true; };
     "${config.xdg.configHome}/git" = { source = res/git; recursive = true; };
+    "${config.xdg.configHome}/polybar" = { source = res/polybar; recursive = true; };
+    "${config.xdg.dataHome}/.local/bin" = { source = res/bin; recursive = true; };
   };
 
   home.sessionVariables = {
   };
+  home.sessionPath = ["$HOME/.local/bin"];
 
   programs.alacritty.enable = true;
   programs.alacritty.settings = {

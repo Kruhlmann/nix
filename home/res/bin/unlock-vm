@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+sudo virsh send-key win10 KEY_ENTER
+sleep 1
+vkc "$(cat ~/.cache/gain/password)" da | while read -r key; do printf 'sudo virsh send-key win10 %s\n' "$key"; done | bash - >/dev/null
+sudo virsh send-key win10 KEY_ENTER
