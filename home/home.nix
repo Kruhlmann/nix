@@ -17,13 +17,14 @@ in
     xorg.xrandr
   ];
 
+
+  xdg.configHome = ~/.config;
   home.file = {
     #"${config.xdg.configHome}/nvim" = { source = dotfiles/.config/nvim; recursive = true; };
-    #"${config.xdg.configHome}/git" = { source = dotfiles/.config/git; recursive = true; };
+    "${config.xdg.configHome}/git" = { source = dotfiles/.config/git; recursive = true; };
   };
 
   home.sessionVariables = {
-#    EDITOR = "${config.home.profileDirectory}/bin/nvim";
   };
 
   xsession = {
