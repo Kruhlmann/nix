@@ -1,11 +1,6 @@
-{ config, pkgs, ... }:
-let
-  lspServers = pkgs.writeText "lsp_servers.json" (builtins.toJSON (import ./lsp_servers.nix { inherit pkgs; }));
-in
-{
+{ config, pkgs, lib, ... }: {
   home.username = "ges";
   home.homeDirectory = "/home/ges";
-  home.stateVersion = "23.11"; # Please read the comment before changing.
   home.packages = with pkgs; [
     dialog
     networkmanager_dmenu
@@ -20,8 +15,8 @@ in
 
   xdg.configHome = ~/.config;
   home.file = {
-    #"${config.xdg.configHome}/nvim" = { source = dotfiles/.config/nvim; recursive = true; };
-    "${config.xdg.configHome}/git" = { source = ~/doc/src/github.com/kruhlmann/dotfiles/lib/.config/git; recursive = true; };
+    "${config.xdg.configHome}/nvim" = { source = res/nvim; recursive = true; };
+    "${config.xdg.configHome}/git" = { source = res/git; recursive = true; };
   };
 
   home.sessionVariables = {
@@ -35,7 +30,7 @@ in
       config = ./config.hs;
       extraPackages = hp: [
         hp.dbus
-	hp.monad-logger
+	    hp.monad-logger
       ];
     };
   };
@@ -59,12 +54,14 @@ in
       nodePackages.pyright
       nodePackages.prettier
       nodePackages.eslint
+      nodePackages.typescript
       nodePackages.typescript-language-server
       nodePackages.bash-language-server
       nodePackages.yaml-language-server
       nodePackages.dockerfile-language-server-nodejs
       nodePackages.vscode-langservers-extracted
       nodePackages.markdownlint-cli
+      nodePackages.svelte-language-server
       lua-language-server
       selene
       statix
@@ -98,19 +95,23 @@ in
       ]))
     ];
     plugins = with pkgs.vimPlugins; [
+      nvim-treesitter.withAllGrammars
       gruvbox
       nvim-cmp
       cmp-nvim-lsp
       cmp-buffer
+      lspkind-nvim
       cmp-path
       cmp-cmdline
       cmp-nvim-lua
       luasnip
+      nvim-navic
       lsp_signature-nvim
       lspsaga-nvim
       lualine-nvim
       mason-lspconfig-nvim
       mason-nvim
+      nvim-autopairs
       mason-tool-installer-nvim
       null-ls-nvim
       nvim-colorizer-lua
@@ -119,7 +120,7 @@ in
         plugin = nvim-lspconfig;
 	    type = "lua";
 	    config = ''
-	      require("config.lsp").setup_servers("${lspServers}")
+	      require("config.lsp")
           require("config.lsp_cmp")
         '';
       }
@@ -132,10 +133,6 @@ in
       }
       nvim-lsputils
       nvim-tree-lua
-      nvim-treesitter
-      nvim-treesitter-endwise
-      nvim-treesitter-textobjects
-      nvim-treesitter.withAllGrammars
       nvim-web-devicons
       packer-nvim
       plenary-nvim
@@ -144,6 +141,10 @@ in
       vim-commentary
       which-key-nvim
     ];
+    extraConfig = ''
+    lua require('base')
+'';
   };
   programs.home-manager.enable = true;
+  home.stateVersion = "23.11";
 }

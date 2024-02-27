@@ -1,0 +1,55 @@
+[user]
+    name = "Andreas Krühlmann"
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
+[alias]
+	conflicts = diff --name-only --diff-filter=U
+
+[merge]
+    tool = vimmerge
+    guitool = diffmerge
+    conflictStyle = diff3
+
+[mergetool "vimdiff"]
+    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[mergetool "vimmerge"]
+    cmd = nvim -f -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+    trustExistCode = true
+
+[difftool]
+    tool = vimdiff --no-prompt -O
+    prompt = 0
+
+[diff]
+    tool = vimdiff
+
+[pull]
+    rebase = false
+    ff = true
+
+[alias]
+	conflicts = diff --name-only --diff-filter=U
+
+[include]
+    path = ~/.config/git/siemens.includes
+
+[includeIf "gitdir:~/.calcurse"]
+    path = ~/.config/git/personal
+
+[includeIf "gitdir:~/doc/src/github.com/"]
+    path = ~/.config/git/personal
+
+[includeIf "gitdir:/mnt/hdd/home/doc/src/github.com/"]
+    path = ~/.config/git/personal
+
+[includeIf "gitdir:~/doc/src/gitlab.com/"]
+    path = ~/.config/git/personal
+
+[includeIf "gitdir:~/.calcurse"]
+    path = ~/.config/git/personal
