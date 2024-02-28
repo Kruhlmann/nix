@@ -128,7 +128,7 @@ curLayout :: X String
 curLayout = gets windowset >>= return . description . W.layout . W.workspace . W.current
 
 -- spawn vars
-spawnRofi = "rofi -modi drun -show drun -display-drun 'Run'"
+spawnRofi = "rofi -theme launchers/type-3/style-1 -show drun -display-drun 'Run'"
 spawnMaim = "maim -u -s | xclip -selection clipboard -t image/png"
 
 -- sizes

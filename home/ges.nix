@@ -16,6 +16,7 @@
     fzf
     gimp
     gnome.nautilus
+    imagemagickBig
     lutris
     maim
     neovim
@@ -51,6 +52,10 @@
     };
     "${config.xdg.configHome}/rofi" = {
       source = res/rofi;
+      recursive = true;
+    };
+    "${config.xdg.configHome}/stickers" = {
+      source = res/stickers;
       recursive = true;
     };
     "${config.xdg.dataHome}/.local/bin" = {
