@@ -1,9 +1,5 @@
 { config, pkgs, lib, ... }: {
-  imports = [
-    ./programs/alacritty
-    ./programs/nvim
-    ./services/gpg-agent
-  ];
+  imports = [ ./programs/alacritty ./programs/nvim ./services/gpg-agent ];
   home.stateVersion = "23.11";
   home.username = "ges";
   home.homeDirectory = "/home/ges";
@@ -41,14 +37,29 @@
   xdg.configHome = ~/.config;
 
   home.file = {
-    "${config.xdg.configHome}/nvim" = { source = res/nvim; recursive = true; };
-    "${config.xdg.configHome}/git" = { source = res/git; recursive = true; };
-    "${config.xdg.configHome}/polybar" = { source = res/polybar; recursive = true; };
-    "${config.xdg.configHome}/rofi" = { source = res/rofi; recursive = true; };
-    "${config.xdg.dataHome}/.local/bin" = { source = res/bin; recursive = true; };
+    "${config.xdg.configHome}/nvim" = {
+      source = res/nvim;
+      recursive = true;
+    };
+    "${config.xdg.configHome}/git" = {
+      source = res/git;
+      recursive = true;
+    };
+    "${config.xdg.configHome}/polybar" = {
+      source = res/polybar;
+      recursive = true;
+    };
+    "${config.xdg.configHome}/rofi" = {
+      source = res/rofi;
+      recursive = true;
+    };
+    "${config.xdg.dataHome}/.local/bin" = {
+      source = res/bin;
+      recursive = true;
+    };
     "${config.xdg.dataHome}/.ssh/config" = { source = res/ssh/config; };
   };
-  home.sessionPath = ["$HOME/.local/bin"];
+  home.sessionPath = [ "$HOME/.local/bin" ];
 
   xsession = {
     enable = true;
@@ -56,10 +67,7 @@
       enable = true;
       enableContribAndExtras = true;
       config = ./res/xmonad/xmonad.hs;
-      extraPackages = hp: [
-        hp.dbus
-	    hp.monad-logger
-      ];
+      extraPackages = hp: [ hp.dbus hp.monad-logger ];
     };
   };
 

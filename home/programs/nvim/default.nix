@@ -41,16 +41,17 @@
       statix
       taplo-cli
       terraform-ls
-      (python3.withPackages (ps: with ps; [
-        black
-        debugpy
-        flake8
-        isort
-        pylama
-        pylint
-        setuptools
-        yamllint
-      ]))
+      (python3.withPackages (ps:
+        with ps; [
+          black
+          debugpy
+          flake8
+          isort
+          pylama
+          pylint
+          setuptools
+          yamllint
+        ]))
     ];
     plugins = with pkgs.vimPlugins; [
       cmp-buffer
@@ -84,10 +85,10 @@
       which-key-nvim
       {
         plugin = nvim-lspconfig;
-	    type = "lua";
-	    config = ''
-	      require("config.lsp")
-          require("config.lsp_cmp")
+        type = "lua";
+        config = ''
+          	      require("config.lsp")
+                    require("config.lsp_cmp")
         '';
       }
       {
