@@ -22,6 +22,7 @@
   fonts.packages = with pkgs; [
     terminus-nerdfont
     fira-code-nerdfont
+    jetbrains-mono
   ];
   environment.systemPackages = with pkgs; [
     (pkgsi686Linux.alsaLib)
@@ -37,26 +38,16 @@
     (pkgsi686Linux.pulseaudio)
     (pkgsi686Linux.sqlite)
     (pkgsi686Linux.vulkan-loader)
-    alacritty
     alsaLib
     alsaPlugins
-    caprine-bin
-    ckb-next
     curl
-    ruby
-    discord
+    dig
     docker
     docker-compose
     dunst
-    entr
-    feh
-    firefox
-    fzf
     gcc
     giflib
-    gimp
     git
-    gnome.nautilus
     gnumake
     gnutls
     gtk3
@@ -74,31 +65,23 @@
     libva
     libxslt
     lm_sensors
-    lutris
     mpc-cli
     mpd
     mpg123
     ncmpcpp
     ncurses
-    neovim
     ocl-icd
     openal
     openldap
     openssl
     pavucontrol
     powershell
-    pulseaudio
     python311
     qemu
-    rofi-wayland
+    ruby
     rustc
     sqlite
-    steam
     sudo
-    swww
-    teams-for-linux
-    texliveFull
-    thefuck
     tldr
     tmux
     unrar
