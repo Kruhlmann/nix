@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ ... }: {
   programs.zsh = {
     enable = true;
     histSize = 10000;

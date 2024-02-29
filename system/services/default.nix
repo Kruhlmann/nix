@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ ... }: {
   imports = [ ./ssh.nix ./xorg.nix ];
   services.ntp.enable = true;
   services.blueman.enable = true;

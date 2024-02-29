@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ lib, ... }: {
   programs.hyprland.enable = true;
   programs.hyprland.enableNvidiaPatches = true;
   programs.hyprland.xwayland.enable = true;

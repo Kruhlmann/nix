@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   users.users.ges = {
     createHome = true;
     isNormalUser = true;

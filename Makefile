@@ -6,7 +6,6 @@ install:
 .PHONY: install-system
 install-system:
 	cp -rf ./system/* /etc/nixos/
-	rm /etc/nixos/Makefile
 	nixos-rebuild switch
 
 .PHONY: install-user

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, ... }: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -33,6 +33,8 @@
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
       nodePackages.yaml-language-server
+      ocamlPackages.ocaml-lsp
+      ocamlPackages.ocamlformat
       ripgrep
       selene
       shellcheck
@@ -87,8 +89,8 @@
         plugin = nvim-lspconfig;
         type = "lua";
         config = ''
-          	      require("config.lsp")
-                    require("config.lsp_cmp")
+          require("config.lsp")
+          require("config.lsp_cmp")
         '';
       }
       {

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ ... }: {
   services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
   services.xserver.enable = true;
   services.xserver.desktopManager.xterm.enable = false;

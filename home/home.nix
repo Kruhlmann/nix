@@ -1,14 +1,20 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, ... }: {
   imports = [ ./programs/alacritty ./programs/nvim ./services/gpg-agent ];
   home.stateVersion = "23.11";
   home.username = "ges";
   home.homeDirectory = "/home/ges";
+  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     alacritty
     bitwarden-cli
     ckb-next
     dialog
+    pkg-config
+    ocamlPackages.ocamlformat
+    zlib
+    postgresql
     discord
+    dune_3
     entr
     feh
     feh
@@ -19,9 +25,11 @@
     imagemagickBig
     lutris
     maim
-    neovim
     networkmanager_dmenu
     networkmanagerapplet
+    ocamlPackages.ocaml
+    ocamlPackages.utop
+    opam
     polybar
     rofi
     steam
