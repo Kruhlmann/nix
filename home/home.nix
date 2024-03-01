@@ -66,6 +66,10 @@
       source = res/stickers;
       recursive = true;
     };
+    "${config.xdg.configHome}/stack" = {
+      source = res/stack;
+      recursive = true;
+    };
     "${config.xdg.dataHome}/.local/bin" = {
       source = res/bin;
       recursive = true;
