@@ -52,15 +52,15 @@ local servers = {
 }
 
 local common_on_attach = function(client, bufnr)
-	local function buf_set_keymap(...)
-		vim.api.nvim_buf_set_keymap(bufnr, ...)
-	end
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
 
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
-	end
+    local function buf_set_option(...)
+        vim.api.nvim_buf_set_option(bufnr, ...)
+    end
 
-	local opts = { noremap = true, silent = true }
+    local opts = { noremap = true, silent = true }
     buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', '<leader>ld', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', '<leader>lD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -72,22 +72,23 @@ local common_on_attach = function(client, bufnr)
     buf_set_keymap("n", "<leader>lR", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
     buf_set_keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
-	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({async=true})' ]])
+    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({async=true})' ]])
 
-	lsp_signature.on_attach({
-		floating_window_above_cur_line = true,
-	})
+    lsp_signature.on_attach({
+        floating_window_above_cur_line = true,
+    })
 
-	if client.server_capabilities.documentSymbolProvider then
-		navic.attach(client, bufnr)
-	end
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+    end
 
     vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = "*",
-      callback = function()
-        vim.lsp.buf.format({ async = true })
-      end,
+        pattern = "*",
+        callback = function()
+            vim.lsp.buf.format({ async = true })
+            vim.api.nvim_command('edit')
+        end,
     })
 end
 
