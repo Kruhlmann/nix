@@ -1,10 +1,7 @@
 { config, pkgs, ... }: {
   imports = [
-    ./programs/alacritty
-    ./programs/nvim
-    ./programs/zsh
-    ./services/gpg-agent
-    ./services/lorri
+    ./programs
+    ./services
   ];
   home.stateVersion = "23.11";
   home.username = "ges";

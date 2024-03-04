@@ -261,6 +261,7 @@ myStartupHook = do
     spawnOnce "find ~/.ssh/ -type f -exec grep -l \"PRIVATE\" {} \\; | xargs ssh-add >/dev/null"
     spawnOnce "sh \"$HOME/.scripts/mpdevents\""
     spawnOnce "dunst"
+    spawnOnce "systemctl --user start pulseaudio"
     spawnOnce "xbindkeys"
     spawnOnce "xset r rate 416 25"
     spawnOnce "xset dpms 0 0 300"
