@@ -2,6 +2,10 @@
 
 {
   services.dnsmasq.enable = true;
+  services.dnsmasq.preStart = ''
+    mkdir -p /run/dnsmasq
+    chown -R dnsmasq:dnsmasq /run/dnsmasq
+  '';
   services.dnsmasq.extraConfig = ''
     conf-dir=/etc/dnsmasq.d/,*.conf
   '';

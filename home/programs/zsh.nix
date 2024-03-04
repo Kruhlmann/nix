@@ -5,7 +5,7 @@
     autocd = true;
     syntaxHighlighting.enable = true;
     history.save = 10000;
-    history.path = ~/.zsh_history;
+    history.path = "/home/ges/.zsh_history";
     history.share = true;
     initExtraFirst = ''
       source /etc/zshrc
@@ -13,10 +13,14 @@
     initExtra = ''
       source ~/.config/zsh/opam.zsh
     '';
+    shellAliases = {
+        "e" = "nvim";
+        "gg" = "lazygit";
+    };
     oh-my-zsh = {
       enable = true;
       theme = "mortalscumbag";
-      plugins = [ "git" "thefuck" ];
+      plugins = [ "git" "thefuck" "last-working-dir" ];
     };
   };
 }

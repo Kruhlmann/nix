@@ -1,1 +1,5 @@
-{ ... }: { imports = [ ./hyprland.nix ./zsh.nix ]; }
+{ ... }: {
+  programs.virt-manager.enable = true;
+  programs.zsh.enable = true;
+  programs.dconf.enable = true;
+}
