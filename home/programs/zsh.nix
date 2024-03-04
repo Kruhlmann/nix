@@ -15,7 +15,7 @@
     '';
     oh-my-zsh = {
       enable = true;
-      theme = "lambda";
+      theme = "mortalscumbag";
       plugins = [ "git" "thefuck" ];
     };
   };
