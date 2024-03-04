@@ -153,7 +153,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     -- Spawn
     ((modm,               xK_Return ), spawn $ "alacritty"),
     ((modm,               xK_d      ), spawn spawnRofi),
-    ((modm,               xK_s      ), spawn "rofi -show ssh"),
+    ((modm,               xK_s      ), spawn "nitro"),
     ((modm .|. shiftMask, xK_s      ), spawn spawnMaim ),
     ((modm .|. shiftMask, xK_l      ), spawn "portable-lock"),
     ((modm              , xK_u      ), spawn "alacritty --class floatterm -e fzmp"),
@@ -161,13 +161,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     ((modm              , xK_e      ), spawn "alacritty --class floatterm -e ranger"),
     ((modm              , xK_n      ), spawn "alacritty --class floatterm -e ncmpcpp"),
     ((modm              , xK_b      ), spawn "manage_bluetooth_devices"),
-    ((modm              , xK_m      ), spawn "neomutt_mailbox"),
-    ((modm              , xK_v      ), spawn "sudo virt-viewer win10"),
-    ((modm .|. shiftMask, xK_v      ), spawn "vkc \"$(cat ~/.cache/gain/password)\" da | while read -r key; do printf 'sudo virsh send-key win10 %s\\n' \"$key\"; done | bash - >/dev/null                                                                                          ─╯ sudo virsh send-key win10 KEY_ENTER"),
-    ((modm              , xK_p      ), spawn "mpc toggle"),
-    ((modm              , xK_period ), spawn "mpc next"),
-    ((modm              , xK_comma  ), spawn "mpc prev"),
-    ((modm              , xK_p      ), spawn "mpc toggle"),
     ((modm              , xK_c      ), spawn "notify-send \"Now\" \"$(date \"+%A, %B %d %R\")\" --expire-time=1000"),
     -- Navigation
     ((modm,               xK_j     ), windows W.focusDown),

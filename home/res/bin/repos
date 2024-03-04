@@ -1,6 +1,5 @@
 #/usr/bin/env sh
 
-SELECTION=$(cat ~/.cache/repocache | fzf)
-if ! test -z "$SELECTION"; then
-  cd "/home/ges/doc/src$SELECTION"
-fi
+dir=$(fd -H -t d '^\.git$' --exclude build --exclude __pycache__ --exclude dist --exclude node_modules --exclude target ~/doc/src | sed 's|/.git/$||' | fzf --preview 'tree -C {} | head -n 100')
+cd $dir
+exec $SHELL

@@ -12,6 +12,7 @@
     discord
     dune_3
     entr
+    fd
     feh
     feh
     firefox

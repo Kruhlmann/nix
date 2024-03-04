@@ -2,7 +2,6 @@
 
 mkdir -p "$HOME/.cache/stickers"
 
-set -x
 if ! command -v rofi >/dev/null 2>&1; then
     notify-send -t 1000 "Error: rofi is not installed."
     exit 1
@@ -15,17 +14,20 @@ if [ ! -d "$dir" ]; then
     exit 1
 fi
 
-for id in $(ls "$HOME/.config/stickers"); do
-    test -f "$HOME/.cache/stickers/$id.png" && continue
-    printf 'Downloading %s...\n' "$id"
-    curl -s "https://cdn.betterttv.net/emote/$id/3x.webp" -o "$HOME/.cache/stickers/$id.webp"
-    convert "$HOME/.cache/stickers/$id.webp" "$HOME/.cache/stickers/$id.png"
-    rm "$HOME/.cache/stickers/$id.webp"
+for f in "$HOME"/.config/stickers/*; do
+    id=$(cat "$f")
+    name=$(basename "$f")
+    test -f "$HOME/.cache/stickers/$name.png" && continue
+    printf 'Downloading %s (%s)...\n' "$name" "$id"
+    curl -s "https://cdn.betterttv.net/emote/$id/3x.webp" -o "$HOME/.cache/stickers/$name.webp"
+    convert "$HOME/.cache/stickers/$name.webp" "$HOME/.cache/stickers/$name.png"
+    rm "$HOME/.cache/stickers/$name.webp"
 done
 
-imgname=$(ls $dir \
-    | while read A ; do echo -en "$(basename $A)\x00icon\x1f$HOME/.cache/stickers/$A.png\n"; done \
+imgname=$(ls "$dir" \
+    | while read -r A ; do echo -en "$(basename "$A")\x00icon\x1f$HOME/.cache/stickers/$A.png\n"; done \
     | rofi -dmenu -theme launchers/type-3/style-1 -p "Select a sticker")
+imgid=$(cat "$HOME/.config/stickers/$imgname")
 
 if [ -z "$imgname" ]; then
     notify-send -t 1000 "No file selected."
@@ -33,7 +35,7 @@ if [ -z "$imgname" ]; then
 fi
 
 if echo "$XDG_SESSION_TYPE" | grep -qi wayland; then
-    echo "https://cdn.betterttv.net/emote/$imgname/3x.webp" | wl-copy 
+    echo "https://cdn.betterttv.net/emote/$imgid/3x.webp" | wl-copy 
 else
-    echo "https://cdn.betterttv.net/emote/$imgname/3x.webp" | xclip -selection clipboard 
+    echo "https://cdn.betterttv.net/emote/$imgid/3x.webp" | xclip -selection clipboard 
 fi
