@@ -1,5 +1,11 @@
 { config, pkgs, ... }: {
-  imports = [ ./programs/alacritty ./programs/nvim ./services/gpg-agent ];
+  imports = [
+    ./programs/alacritty
+    ./programs/nvim
+    ./programs/zsh
+    ./services/gpg-agent
+    ./services/lorri
+  ];
   home.stateVersion = "23.11";
   home.username = "ges";
   home.homeDirectory = "/home/ges";
@@ -9,6 +15,7 @@
     bitwarden-cli
     ckb-next
     dialog
+    direnv
     discord
     dune_3
     entr
@@ -72,7 +79,10 @@
     "${config.xdg.dataHome}/.ssh/config" = { source = res/ssh/config; };
   };
   home.sessionPath = [ "$HOME/.local/bin" ];
-
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    SHELL = "/run/current-system/sw/bin/zsh";
+  };
   xsession = {
     enable = true;
     windowManager.xmonad = {

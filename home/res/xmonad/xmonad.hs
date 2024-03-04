@@ -254,6 +254,7 @@ myLogHook = return ()
 
 myStartupHook = do
     spawnOnce "nm-applet"
+    spawnOnce "lorri daemon"
     spawnOnce "setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl"
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
     spawnOnce "blueman-manager"

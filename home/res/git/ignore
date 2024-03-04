@@ -4,3 +4,4 @@ tags.lock
 tags.temp
 swap-pane
 .ccls-cache
+.envrc
