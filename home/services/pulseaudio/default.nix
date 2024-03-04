@@ -1,5 +1,1 @@
-{ ... }: {
-  services.pulseaudio = {
-    enable = true;
-  };
-}
+{ ... }: { services.pulseaudio = { enable = true; }; }
