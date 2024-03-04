@@ -1,8 +1,5 @@
 { config, pkgs, ... }: {
-  imports = [
-    ./programs
-    ./services
-  ];
+  imports = [ ./programs ./services ];
   home.stateVersion = "23.11";
   home.username = "ges";
   home.homeDirectory = "/home/ges";
