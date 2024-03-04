@@ -82,6 +82,13 @@ local common_on_attach = function(client, bufnr)
 	if client.server_capabilities.documentSymbolProvider then
 		navic.attach(client, bufnr)
 	end
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = "*",
+      callback = function()
+        vim.lsp.buf.format({ async = true })
+      end,
+    })
 end
 
 local common_capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -9,10 +9,6 @@
     bitwarden-cli
     ckb-next
     dialog
-    pkg-config
-    ocamlPackages.ocamlformat
-    zlib
-    postgresql
     discord
     dune_3
     entr
@@ -27,10 +23,8 @@
     maim
     networkmanager_dmenu
     networkmanagerapplet
-    ocamlPackages.ocaml
-    ocamlPackages.utop
-    opam
     polybar
+    postgresql
     rofi
     steam
     teams-for-linux
