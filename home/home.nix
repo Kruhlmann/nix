@@ -70,6 +70,10 @@
       source = res/dunst;
       recursive = true;
     };
+    "${config.xdg.configHome}/zsh" = {
+      source = res/zsh;
+      recursive = true;
+    };
     "${config.xdg.dataHome}/.local/bin" = {
       source = res/bin;
       recursive = true;
@@ -80,6 +84,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     SHELL = "/run/current-system/sw/bin/zsh";
+    PATH = "${config.home.sessionVariables.PATH}:${config.home.homeDirectory}/.local/bin";
   };
   xsession = {
     enable = true;
