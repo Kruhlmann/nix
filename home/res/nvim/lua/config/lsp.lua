@@ -73,7 +73,8 @@ local common_on_attach = function(client, bufnr)
     buf_set_keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-    vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({async=true})' ]])
+
+    vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
     lsp_signature.on_attach({
         floating_window_above_cur_line = true,
@@ -82,14 +83,6 @@ local common_on_attach = function(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
     end
-
-    vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*",
-        callback = function()
-            vim.lsp.buf.format({ async = true })
-            vim.api.nvim_command('edit')
-        end,
-    })
 end
 
 local common_capabilities = vim.lsp.protocol.make_client_capabilities()

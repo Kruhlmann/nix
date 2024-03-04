@@ -1,12 +1,12 @@
 --
--- 
+--
 -- Packer bootstrapping
 --
 --
 
 local vim = vim
 local map = vim.api.nvim_set_keymap
-local opts = {noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 vim.loader.enable()
 
 --local ensure_packer = function()
@@ -49,7 +49,7 @@ vim.loader.enable()
 --end)
 
 --
--- 
+--
 -- Bindings
 --
 --
@@ -57,24 +57,24 @@ vim.loader.enable()
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 map("n", "<Space>", "<Nop>", opts)
-map('n', '<Up>', '<Nop>', {noremap = true})
-map('n', '<Down>', '<Nop>', {noremap = true})
-map('n', '<Left>', '<Nop>', {noremap = true})
-map('n', '<Right>', '<Nop>', {noremap = true})
-map('i', '<Up>', '<Nop>', {noremap = true})
-map('i', '<Down>', '<Nop>', {noremap = true})
-map('i', '<Left>', '<Nop>', {noremap = true})
-map('i', '<Right>', '<Nop>', {noremap = true})
-map('n', 'n', 'nzzzv', {noremap = false})
-map('n', 'N', 'Nzzzv', {noremap = false})
-map('n', '*', '*<C-O>', {noremap = true})
-map('n', ';', ':', {noremap = true})
-map('n', 'k', "v:count == 0 ? 'gk' : 'k'", {noremap = true, expr = true, silent = true})
-map('n', 'j', "v:count == 0 ? 'gj' : 'j'", {noremap = true, expr = true, silent = true})
-map('n', 'Y', 'y$', {noremap = true})
-map("v", "<leader>/", "gc", {noremap = false})
-map("n", "<leader>/", "gcc", {noremap = false})
-map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", {noremap = true})
+map('n', '<Up>', '<Nop>', { noremap = true })
+map('n', '<Down>', '<Nop>', { noremap = true })
+map('n', '<Left>', '<Nop>', { noremap = true })
+map('n', '<Right>', '<Nop>', { noremap = true })
+map('i', '<Up>', '<Nop>', { noremap = true })
+map('i', '<Down>', '<Nop>', { noremap = true })
+map('i', '<Left>', '<Nop>', { noremap = true })
+map('i', '<Right>', '<Nop>', { noremap = true })
+map('n', 'n', 'nzzzv', { noremap = false })
+map('n', 'N', 'Nzzzv', { noremap = false })
+map('n', '*', '*<C-O>', { noremap = true })
+map('n', ';', ':', { noremap = true })
+map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+map('n', 'Y', 'y$', { noremap = true })
+map("v", "<leader>/", "gc", { noremap = false })
+map("n", "<leader>/", "gcc", { noremap = false })
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { noremap = true })
 map("n", "<leader>p", [[<cmd>lua require("telescope.builtin").find_files()<cr>]], opts)
 map("n", "<leader><space>", [[<cmd>lua require("telescope.builtin").buffers()<cr>]], opts)
 map("n", "<leader>g", [[<cmd>lua require("telescope.builtin").live_grep()<cr>]], opts)
@@ -111,43 +111,41 @@ map('n', '<leader>.', '<cmd>split<CR>', opts)
 --
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
-  callback = function()
-    vim.cmd "hi link illuminatedWord LspReferenceText"
-  end,
+    callback = function()
+        vim.cmd "hi link illuminatedWord LspReferenceText"
+    end,
 })
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-  callback = function()
-    vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
-  end,
+    callback = function()
+        vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
+    end,
 })
 
 vim.api.nvim_exec([[ autocmd BufNewFile,BufRead *.sol set filetype=solidity ]], false)
 
-vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
-
 vim.api.nvim_create_autocmd({ "VimResized" }, {
-  callback = function()
-    vim.cmd "tabdo wincmd ="
-  end,
+    callback = function()
+        vim.cmd "tabdo wincmd ="
+    end,
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
-  callback = function()
-    vim.cmd [[
+    pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
+    callback = function()
+        vim.cmd [[
       nnoremap <silent> <buffer> q :close<CR>
       set nobuflisted
     ]]
-  end,
+    end,
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "gitcommit", "markdown" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
+    pattern = { "gitcommit", "markdown" },
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.spell = true
+    end,
 })
 
 --
@@ -157,10 +155,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 --
 
 local colorscheme = "gruvbox"
-vim.g.gruvbox_italic=1
+vim.g.gruvbox_italic = 1
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
-  vim.notify("Colorscheme " .. colorscheme .. " not found!")
+    vim.notify("Colorscheme " .. colorscheme .. " not found!")
 end
 local home_directory = vim.fn.expand('~')
 vim.o.inccommand = "nosplit"
@@ -201,8 +199,8 @@ vim.o.undofile = true
 vim.o.backup = true
 vim.o.swapfile = false
 vim.g.indent_blankline_char = "┊"
-vim.g.indent_blankline_filetype_exclude = {'help', 'packer'}
-vim.g.indent_blankline_buftype_exclude = {'terminal', 'nofile'}
+vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
+vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_char_highlight = 'LineNr'
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
