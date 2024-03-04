@@ -14,8 +14,8 @@
       source ~/.config/zsh/opam.zsh
     '';
     shellAliases = {
-        "e" = "nvim";
-        "gg" = "lazygit";
+      "e" = "nvim";
+      "gg" = "lazygit";
     };
     oh-my-zsh = {
       enable = true;
