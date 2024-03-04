@@ -16,11 +16,8 @@ jobs:
       with:
         install_options: '--no-daemon'
 
-    - name: Install nixfmt
+    - name: Check Nix files formatting
       run: |
         nix-channel --add https://nixos.org/channels/nixos-unstable nixos
         nix-channel --update
-        nix-env -iA nixos.nixpkgs-fmt
-
-    - name: Check Nix files formatting
-      run:  nixpkgs-fmt --check .
+        nix-shell -p nixfmt --run nixfmt --check .
