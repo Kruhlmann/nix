@@ -12,3 +12,11 @@ install-system:
 install-user:
 	ln -sfT $(shell pwd)/home $$HOME/.config/home-manager
 	home-manager switch
+
+.PHONY: fix
+fix:
+	nixfmt .
+
+.PHONY: lint
+lint:
+	nixfmt --check .

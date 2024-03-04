@@ -17,4 +17,4 @@ jobs:
         nix_path: nixpkgs=channel:nixos-unstable
 
     - name: Check Nix files formatting
-      run: nix-shell -p nixfmt --run "nixfmt --check ."
+      run: nix-shell -p nixfmt gnumake --run "make lint"
