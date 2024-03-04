@@ -66,6 +66,10 @@
       source = res/stack;
       recursive = true;
     };
+    "${config.xdg.configHome}/dunst" = {
+      source = res/dunst;
+      recursive = true;
+    };
     "${config.xdg.dataHome}/.local/bin" = {
       source = res/bin;
       recursive = true;
