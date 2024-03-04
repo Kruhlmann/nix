@@ -84,7 +84,8 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     SHELL = "/run/current-system/sw/bin/zsh";
-    PATH = "${config.home.sessionVariables.PATH}:${config.home.homeDirectory}/.local/bin";
+    PATH =
+      "${config.home.sessionVariables.PATH}:${config.home.homeDirectory}/.local/bin";
   };
   xsession = {
     enable = true;

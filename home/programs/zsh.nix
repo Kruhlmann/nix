@@ -3,7 +3,7 @@
     enable = true;
     enableCompletion = true;
     autocd = true;
-    syntaxHighlighting.enable =true;
+    syntaxHighlighting.enable = true;
     history.save = 10000;
     history.path = ~/.zsh_history;
     history.share = true;
