@@ -26,7 +26,7 @@ done
 
 imgname=$(ls "$dir" \
     | while read -r A ; do echo -en "$(basename "$A")\x00icon\x1f$HOME/.cache/stickers/$A.png\n"; done \
-    | rofi -dmenu -theme launchers/type-3/style-1 -p "Select a sticker")
+    | rofi -dmenu -i -theme launchers/type-3/style-1 -p "Select a sticker")
 imgid=$(cat "$HOME/.config/stickers/$imgname")
 
 if [ -z "$imgname" ]; then
