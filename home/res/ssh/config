@@ -1,50 +1,28 @@
-include mobnet
-include stp
-include virtual_machines
+# vim: filetype=sshconfig tabstop=2 shiftwidth=2 expandtab
+include work
 
 Host *
-    ServerAliveInterval 60
-    SetEnv TERM=xterm
+  ServerAliveInterval 60
+  SetEnv TERM=xterm
+  IdentityFile ~/.ssh/personal
+  PreferredAuthentications publickey
+  Port 22
 
 Host wert.dk
-    HostName wert.dk
-    Port 23432
-    User ask
-    PreferredAuthentications publickey
-    IdentityFile ~/.ssh/personal
+  HostName wert.dk
+  Port 23432
+  User ask
 
 Host kruhlmann.dev
-    HostName 188.177.19.193
-    User ges
-    Port 22
-    PreferredAuthentications publickey
-    IdentityFile ~/.ssh/personal
-    LocalForward 7031 192.168.1.1:80 # Router
+  HostName 188.177.19.193
+  User ges
+  LocalForward 7031 192.168.1.1:80 # Router
 
-Host nymann nymann.dev
-    HostName nymann.dev
-    User ges
-    Port 23432
-    PreferredAuthentications publickey
-    IdentityFile ~/.ssh/personal
+Host github.com
+  User git
 
-# Version control
-Host github.com github
-    User git
-    Hostname github.com
-    Port 22
-    PreferredAuthentications publickey
-    IdentityFile ~/.ssh/personal
+Host gitlab.com
+  User git
 
-Host gitlab.com gitlab
-    User git
-    Hostname gitlab.com
-    Port 22
-    PreferredAuthentications publickey
-    IdentityFile ~/.ssh/personal
-
-Host aur.archlinux.org aur
+Host aur.archlinux.org
   User aur
-  Hostname aur.archlinux.org
-  PreferredAuthentications publickey
-  IdentityFile ~/.ssh/personal
