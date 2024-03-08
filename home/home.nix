@@ -15,16 +15,31 @@
     entr
     fd
     feh
-    feh
     firefox
     fzf
     gimp
     gnome.nautilus
+    gnome.sushi
     imagemagickBig
+    libreoffice-bin
     lutris
     maim
-    networkmanager_dmenu
+    mpv
+    nautilus-open-any-terminal
     networkmanagerapplet
+    obs-cli
+    obs-studio
+    obs-studio-plugins.advanced-scene-switcher
+    obs-studio-plugins.input-overlay
+    obs-studio-plugins.obs-backgroundremoval
+    obs-studio-plugins.obs-command-source
+    obs-studio-plugins.obs-mute-filter
+    obs-studio-plugins.obs-pipewire-audio-capture
+    obs-studio-plugins.obs-source-clone
+    obs-studio-plugins.obs-source-switcher
+    obs-studio-plugins.obs-text-pthread
+    obs-studio-plugins.obs-transition-table
+    obs-studio-plugins.obs-vertical-canvas
     polybar
     postgresql
     rofi
@@ -37,6 +52,7 @@
     xorg.xkbcomp
     xorg.xmodmap
     xorg.xrandr
+    zathura
   ];
   xdg.dataHome = ~/.;
   xdg.configHome = ~/.config;
