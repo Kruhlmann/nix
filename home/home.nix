@@ -17,6 +17,7 @@
     feh
     firefox
     fzf
+    gamemode
     gimp
     gnome.nautilus
     gnome.sushi
@@ -40,10 +41,12 @@
     obs-studio-plugins.obs-text-pthread
     obs-studio-plugins.obs-transition-table
     obs-studio-plugins.obs-vertical-canvas
+    page
     polybar
     postgresql
     rofi
     steam
+    steam-tui
     teams-for-linux
     texliveFull
     thefuck
@@ -99,6 +102,8 @@
   home.sessionPath = [ "$HOME/.local/bin" ];
   home.sessionVariables = {
     EDITOR = "nvim";
+    PAGER = "page";
+    MANPAGER = "page -t man";
     SHELL = "/run/current-system/sw/bin/zsh";
   };
   xsession = {
