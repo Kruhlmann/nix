@@ -1,0 +1,64 @@
+#!/usr/bin/env dash
+umask 0022
+
+DGW=$(ip route | grep default | cut -d\  -f3)
+HOST=${2:-hr.siemens.dk}
+DNS=172.31.1.1
+GW=${DNS}
+
+
+
+wait_for_zgw(){
+  printf 'Waiting for ZScaler:'
+    while ! nslookup ${HOST} ${DNS} >/dev/null 2>&1; do
+    printf '.'
+    sleep 3s
+  done
+  echo 'OK'
+}
+
+
+
+routing(){
+  [ "${DGW}" = '10.165.16.1' ] && ip route $1 10.165.0.0/16 via ${DGW}
+  ip route $1 10.0.0.0/8 via ${GW}
+  ip route $1 100.64.0.0/10 via ${GW}
+  ip route $1 149.212.0.0/16 via ${GW}
+  ip route $1 143.204.0.0/16 via ${GW}
+  ip route $1 3.0.0.0/9 via ${GW}
+  ip route $1 52.0.0.0/10 via ${GW}
+  ip route $1 52.64.0.0/12 via ${GW}
+}
+
+dnsmasq_conf(){
+  cat << EOF
+server=/siemens.net/${DNS}
+server=/siemens.com/${DNS}
+server=/siemens.io/${DNS}
+server=/siemens.de/${DNS}
+server=/siemens.dk/${DNS}
+server=/mobnet.dk/${DNS}
+EOF
+}
+
+case $1 in
+up | down)
+  [ $(id -u) -eq 0 ] || exec sudo $0 $@
+  case $1 in
+  up)
+    wait_for_zgw
+    routing add
+    dnsmasq_conf > /run/dnsmasq/siemens.conf
+    ;;
+  down)
+    routing del
+    rm /run/dnsmasq/siemens.conf
+    ;;
+  esac
+  ;;
+*)
+  echo 'Argument [up|down] required!'
+  exit 1
+  ;;
+esac
+systemctl restart dnsmasq
