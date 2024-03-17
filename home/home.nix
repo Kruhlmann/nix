@@ -52,6 +52,7 @@
     teams-for-linux
     texliveFull
     thefuck
+    tree
     xcape
     xclip
     xorg.xkbcomp
