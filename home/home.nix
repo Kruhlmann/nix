@@ -93,6 +93,10 @@
       source = res/zsh;
       recursive = true;
     };
+    "${config.xdg.configHome}/discord" = {
+      source = res/discord;
+      recursive = true;
+    };
     "${config.xdg.dataHome}/.local/bin" = {
       source = res/bin;
       recursive = true;

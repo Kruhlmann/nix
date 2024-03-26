@@ -154,6 +154,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     ((modm,               xK_Return ), spawn $ "alacritty"),
     ((modm,               xK_d      ), spawn spawnRofi),
     ((modm,               xK_s      ), spawn "nitro"),
+    ((modm,               xK_s      ), spawn "react"),
     ((modm .|. shiftMask, xK_s      ), spawn spawnMaim ),
     ((modm .|. shiftMask, xK_l      ), spawn "portable-lock"),
     ((modm              , xK_u      ), spawn "alacritty --class floatterm -e fzmp"),

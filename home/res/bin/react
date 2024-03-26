@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+dir="${HOME}/.cache/reactions"
+
+if ! command -v rofi >/dev/null 2>&1; then
+    notify-send -t 1000 "Error: rofi is not installed."
+    exit 1
+fi
+
+if [ ! -d "$dir" ]; then
+    notify-send -t 1000 "Error: Directory $dir does not exist."
+    exit 1
+fi
+
+categories=$(find "$dir" -maxdepth 1 -mindepth 1 -type d | while read -r d; do basename "$d"; done)
+category=$(echo "$categories" | rofi -dmenu -i -theme launchers/type-3/style-1 -p "Select a category")
+
+test "$category" = "" && exit 1
+
+imgname=$(ls ${dir}/${category}/*.png \
+    | while IFS="" read -r A; do
+        echo -en "$(basename "$A")\x00icon\x1f${A}"
+      done \
+    | rofi -dmenu -i -theme launchers/type-3/style-1 -p "Select an image")
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    wl-copy < "${dir}/${category}/${imgname}"
+elif [ "$XDG_SESSION_TYPE" = "x11" ]; then
+    xclip -selection clipboard -t image/png -i "${dir}/${category}/${imgname}"
+else
+    notify-send -t 1000 "Unsupported display session type: $XDG_SESSION_TYPE"
+fi
