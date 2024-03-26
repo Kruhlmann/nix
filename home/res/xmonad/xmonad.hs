@@ -240,12 +240,15 @@ myManageHook = composeAll [
     resource  =? "floatterm" --> doRectFloat (W.RationalRect 0.2 0.2 0.6 0.6),
     resource  =? "pavucontrol" --> doRectFloat (W.RationalRect 0.2 0.2 0.6 0.6),
     resource  =? "gnome-panel" --> doCenterFloat,
-    className     =? "xmessage" --> doCenterFloat,
+    className   =? "xmessage" --> doCenterFloat,
+    className   =? "steam" --> doFloat,
+    className   =? "Steam" --> doFloat,
+    className =? "hl_linux" --> doFloat,
+    className =? "awakened-poe-trade" --> doFloat,
     title     =? "Firefox Preferences" --> doFloat,
     title     =? "Session Manager - Mozilla Firefox" --> doFloat,
     title     =? "Firefox Add-on Updates" --> doFloat,
     title     =? "Clear Private Data" --> doFloat,
-    className =? "awakened-poe-trade" --> doFloat,
     -- Fullscreen.
     isFullscreen --> doFullFloat
     ]

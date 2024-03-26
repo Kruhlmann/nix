@@ -22,9 +22,10 @@
     gnome.nautilus
     gnome.sushi
     imagemagickBig
-    libreoffice-bin
+    libreoffice-fresh
     lutris
     maim
+    arandr
     mpv
     nautilus-open-any-terminal
     networkmanagerapplet
@@ -46,10 +47,12 @@
     postgresql
     rofi
     steam
+    steamPackages.steamcmd
     steam-tui
     teams-for-linux
     texliveFull
     thefuck
+    tree
     xcape
     xclip
     xorg.xkbcomp

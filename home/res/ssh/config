@@ -1,5 +1,5 @@
 # vim: filetype=sshconfig tabstop=2 shiftwidth=2 expandtab
-include work
+Include ~/.ssh/config.d/*.conf
 
 Host *
   ServerAliveInterval 60
