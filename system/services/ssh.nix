@@ -1,5 +1,6 @@
 { ... }: {
   services.openssh = {
+    logLevel = "VERBOSE";
     enable = true;
     extraConfig = ''
       Include /etc/ssh/sshd_config.d/*.conf

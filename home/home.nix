@@ -6,12 +6,12 @@
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     alacritty
+    arandr
     bitwarden-cli
     ckb-next
     dialog
     direnv
     discord
-    dune_3
     entr
     fd
     feh
@@ -25,7 +25,6 @@
     libreoffice-fresh
     lutris
     maim
-    arandr
     mpv
     nautilus-open-any-terminal
     networkmanagerapplet
@@ -47,8 +46,8 @@
     postgresql
     rofi
     steam
-    steamPackages.steamcmd
     steam-tui
+    steamPackages.steamcmd
     teams-for-linux
     texliveFull
     thefuck

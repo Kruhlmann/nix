@@ -61,6 +61,7 @@
       cmp-nvim-lsp
       cmp-nvim-lua
       cmp-path
+      cmp_luasnip
       gruvbox
       lsp_signature-nvim
       lspkind-nvim

@@ -8,6 +8,12 @@
     ./services/default.nix
     ./programs/default.nix
   ];
+  nix.optimise.automatic = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 15d";
+  };
   system.stateVersion = "23.11";
   nixpkgs.config.allowUnfree = true;
   time.timeZone = "Europe/Copenhagen";
