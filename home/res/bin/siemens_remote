@@ -29,6 +29,7 @@ routing(){
   ip route $1 52.0.0.0/10 via ${GW}
   ip route $1 52.64.0.0/12 via ${GW}
   ip route $1 10.80.2.11 via 217.74.214.251
+  ip route $1 52.59.56.222 ${DGW}
 }
 
 dnsmasq_conf(){
