@@ -12,6 +12,7 @@ local servers = {
     gopls = {},
     svelte = {},
     tsserver = {},
+    ruff_lsp = {},
     taplo = {},
     eslint = { cmd = { "eslint", "--stdio" } },
     jsonls = { cmd = { "vscode-json-languageserver", "--stdio" } },

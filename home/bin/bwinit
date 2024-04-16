@@ -4,8 +4,8 @@ set -e
 
 umask 0600
 
-test -z "$BWUSER"
-test -z "$BWPASS"
+test -n "$BWUSER"
+test -n "$BWPASS"
 
 export BW_SESSION="$(bw login --raw "$BWUSER" "$BWPASS")"
 
