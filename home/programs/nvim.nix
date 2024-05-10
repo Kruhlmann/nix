@@ -35,11 +35,14 @@
       nodePackages.yaml-language-server
       ocamlPackages.ocaml-lsp
       ocamlPackages.ocamlformat
+      jdt-language-server
       ripgrep
       selene
       shellcheck
       shellharden
       shfmt
+      vscode-extensions.vscjava.vscode-java-test
+      vscode-extensions.vscjava.vscode-java-debug
       statix
       taplo-cli
       terraform-ls
@@ -75,7 +78,7 @@
       nvim-autopairs
       nvim-cmp
       nvim-colorizer-lua
-      nvim-lsputils
+      nvim-lsputils 
       nvim-navic
       nvim-treesitter.withAllGrammars
       nvim-web-devicons
@@ -85,6 +88,17 @@
       trouble-nvim
       vim-commentary
       which-key-nvim
+      {
+        plugin = nvim-jdtls;
+        type = "lua";
+        config = ''
+          vim.api.nvim_create_autocmd("FileType", {
+            pattern = "java",
+            callback = function()
+              require("jdtls").setup()
+            end
+          })
+        '';
       {
         plugin = nvim-lspconfig;
         type = "lua";
