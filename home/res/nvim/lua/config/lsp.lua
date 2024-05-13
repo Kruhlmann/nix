@@ -12,6 +12,8 @@ local servers = {
     gopls = {},
     svelte = {},
     tsserver = {},
+    jdtls = {},
+    ruff_lsp = {},
     taplo = {},
     eslint = { cmd = { "eslint", "--stdio" } },
     jsonls = { cmd = { "vscode-json-languageserver", "--stdio" } },
@@ -88,9 +90,11 @@ end
 local common_capabilities = vim.lsp.protocol.make_client_capabilities()
 
 for server, config in pairs(servers) do
-    config = vim.tbl_deep_extend("force", {
-        on_attach = common_on_attach,
-        capabilities = common_capabilities,
-    }, config)
-    lsp_config[server].setup(config)
+    if server ~= "jdtls" then
+        config = vim.tbl_deep_extend("force", {
+            on_attach = common_on_attach,
+            capabilities = common_capabilities,
+        }, config)
+        lsp_config[server].setup(config)
+    end
 end
