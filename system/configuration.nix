@@ -86,6 +86,7 @@
     ncurses
     ocl-icd
     openal
+    openconnect
     openldap
     openssl
     pavucontrol

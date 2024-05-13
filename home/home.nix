@@ -8,6 +8,7 @@
     alacritty
     arandr
     bitwarden-cli
+    cabextract
     ckb-next
     dialog
     direnv

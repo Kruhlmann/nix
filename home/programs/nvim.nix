@@ -29,6 +29,7 @@
       nodePackages.prettier
       nodePackages.pyright
       nodePackages.svelte-language-server
+      nodePackages.svelte-check
       nodePackages.typescript
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
@@ -85,6 +86,7 @@
       telescope-nvim
       trouble-nvim
       vim-commentary
+      vim-svelte
       which-key-nvim
       {
         plugin = nvim-lspconfig;
