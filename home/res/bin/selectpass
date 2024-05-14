@@ -18,7 +18,7 @@ if ! command -v "$input_tool" >/dev/null 2>&1; then
     exit 1
 fi
 
-dir="$HOME/.cache/punlock/pass"
+dir="$HOME/.cache/punlock/tmp/pass"
 
 if [ ! -d "$dir" ]; then
     notify-send "Error: Directory $dir does not exist."

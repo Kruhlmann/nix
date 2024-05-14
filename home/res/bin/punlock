@@ -22,6 +22,7 @@ get_email() {
     fi
 }
 
+umask 077
 punlock_home="$HOME/.cache/punlock"
 punlock_temp="$punlock_home/tmp"
 
@@ -60,9 +61,6 @@ bw get item 1aff8bcc-9d1e-452a-a4a3-ab5d00ac9589 | jq -r '.notes' >"$punlock_tem
 bw get item 1aff8bcc-9d1e-452a-a4a3-ab5d00ac9589 | jq -r '.fields[0].value' >"$punlock_temp/ssh/personal.pub"
 bw get item d7fdba66-36a2-4d9e-997e-ab5d00ac183f | jq -r '.notes' >"$punlock_temp/ssh/work"
 bw get item d7fdba66-36a2-4d9e-997e-ab5d00ac183f | jq -r '.fields[0].value' >"$punlock_temp/ssh/work.pub"
-
-chmod 0600 "$punlock_temp/ssh/personal"
-chmod 0600 "$punlock_temp/ssh/work"
 
 for f in $(ls "$punlock_temp/ssh"); do
     ln -sf "$punlock_temp/ssh/$f" "$HOME/.ssh/$f"

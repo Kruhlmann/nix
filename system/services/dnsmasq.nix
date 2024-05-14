@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{ ... }: {
   services.dnsmasq.enable = true;
   services.dnsmasq.preStart = ''
     mkdir -p /run/dnsmasq
