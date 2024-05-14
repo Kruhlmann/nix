@@ -33,7 +33,6 @@
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
       nodePackages.yaml-language-server
-      ocamlPackages.ocaml-lsp
       ocamlPackages.ocamlformat
       jdt-language-server
       ripgrep
@@ -84,6 +83,7 @@
       nvim-web-devicons
       packer-nvim
       plenary-nvim
+      rustaceanvim
       telescope-nvim
       trouble-nvim
       vim-commentary
@@ -99,6 +99,7 @@
             end
           })
         '';
+      }
       {
         plugin = nvim-lspconfig;
         type = "lua";

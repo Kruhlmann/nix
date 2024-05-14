@@ -6,6 +6,7 @@
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     alacritty
+    arandr
     bitwarden-cli
     ckb-next
     dialog
@@ -21,11 +22,12 @@
     gimp
     gnome.nautilus
     gnome.sushi
+    graphviz
     imagemagickBig
     libreoffice-fresh
     lutris
     maim
-    arandr
+    mangohud
     mpv
     nautilus-open-any-terminal
     networkmanagerapplet
@@ -46,6 +48,8 @@
     polybar
     postgresql
     rofi
+    rustup
+    rust-analyzer
     steam
     steamPackages.steamcmd
     steam-tui
