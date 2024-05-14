@@ -200,21 +200,17 @@ myLayout = tiled ||| Mirror tiled ||| Full
 myLayoutHook = toggleLayouts Full tall ||| threeCol ||| tabs
     where
         myGaps = gaps [(U, 0),(D, 0),(L, size_gap),(R, size_gap)]
-        -- mySpacing = spacing size_gap
         mySpacing = spacing 0
-
         threeCol = named "ThreeColumn"
             $ avoidStruts
             $ myGaps
             $ mySpacing
             $ ThreeColMid 1 (1/10) (1/2)
-
         tabs = named "Tabs"
             $ avoidStruts
             $ mySpacing
             $ addTabs shrinkText myTabTheme
             $ Simplest
-
         tall = named "Tall"
             $ avoidStruts
             $ myGaps
@@ -222,7 +218,6 @@ myLayoutHook = toggleLayouts Full tall ||| threeCol ||| tabs
             $ Tall 1 (3/100) (1/2)
 
 myManageHook = composeAll [
-    -- Positions.
     className =? "discord" --> doShift "Instant Messaging",
     className =? "teams-for-linux" --> doShift "Instant Messaging",
     className =? "microsoft-edge-dev" --> doShift "Instant Messaging",
@@ -230,13 +225,10 @@ myManageHook = composeAll [
     className =? "ckb-next" --> doShift "Settings",
     className =? "blueman-manager" --> doShift "Settings",
     className =? "Blueman-manager" --> doShift "Settings",
-    -- Float.
     resource  =? "floatterm" --> doRectFloat (W.RationalRect 0.2 0.2 0.6 0.6),
     resource  =? "pavucontrol" --> doRectFloat (W.RationalRect 0.2 0.2 0.6 0.6),
     resource  =? "gnome-panel" --> doCenterFloat,
     className   =? "xmessage" --> doCenterFloat,
-    className   =? "steam" --> doFloat,
-    className   =? "Steam" --> doFloat,
     className =? "hl_linux" --> doFloat,
     className =? "awakened-poe-trade" --> doFloat,
     title     =? "Firefox Preferences" --> doFloat,
