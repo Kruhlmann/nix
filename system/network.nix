@@ -28,4 +28,18 @@
     netdevConfig.Kind = "bridge";
   };
   systemd.network.wait-online.enable = false;
+  networking.resolvconf = {
+    enable = true;
+    package = pkgs.openresolv;
+  };
+  environment.etc."resolv.conf".text = ''
+    nameserver 127.0.0.1
+    nameserver 8.8.8.8
+    nameserver 8.8.4.4
+    search your.domain
+  '';
+  networking.networkmanager = {
+    enable = true;
+    useGlobalDns = true;
+  };
 }

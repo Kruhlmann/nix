@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+if ! command -v rofi >/dev/null 2>&1; then
+    notify-send "Error: rofi is not installed."
+    exit 1
+fi
+
+if echo "$XDG_SESSION_TYPE" | grep -qi wayland; then
+    display_server="wayland"
+    input_tool="wtype"
+else
+    display_server="xorg"
+    input_tool="xdotool"
+fi
+
+if ! command -v "$input_tool" >/dev/null 2>&1; then
+    notify-send "Error: $input_tool is not installed."
+    exit 1
+fi
+
+dir="$HOME/.cache/punlock/pass"
+
+if [ ! -d "$dir" ]; then
+    notify-send "Error: Directory $dir does not exist."
+    exit 1
+fi
+
+file=$(find "$dir" -type f -o -type l | rofi -dmenu -i -p "Select a file")
+if [ -z "$file" ]; then
+    notify-send "No file selected."
+    exit 1
+fi
+
+if [ "$display_server" = "wayland" ]; then
+    while IFS= read -r line; do
+        $input_tool "$line"
+    done < "$file"
+else
+    $input_tool type --file "$file"
+fi
