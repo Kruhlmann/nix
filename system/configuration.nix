@@ -5,6 +5,7 @@
     ./hardware.nix
     ./network.nix
     ./users.nix
+    ./virtualization.nix
     ./services/default.nix
     ./programs/default.nix
   ];
@@ -19,12 +20,6 @@
   security.sudo.extraConfig = ''
     %wheel ALL=(ALL) NOPASSWD: ALL
   '';
-  virtualisation.docker.enable = true;
-  virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.onBoot = "start";
-  virtualisation.libvirtd.onShutdown = "shutdown";
-  virtualisation.libvirtd.allowedBridges = [ "virbr0" "nat0" "nat1" ];
-  virtualisation.libvirtd.qemu.package = pkgs.qemu_kvm;
   boot.extraModprobeConfig = "options kvm_intel nested=1";
 
   fonts.packages = with pkgs; [
