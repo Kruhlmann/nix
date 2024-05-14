@@ -30,7 +30,7 @@ test -d "$punlock_temp" && sudo umount "$punlock_temp" && sudo rm -r "$punlock_t
 mkdir -p "$punlock_temp"
 sudo mount -t tmpfs -o size=50M tmpfs "$punlock_temp"
 sudo chown "$USER:$USER" -R "$punlock_temp"
-mkdir -p "$punlock_temp/"{pass,ssh}
+mkdir -p "$punlock_temp/"{pass,ssh,user,etc}
 
 if [ -f "$punlock_home/bw-email" ]; then
     email=$(cat "$punlock_home/bw-email")
@@ -56,6 +56,8 @@ unset password
 bw get item dd365b97-5304-4fb3-9f68-aa6700ad6306 | jq -r '.login.password' >"$punlock_temp/pass/mobnet"
 bw get item b8778eed-99bf-49f2-8eb9-aa7600baa0f1 | jq -r '.login.password' >"$punlock_temp/pass/gain"
 bw get item 58b855db-1c48-47d3-8183-b0b600c119f1 | jq -r '.login.password' >"$punlock_temp/pass/l3-vpn"
+bw get item 58b855db-1c48-47d3-8183-b0b600c119f1 | jq -r '.login.username' >"$punlock_temp/user/l3-vpn"
+bw get item 58b855db-1c48-47d3-8183-b0b600c119f1 | jq -r '.login.uris[0].uri' >"$punlock_temp/etc/l3-vpn-host"
 bw get item fc0a4cc2-8975-4b54-8057-b17000d12ae2 | jq -r '.login.password' >"$punlock_temp/pass/l3-pdi"
 bw get item 1aff8bcc-9d1e-452a-a4a3-ab5d00ac9589 | jq -r '.notes' >"$punlock_temp/ssh/personal"
 bw get item 1aff8bcc-9d1e-452a-a4a3-ab5d00ac9589 | jq -r '.fields[0].value' >"$punlock_temp/ssh/personal.pub"

@@ -55,6 +55,7 @@ nameserver 8.8.8.8
 EOF
 }
 
+sudo openconnect -u "$(cat "$HOME/.cache/punlock/user/l3-vpn")" "$(cat "$HOME/.cache/punlock/etc/l3-vpn-host")" <"$HOME/.cache/punlock/pass/l3-vpn"
 case $1 in
 up | down)
   [ $(id -u) -eq 0 ] || exec sudo $0 $@
