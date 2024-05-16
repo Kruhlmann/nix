@@ -31,46 +31,40 @@ cmp.setup({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            elseif has_words_before() then
-                cmp.complete()
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
+        -- ["<Tab>"] = cmp.mapping(function(fallback)
+        -- 	if cmp.visible() then
+        -- 		cmp.select_next_item()
+        -- 	elseif luasnip.expand_or_jumpable() then
+        -- 		luasnip.expand_or_jump()
+        -- 	elseif has_words_before() then
+        -- 		cmp.complete()
+        -- 	else
+        -- 		fallback()
+        -- 	end
+        -- end, { "i", "s" }),
+        -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+        -- 	if cmp.visible() then
+        -- 		cmp.select_prev_item()
+        -- 	elseif luasnip.jumpable(-1) then
+        -- 		luasnip.jump(-1)
+        -- 	else
+        -- 		fallback()
+        -- 	end
+        -- end, { "i", "s" }),
     }),
     sources = {
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
-        { name = "buffer",  keyworld_length = 5 },
-        { name = "cmdline" },
+        { name = "buffer" },
         { name = "path" },
     },
+    -- Pictograms
     formatting = {
-        format = lspkind.cmp_format {
-            with_text = true,
-            menu = {
-                buffer = "[BUF]",
-                nvim_lsp = "[LSP]",
-                nvim_lua = "[LSP]",
-                path = "[PATH]",
-                luasnip = "[SNIP]",
-            },
-        },
+        format = function(_, vim_item)
+            vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
+            return vim_item
+        end,
     },
 })
 

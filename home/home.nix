@@ -22,10 +22,12 @@
     gimp
     gnome.nautilus
     gnome.sushi
+    graphviz
     imagemagickBig
     libreoffice-fresh
     lutris
     maim
+    mangohud
     mpv
     nautilus-open-any-terminal
     networkmanagerapplet
@@ -46,6 +48,8 @@
     polybar
     postgresql
     rofi
+    rustup
+    rust-analyzer
     steam
     steam-tui
     steamPackages.steamcmd

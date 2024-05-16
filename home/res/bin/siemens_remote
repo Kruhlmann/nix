@@ -1,12 +1,10 @@
 #!/usr/bin/env dash
 umask 0022
 
-DGW=$(ip route | grep default | cut -d\  -f3)
+DGW=$(ip route | grep 'default via' | cut -d\  -f3 | head -n 1)
 HOST=${2:-hr.siemens.dk}
 DNS=172.31.1.1
 GW=${DNS}
-
-
 
 wait_for_zgw(){
   printf 'Waiting for ZScaler:'
@@ -20,6 +18,7 @@ wait_for_zgw(){
 
 
 routing(){
+  set -x
   [ "${DGW}" = '10.165.16.1' ] && ip route $1 10.165.0.0/16 via ${DGW}
   ip route $1 10.0.0.0/8 via ${GW}
   ip route $1 100.64.0.0/10 via ${GW}
@@ -29,7 +28,13 @@ routing(){
   ip route $1 52.0.0.0/10 via ${GW}
   ip route $1 52.64.0.0/12 via ${GW}
   ip route $1 10.80.2.11 via 217.74.214.251
-  ip route $1 52.59.56.222 ${DGW}
+  ip route $1 52.59.56.222 via ${DGW}
+  ip route $1 212.98.116.57 via ${GW}
+  # Active directory
+  ip route $1 129.103.0.0/16 via ${GW}
+  # VPN L3
+  ip route $1 10.80.2.11 via 10.255.255.47 dev tun0
+  set +x
 }
 
 dnsmasq_conf(){
@@ -43,6 +48,14 @@ server=/mobnet.dk/${DNS}
 EOF
 }
 
+resolv_conf() {
+  cat <<EOF
+nameserver 127.0.0.1
+nameserver 8.8.8.8
+EOF
+}
+
+sudo openconnect -u "$(cat "$HOME/.cache/punlock/user/l3-vpn")" "$(cat "$HOME/.cache/punlock/etc/l3-vpn-host")" <"$HOME/.cache/punlock/pass/l3-vpn"
 case $1 in
 up | down)
   [ $(id -u) -eq 0 ] || exec sudo $0 $@
@@ -63,4 +76,5 @@ up | down)
   exit 1
   ;;
 esac
+resolv_conf >/etc/resolv.conf
 systemctl restart dnsmasq

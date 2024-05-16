@@ -154,14 +154,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     ((modm,               xK_Return ), spawn $ "alacritty"),
     ((modm,               xK_d      ), spawn spawnRofi),
     ((modm,               xK_s      ), spawn "nitro"),
-    ((modm,               xK_s      ), spawn "react"),
     ((modm .|. shiftMask, xK_s      ), spawn spawnMaim ),
     ((modm .|. shiftMask, xK_l      ), spawn "portable-lock"),
-    ((modm              , xK_u      ), spawn "alacritty --class floatterm -e fzmp"),
-    ((modm              , xK_g      ), spawn "alacritty --class floatterm -e lazygit"),
-    ((modm              , xK_e      ), spawn "alacritty --class floatterm -e ranger"),
-    ((modm              , xK_n      ), spawn "alacritty --class floatterm -e ncmpcpp"),
-    ((modm              , xK_b      ), spawn "manage_bluetooth_devices"),
     ((modm              , xK_c      ), spawn "notify-send \"Now\" \"$(date \"+%A, %B %d %R\")\" --expire-time=1000"),
     -- Navigation
     ((modm,               xK_j     ), windows W.focusDown),
@@ -206,21 +200,17 @@ myLayout = tiled ||| Mirror tiled ||| Full
 myLayoutHook = toggleLayouts Full tall ||| threeCol ||| tabs
     where
         myGaps = gaps [(U, 0),(D, 0),(L, size_gap),(R, size_gap)]
-        -- mySpacing = spacing size_gap
         mySpacing = spacing 0
-
         threeCol = named "ThreeColumn"
             $ avoidStruts
             $ myGaps
             $ mySpacing
             $ ThreeColMid 1 (1/10) (1/2)
-
         tabs = named "Tabs"
             $ avoidStruts
             $ mySpacing
             $ addTabs shrinkText myTabTheme
             $ Simplest
-
         tall = named "Tall"
             $ avoidStruts
             $ myGaps
@@ -228,7 +218,6 @@ myLayoutHook = toggleLayouts Full tall ||| threeCol ||| tabs
             $ Tall 1 (3/100) (1/2)
 
 myManageHook = composeAll [
-    -- Positions.
     className =? "discord" --> doShift "Instant Messaging",
     className =? "teams-for-linux" --> doShift "Instant Messaging",
     className =? "microsoft-edge-dev" --> doShift "Instant Messaging",
@@ -236,7 +225,6 @@ myManageHook = composeAll [
     className =? "ckb-next" --> doShift "Settings",
     className =? "blueman-manager" --> doShift "Settings",
     className =? "Blueman-manager" --> doShift "Settings",
-    -- Float.
     resource  =? "floatterm" --> doRectFloat (W.RationalRect 0.2 0.2 0.6 0.6),
     resource  =? "pavucontrol" --> doRectFloat (W.RationalRect 0.2 0.2 0.6 0.6),
     resource  =? "gnome-panel" --> doCenterFloat,

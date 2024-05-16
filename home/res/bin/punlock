@@ -1,0 +1,71 @@
+#!/usr/bin/env sh
+
+set -e
+
+gui_pwd() {
+    zenity --password --title="Unlock password store"
+}
+
+cli_pwd() {
+    read -sp "Enter Password: " password
+    echo
+    echo "$password"
+}
+
+get_email() {
+    if [ -n "$DISPLAY" ]; then
+        zenity --entry --title="Enter Bitwarden email"
+    else
+        read -sp "Enter Bitwarden email: " email
+        echo
+        echo "$email"
+    fi
+}
+
+umask 077
+punlock_home="$HOME/.cache/punlock"
+punlock_temp="$punlock_home/tmp"
+
+test -d "$punlock_temp" && sudo umount "$punlock_temp" && sudo rm -r "$punlock_temp"
+mkdir -p "$punlock_temp"
+sudo mount -t tmpfs -o size=50M tmpfs "$punlock_temp"
+sudo chown "$USER:$USER" -R "$punlock_temp"
+mkdir -p "$punlock_temp/"{pass,ssh,user,etc}
+
+if [ -f "$punlock_home/bw-email" ]; then
+    email=$(cat "$punlock_home/bw-email")
+else
+    email=$(get_email)
+fi
+test -z "$email" && exit 0
+echo "$email" >"$punlock_home/bw-email"
+
+if [ -n "$DISPLAY" ]; then
+    password=$(zenity --password --title="Enter Bitwarden password")
+else
+    read -sp "Enter Bitwarden password: " password
+    echo
+fi
+test -z "$password" && exit 0
+
+bw logout >/dev/null || true
+export BW_SESSION="$(bw login --raw "$email" "$password")"
+unset email
+unset password
+
+bw get item dd365b97-5304-4fb3-9f68-aa6700ad6306 | jq -r '.login.password' >"$punlock_temp/pass/mobnet"
+bw get item b8778eed-99bf-49f2-8eb9-aa7600baa0f1 | jq -r '.login.password' >"$punlock_temp/pass/gain"
+bw get item 58b855db-1c48-47d3-8183-b0b600c119f1 | jq -r '.login.password' >"$punlock_temp/pass/l3-vpn"
+bw get item 58b855db-1c48-47d3-8183-b0b600c119f1 | jq -r '.login.username' >"$punlock_temp/user/l3-vpn"
+bw get item 58b855db-1c48-47d3-8183-b0b600c119f1 | jq -r '.login.uris[0].uri' >"$punlock_temp/etc/l3-vpn-host"
+bw get item fc0a4cc2-8975-4b54-8057-b17000d12ae2 | jq -r '.login.password' >"$punlock_temp/pass/l3-pdi"
+bw get item 1aff8bcc-9d1e-452a-a4a3-ab5d00ac9589 | jq -r '.notes' >"$punlock_temp/ssh/personal"
+bw get item 1aff8bcc-9d1e-452a-a4a3-ab5d00ac9589 | jq -r '.fields[0].value' >"$punlock_temp/ssh/personal.pub"
+bw get item d7fdba66-36a2-4d9e-997e-ab5d00ac183f | jq -r '.notes' >"$punlock_temp/ssh/work"
+bw get item d7fdba66-36a2-4d9e-997e-ab5d00ac183f | jq -r '.fields[0].value' >"$punlock_temp/ssh/work.pub"
+
+for f in $(ls "$punlock_temp/ssh"); do
+    ln -sf "$punlock_temp/ssh/$f" "$HOME/.ssh/$f"
+done
+
+unset BW_SESSION
