@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   networking.hostName = "gesnix";
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
@@ -28,21 +28,8 @@
     netdevConfig.Kind = "bridge";
   };
   systemd.network.wait-online.enable = false;
-  networking.resolvconf = {
-    enable = true;
-    package = pkgs.openresolv;
-  };
-  environment.etc."resolv.conf".text = ''
-    nameserver 127.0.0.1
-    nameserver 8.8.8.8
-    nameserver 8.8.4.4
-  '';
-  networking.networkmanager = {
-    enable = true;
-    useGlobalDns = true;
-  };
   networking.nftables.enable = true;
-  networking.nftables.rules = ''
+  environment.etc."nftables.conf".text = ''
     flush ruleset
 
     table inet filter {
@@ -70,19 +57,19 @@
       }
     }
   '';
-  environment.etc."dbus-1/system.d/dnsmasq-dbus.conf".text = ''
-    <!DOCTYPE busconfig PUBLIC
-     "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
-     "http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd">
-    <busconfig>
-      <policy user="root">
-        <allow own="uk.org.thekelleys.dnsmasq.nat0"/>
-        <allow send_destination="uk.org.thekelleys.dnsmasq.nat0"/>
-      </policy>
-      <policy context="default">
-        <deny own="uk.org.thekelleys.dnsmasq.nat0"/>
-        <deny send_destination="uk.org.thekelleys.dnsmasq.nat0"/>
-      </policy>
-    </busconfig>
-  '';
+#  environment.etc."dbus-1/system.d/dnsmasq-dbus.conf".text = ''
+#    <!DOCTYPE busconfig PUBLIC
+#     "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
+#     "http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd">
+#    <busconfig>
+#      <policy user="root">
+#        <allow own="uk.org.thekelleys.dnsmasq.nat0"/>
+#        <allow send_destination="uk.org.thekelleys.dnsmasq.nat0"/>
+#      </policy>
+#      <policy context="default">
+#        <deny own="uk.org.thekelleys.dnsmasq.nat0"/>
+#        <deny send_destination="uk.org.thekelleys.dnsmasq.nat0"/>
+#      </policy>
+#    </busconfig>
+#  '';
 }

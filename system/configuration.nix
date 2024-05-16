@@ -5,7 +5,7 @@
     ./hardware.nix
     ./network.nix
     ./users.nix
-    ./virtualization.nix
+#    ./virtualization.nix
     ./services/default.nix
     ./programs/default.nix
   ];

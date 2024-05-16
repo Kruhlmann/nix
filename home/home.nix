@@ -49,7 +49,6 @@
     postgresql
     rofi
     rustup
-    rust-analyzer
     steam
     steam-tui
     steamPackages.steamcmd
