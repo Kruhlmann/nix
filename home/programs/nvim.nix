@@ -102,6 +102,7 @@
             end
           })
         '';
+      }
       {
         plugin = nvim-lspconfig;
         type = "lua";

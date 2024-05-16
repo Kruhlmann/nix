@@ -39,7 +39,7 @@
 [include]
     path = ~/.config/git/siemens.includes
 
-[includeIf "gitdir:~/.calcurse"]
+[includeIf "gitdir:~/fast-src/"]
     path = ~/.config/git/personal
 
 [includeIf "gitdir:~/doc/src/github.com/"]
