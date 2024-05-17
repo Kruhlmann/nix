@@ -5,7 +5,7 @@
     ./hardware.nix
     ./network.nix
     ./users.nix
-#    ./virtualization.nix
+    #    ./virtualization.nix
     ./services/default.nix
     ./programs/default.nix
   ];
@@ -57,6 +57,7 @@
     gcc
     giflib
     git
+    git-lfs
     gnumake
     gnutls
     gtk3
@@ -75,6 +76,10 @@
     libxslt
     lm_sensors
     mpc-cli
+    opensc
+    pcsctools
+    ccid
+    pinentry
     mpd
     mpg123
     ncmpcpp
@@ -108,4 +113,13 @@
     xorg.xinit
     xwaylandvideobridge
   ];
+
+  # TEMP
+
+  virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.onBoot = "start";
+  virtualisation.libvirtd.onShutdown = "shutdown";
+  virtualisation.libvirtd.allowedBridges = [ "virbr0" "nat0" "nat1" ];
+  virtualisation.libvirtd.qemu.package = pkgs.qemu_kvm;
 }

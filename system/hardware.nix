@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ ... }: {
   hardware.bluetooth.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;

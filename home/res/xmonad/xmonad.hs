@@ -156,6 +156,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     ((modm,               xK_s      ), spawn "nitro"),
     ((modm .|. shiftMask, xK_s      ), spawn spawnMaim ),
     ((modm .|. shiftMask, xK_l      ), spawn "portable-lock"),
+    ((modm .|. shiftMask, xK_p      ), spawn "selectpass"),
     ((modm              , xK_c      ), spawn "notify-send \"Now\" \"$(date \"+%A, %B %d %R\")\" --expire-time=1000"),
     -- Navigation
     ((modm,               xK_j     ), windows W.focusDown),

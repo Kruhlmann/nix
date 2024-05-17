@@ -79,7 +79,7 @@
       nvim-autopairs
       nvim-cmp
       nvim-colorizer-lua
-      nvim-lsputils 
+      nvim-lsputils
       nvim-navic
       nvim-treesitter.withAllGrammars
       nvim-web-devicons

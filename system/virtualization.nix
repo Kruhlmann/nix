@@ -14,16 +14,23 @@
         format = "qcow2";
       }];
       networkInterfaces = [
-      { model = "virtio";
-        macAddress = "52:54:00:4b:88:ad";
-        bridge = "nat0"; }
-      { model = "virtio";
-        macAddress = "52:54:00:1e:51:6d";
-        bridge = "nat1";
-      }];
+        {
+          model = "virtio";
+          macAddress = "52:54:00:4b:88:ad";
+          bridge = "nat0";
+        }
+        {
+          model = "virtio";
+          macAddress = "52:54:00:1e:51:6d";
+          bridge = "nat1";
+        }
+      ];
       boot = { dev = "hd"; };
       cpu = { mode = "host-passthrough"; };
-      graphics = { type = "spice"; listen = "127.0.0.1"; };
+      graphics = {
+        type = "spice";
+        listen = "127.0.0.1";
+      };
       video = { model = "qxl"; };
       extraConfig = ''
         <clock offset="utc">

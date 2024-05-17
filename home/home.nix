@@ -10,6 +10,7 @@
     bitwarden-cli
     cabextract
     ckb-next
+    dart-sass
     dialog
     direnv
     discord
@@ -23,6 +24,7 @@
     gnome.nautilus
     gnome.sushi
     graphviz
+    i3lock-color
     imagemagickBig
     libreoffice-fresh
     lutris
@@ -44,6 +46,7 @@
     obs-studio-plugins.obs-text-pthread
     obs-studio-plugins.obs-transition-table
     obs-studio-plugins.obs-vertical-canvas
+    opam
     page
     polybar
     postgresql
@@ -57,11 +60,13 @@
     thefuck
     tree
     xcape
+    xdotool
     xclip
     xorg.xkbcomp
     xorg.xmodmap
     xorg.xrandr
     zathura
+    gnome.zenity
   ];
   xdg.dataHome = ~/.;
   xdg.configHome = ~/.config;
@@ -108,8 +113,12 @@
       recursive = true;
     };
     "${config.xdg.dataHome}/.ssh/config" = { source = res/ssh/config; };
+    "img/lib" = {
+      source = res/img;
+      recursive = true;
+    };
   };
-  home.sessionPath = [ "$HOME/.local/bin" ];
+  home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
   home.sessionVariables = {
     EDITOR = "nvim";
     PAGER = "page";

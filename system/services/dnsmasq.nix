@@ -1,6 +1,6 @@
 { ... }: {
   services.dnsmasq.enable = true;
-  services.dnsmasq.preStart = ''
+  systemd.services.dnsmasq.preStart = ''
     mkdir -p /run/dnsmasq
     chown -R dnsmasq:dnsmasq /run/dnsmasq
   '';
@@ -26,7 +26,8 @@
   environment.etc."dnsmasq.d/lo.conf".text = ''
     all-servers
     bind-interfaces
-    listen-address=127.0.0.1,172.31.0.2,172.17.0.1
+    #listen-address=127.0.0.1,172.31.0.2,172.17.0.1
+    listen-address=127.0.0.1,172.31.0.2
     resolv-file=/run/NetworkManager/resolv.conf
     conf-dir=/run/dnsmasq/,*.conf
     server=/modi.nat0/172.31.0.1
