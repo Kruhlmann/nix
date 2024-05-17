@@ -31,7 +31,14 @@ lock() {
 		--pass-media-keys \
 		--pass-screen-keys \
 		--pass-volume-keys \
-		--pass-power-keys
+		--pass-power-keys  &
+    lock_pid=$!
+    while kill -0 $lock_pid 2>/dev/null; do
+        if fprintd-verify; then
+            kill $lock_pid
+        fi
+        sleep 1
+    done
 	untrap_notifications
 }
 

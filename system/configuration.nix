@@ -27,6 +27,16 @@
     %wheel ALL=(ALL) NOPASSWD: ALL
   '';
   boot.extraModprobeConfig = "options kvm_intel nested=1";
+  environment.etc."polkit-1/rules.d/90-fprintd.rules".text = ''
+      polkit.addRule(function(action, subject) {
+        if ((action.id == "net.reactivated.fprint.device.enroll" ||
+             action.id == "net.reactivated.fprint.device.verify" ||
+             action.id == "net.reactivated.fprint.device.identify") &&
+            subject.isInGroup("wheel")) {
+            return polkit.Result.YES;
+        }
+    });
+  '';
 
   fonts.packages = with pkgs; [
     terminus-nerdfont
@@ -54,6 +64,8 @@
     docker
     docker-compose
     dunst
+    fprintd
+    libfprint
     gcc
     giflib
     git
