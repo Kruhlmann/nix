@@ -1,5 +1,5 @@
 { ... }: {
-  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.enable = true;
   services.xserver.desktopManager.xterm.enable = false;
   services.xserver.desktopManager.xfce.enable = true;
