@@ -57,6 +57,7 @@
     steamPackages.steamcmd
     teams-for-linux
     texliveFull
+    trayer
     thefuck
     tree
     xcape
