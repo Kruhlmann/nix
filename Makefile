@@ -10,6 +10,7 @@ install-system:
 
 .PHONY: install-user
 install-user:
+	mkdir -p $$HOME/.config
 	ln -sfT $(shell pwd)/home $$HOME/.config/home-manager
 	home-manager switch -j 7 --show-trace
 
