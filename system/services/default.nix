@@ -7,6 +7,7 @@
   services.pipewire.enable = true;
   services.pcscd.enable = true;
   services.fprintd.enable = true;
+  services.acpid.enable = true;
   #environment.etc."X11/xorg.conf.d/20-intel.conf/".text = ''
   #  Section "Module"
   #      Load "dri3"

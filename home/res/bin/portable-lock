@@ -42,14 +42,4 @@ lock() {
 	untrap_notifications
 }
 
-create_lock_image() {
-	image=$(mktemp --suffix=.png)
-	command -- import -silent -window root "$image"
-	convert "$image" -filter Gaussian -resize 20% -define "filter:sigma=4.5" -resize 500.5% "$HOME/img/lib/lock.png" -gravity center -composite "$image"
-	echo "$image"
-}
-
-notify-send "Locking..."
-image=$(create_lock_image)
-lock "$image"
-rm "$image"
+lock "$HOME/img/lib/lock.jpg"

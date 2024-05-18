@@ -57,6 +57,7 @@
     (pkgsi686Linux.pulseaudio)
     (pkgsi686Linux.sqlite)
     (pkgsi686Linux.vulkan-loader)
+    acpid
     alsaLib
     alsaPlugins
     curl
@@ -78,6 +79,7 @@
     jq
     killall
     lazygit
+    evtest
     less
     libgcrypt
     libgpgerror
@@ -88,6 +90,8 @@
     libxslt
     lm_sensors
     mpc-cli
+    modemmanager
+    modem-manager-gui
     opensc
     pcsctools
     ccid
@@ -123,6 +127,7 @@
     wine-staging
     xorg.xauth
     xorg.xinit
+    xorg.xev
     xwaylandvideobridge
   ];
 
