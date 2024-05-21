@@ -17,6 +17,7 @@
   };
   system.stateVersion = "23.11";
   nixpkgs.config.allowUnfree = true;
+  console.keyMap = "us";
   time.timeZone = "Europe/Copenhagen";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales =

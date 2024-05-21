@@ -18,8 +18,9 @@ for f in "$HOME"/.config/stickers/*; do
     id=$(cat "$f")
     name=$(basename "$f")
     test -f "$HOME/.cache/stickers/$name.png" && continue
-    printf 'Downloading %s (%s)...\n' "$name" "$id"
-    curl -s "https://cdn.betterttv.net/emote/$id/3x.webp" -o "$HOME/.cache/stickers/$name.webp"
+    url="https://cdn.betterttv.net/emote/$id/3x.webp"
+    printf 'Downloading %s (%s)...\n' "$name" "$url"
+    curl -s "$url" -o "$HOME/.cache/stickers/$name.webp"
     convert "$HOME/.cache/stickers/$name.webp" "$HOME/.cache/stickers/$name.png"
     rm "$HOME/.cache/stickers/$name.webp"
 done

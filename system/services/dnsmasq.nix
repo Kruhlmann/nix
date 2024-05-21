@@ -1,11 +1,22 @@
-{ ... }: {
-  services.dnsmasq.enable = true;
-  systemd.services.dnsmasq.preStart = ''
-    mkdir -p /run/dnsmasq
-    chown -R dnsmasq:dnsmasq /run/dnsmasq
-  '';
-  services.dnsmasq.extraConfig = ''
-    conf-dir=/etc/dnsmasq.d/,*.conf
+{ pkgs, ... }: 
+let
+  dnsmasq_dbus_config = import ../pkg/dnsmasq-dbus.nix { inherit pkgs; };
+in
+{
+  services.dnsmasq = {
+    enable = true;
+    extraConfig = ''
+      conf-dir=/etc/dnsmasq.d/,*.conf
+    '';
+  };
+
+  environment.etc."dnsmasq.d/lo.conf".text = ''
+    all-servers
+    bind-interfaces
+    listen-address=127.0.0.1,172.31.0.2,172.17.0.1
+    resolv-file=/run/NetworkManager/resolv.conf
+    conf-dir=/run/dnsmasq/,*.conf
+    server=/modi.nat0/172.31.0.1
   '';
 
   environment.etc."dnsmasq.d/nat0.cfg".text = ''
@@ -23,13 +34,25 @@
     dhcp-option=tag:gain,option:domain-name,ad001.siemens.net
   '';
 
-  environment.etc."dnsmasq.d/lo.conf".text = ''
-    all-servers
-    bind-interfaces
-    #listen-address=127.0.0.1,172.31.0.2,172.17.0.1
-    listen-address=127.0.0.1,172.31.0.2
-    resolv-file=/run/NetworkManager/resolv.conf
-    conf-dir=/run/dnsmasq/,*.conf
-    server=/modi.nat0/172.31.0.1
-  '';
+  systemd.services."dnsmasq@" = {
+    description = "dnsmasq@i - A lightweight DHCP and caching DNS server";
+    after = [ "network.target" ];
+    before = [ "network-online.target" "nss-lookup.target" ];
+    wants = [ "nss-lookup.target" ];
+    serviceConfig = {
+      BusName = "uk.org.thekelleys.dnsmasq.%i";
+      ExecStartPre = [
+          "${pkgs.dnsmasq}/bin/dnsmasq --test --conf-file=/etc/dnsmasq.d/%i.cfg"
+          "${pkgs.coreutils}/bin/mkdir -m 755 -p /run/dnsmasq"
+          "${pkgs.dnsmasq}/bin/dnsmasq --test"
+      ];
+      ExecStart = "${pkgs.dnsmasq}/bin/dnsmasq -k --enable-dbus=uk.org.thekelleys.dnsmasq.%i --user=dnsmasq --pid-file --conf-file=/etc/dnsmasq.d/%i.cfg";
+      ExecReload = "/bin/kill -HUP $MAINPID";
+      Restart = "on-failure";
+      PrivateDevices = true;
+      ProtectSystem = "full";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+  services.dbus.packages = [ dnsmasq_dbus_config ];
 }
