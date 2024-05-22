@@ -86,6 +86,7 @@ in {
     killall
     lazygit
     evtest
+    papirus-icon-theme
     less
     libgcrypt
     libgpgerror
@@ -131,6 +132,7 @@ in {
     vulkan-validation-layers
     wget
     wine-staging
+    lxappearance
     xorg.xauth
     xorg.xinit
     xorg.xev

@@ -72,33 +72,9 @@
     zathura
     gnome.zenity
   ];
+  gtk.enable = true;
   xdg.dataHome = ~/.;
   xdg.configHome = ~/.config;
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Catppuccin-Macchiato-Pink-Dark";
-      package = pkgs.catppuccin-gtk;
-    };
-
-    iconTheme = {
-      package = pkgs.gnome.adwaita-icon-theme;
-      name = "Adwaita";
-    };
-
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-  };
 
   home.file = {
     "${config.xdg.configHome}/nvim" = {
@@ -135,6 +111,10 @@
     };
     "${config.xdg.configHome}/discord" = {
       source = res/discord;
+      recursive = true;
+    };
+    "${config.xdg.configHome}/gtk-3.0" = {
+      source = res/gtk-3.0;
       recursive = true;
     };
     "${config.xdg.dataHome}/.local/bin" = {

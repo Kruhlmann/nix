@@ -39,6 +39,7 @@ lock() {
         fi
         sleep 1
     done
+    pgrep fprintd-verify | while read -r pid; do kill $pid; done
 	untrap_notifications
 }
 
