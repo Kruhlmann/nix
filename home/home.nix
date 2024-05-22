@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     alacritty
     arandr
+    autorandr
     bitwarden-cli
     cabextract
     ckb-next

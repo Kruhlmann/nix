@@ -7,6 +7,7 @@ in {
     ./hardware.nix
     ./network.nix
     ./users.nix
+    ./virtualization.nix
     ./services/default.nix
     ./programs/default.nix
   ];
