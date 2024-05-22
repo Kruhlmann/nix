@@ -50,6 +50,7 @@
     page
     polybar
     postgresql
+    protonmail-bridge
     rofi
     rustup
     steam
@@ -57,6 +58,7 @@
     steamPackages.steamcmd
     teams-for-linux
     texliveFull
+    thunderbird
     trayer
     thefuck
     tree
@@ -71,6 +73,31 @@
   ];
   xdg.dataHome = ~/.;
   xdg.configHome = ~/.config;
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Catppuccin-Macchiato-Pink-Dark";
+      package = pkgs.catppuccin-gtk;
+    };
+
+    iconTheme = {
+      package = pkgs.gnome.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+  };
 
   home.file = {
     "${config.xdg.configHome}/nvim" = {

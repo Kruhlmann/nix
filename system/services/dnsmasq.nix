@@ -1,8 +1,6 @@
-{ pkgs, ... }: 
-let
-  dnsmasq_dbus_config = import ../pkg/dnsmasq-dbus.nix { inherit pkgs; };
-in
-{
+{ pkgs, ... }:
+let dnsmasq_dbus_config = import ../pkg/dnsmasq-dbus/pkg.nix { inherit pkgs; };
+in {
   services.dnsmasq = {
     enable = true;
     extraConfig = ''
@@ -28,7 +26,6 @@ in
     dhcp-option=option:dns-server,172.31.0.2
     domain=modi.nat0,172.31.0.0/24
     local=/modi.nat0/
-    dhcp-host=set:gain,md3zcf1c,172.31.0.100
     dhcp-host=set:gain,gateway,172.31.0.101
     dhcp-option=tag:gain,option:dns-server,172.31.0.1
     dhcp-option=tag:gain,option:domain-name,ad001.siemens.net
@@ -42,11 +39,12 @@ in
     serviceConfig = {
       BusName = "uk.org.thekelleys.dnsmasq.%i";
       ExecStartPre = [
-          "${pkgs.dnsmasq}/bin/dnsmasq --test --conf-file=/etc/dnsmasq.d/%i.cfg"
-          "${pkgs.coreutils}/bin/mkdir -m 755 -p /run/dnsmasq"
-          "${pkgs.dnsmasq}/bin/dnsmasq --test"
+        "${pkgs.dnsmasq}/bin/dnsmasq --test --conf-file=/etc/dnsmasq.d/%i.cfg"
+        "${pkgs.coreutils}/bin/mkdir -m 755 -p /run/dnsmasq"
+        "${pkgs.dnsmasq}/bin/dnsmasq --test"
       ];
-      ExecStart = "${pkgs.dnsmasq}/bin/dnsmasq -k --enable-dbus=uk.org.thekelleys.dnsmasq.%i --user=dnsmasq --pid-file --conf-file=/etc/dnsmasq.d/%i.cfg";
+      ExecStart =
+        "${pkgs.dnsmasq}/bin/dnsmasq -k --enable-dbus=uk.org.thekelleys.dnsmasq.%i --user=dnsmasq --pid-file --conf-file=/etc/dnsmasq.d/%i.cfg";
       ExecReload = "/bin/kill -HUP $MAINPID";
       Restart = "on-failure";
       PrivateDevices = true;

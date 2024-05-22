@@ -28,8 +28,10 @@
     netdevConfig.Kind = "bridge";
   };
   systemd.network.wait-online.enable = false;
+  systemd.services.systemd-networkd.serviceConfig.ExecStartPost =
+    "${pkgs.nftables}/bin/nft -f /etc/nftables-nat0.conf";
   networking.nftables.enable = true;
-  environment.etc."nftables.conf".text = ''
+  networking.nftables.ruleset = ''
     flush ruleset
 
     table inet filter {
@@ -37,9 +39,6 @@
         type filter hook input priority 0; policy drop;
         ct state established,related accept
         tcp dport {ssh} accept
-        # BEGIN Experimental
-        iif docker0 accept
-        # END Experimental
         iif lo accept
         jump nat.input
       }
@@ -54,6 +53,22 @@
       }
       chain output {
         type filter hook output priority 0;
+      }
+    }
+  '';
+  environment.etc."nftables-nat0.conf".text = ''
+    #!/usr/sbin/nft -f
+
+    flush chain inet filter nat.input
+    flush chain inet filter nat.forward
+
+    table inet filter {
+      chain nat.input {
+        iif nat0 accept
+        iif nat1 accept
+      }
+      chain nat.forward {
+        iif nat0 accept
       }
     }
   '';

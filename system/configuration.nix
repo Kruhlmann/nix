@@ -1,11 +1,12 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let adaptrandr = import ./pkg/adaptrandr/pkg.nix { inherit pkgs; };
+in {
   imports = [
     ./hardware-configuration.nix
     ./boot.nix
     ./hardware.nix
     ./network.nix
     ./users.nix
-    #    ./virtualization.nix
     ./services/default.nix
     ./programs/default.nix
   ];
@@ -38,7 +39,8 @@
         }
     });
   '';
-
+  environment.etc."lib/onepin.so".source =
+    "${pkgs.opensc}/lib/opensc-pkcs11.so";
   fonts.packages = with pkgs; [
     terminus-nerdfont
     fira-code-nerdfont
@@ -59,9 +61,11 @@
     (pkgsi686Linux.sqlite)
     (pkgsi686Linux.vulkan-loader)
     acpid
+    adaptrandr
     alsaLib
     alsaPlugins
     curl
+    dash
     dig
     docker
     docker-compose
@@ -131,13 +135,5 @@
     xorg.xev
     xwaylandvideobridge
   ];
-
-  # TEMP
-
-  virtualisation.docker.enable = true;
-  virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.onBoot = "start";
-  virtualisation.libvirtd.onShutdown = "shutdown";
-  virtualisation.libvirtd.allowedBridges = [ "virbr0" "nat0" "nat1" ];
-  virtualisation.libvirtd.qemu.package = pkgs.qemu_kvm;
+  #services.udev.packages = [ adaptrandr ];
 }
