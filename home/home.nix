@@ -24,6 +24,7 @@
     gimp
     gnome.nautilus
     gnome.sushi
+    gnome.zenity
     graphviz
     i3lock-color
     imagemagickBig
@@ -59,18 +60,18 @@
     steamPackages.steamcmd
     teams-for-linux
     texliveFull
+    thefuck
     thunderbird
     trayer
-    thefuck
     tree
     xcape
-    xdotool
     xclip
+    xdotool
     xorg.xkbcomp
     xorg.xmodmap
     xorg.xrandr
     zathura
-    gnome.zenity
+    zsh-autosuggestions
   ];
   gtk.enable = true;
   xdg.dataHome = ~/.;

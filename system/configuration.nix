@@ -65,14 +65,15 @@ in {
     adaptrandr
     alsaLib
     alsaPlugins
+    ccid
     curl
     dash
     dig
     docker
     docker-compose
     dunst
+    evtest
     fprintd
-    libfprint
     gcc
     giflib
     git
@@ -85,9 +86,8 @@ in {
     jq
     killall
     lazygit
-    evtest
-    papirus-icon-theme
     less
+    libfprint
     libgcrypt
     libgpgerror
     libjpeg
@@ -96,13 +96,10 @@ in {
     libva
     libxslt
     lm_sensors
-    mpc-cli
-    modemmanager
+    lxappearance
     modem-manager-gui
-    opensc
-    pcsctools
-    ccid
-    pinentry
+    modemmanager
+    mpc-cli
     mpd
     mpg123
     ncmpcpp
@@ -111,8 +108,12 @@ in {
     openal
     openconnect
     openldap
+    opensc
     openssl
+    papirus-icon-theme
     pavucontrol
+    pcsctools
+    pinentry
     powershell
     python311
     qemu
@@ -132,10 +133,9 @@ in {
     vulkan-validation-layers
     wget
     wine-staging
-    lxappearance
     xorg.xauth
-    xorg.xinit
     xorg.xev
+    xorg.xinit
     xwaylandvideobridge
   ];
   #services.udev.packages = [ adaptrandr ];

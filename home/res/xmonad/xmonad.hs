@@ -250,15 +250,10 @@ myStartupHook = do
     spawnOnce "setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl"
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
     spawnOnce "blueman-manager"
-    spawnOnce "find ~/.ssh/ -type f -exec grep -l \"PRIVATE\" {} \\; | xargs ssh-add >/dev/null"
-    spawnOnce "sh \"$HOME/.scripts/mpdevents\""
     spawnOnce "dunst"
-    spawnOnce "systemctl --user start pulseaudio"
-    spawnOnce "xbindkeys"
-    spawnOnce "xset r rate 416 25"
-    spawnOnce "xset dpms 0 0 300"
     spawnOnce "xss-lock -- \"$HOME/.scripts/portable-lock\""
     spawnOnce "autorandr --change"
+    spawnOnce "protonmail-bridge"
 
 main = do xmonad
     $ ewmh
