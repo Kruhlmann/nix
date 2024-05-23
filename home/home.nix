@@ -109,10 +109,6 @@
       source = res/zsh;
       recursive = true;
     };
-    "${config.xdg.configHome}/discord" = {
-      source = res/discord;
-      recursive = true;
-    };
     "${config.xdg.configHome}/gtk-3.0" = {
       source = res/gtk-3.0;
       recursive = true;
