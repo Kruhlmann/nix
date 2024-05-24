@@ -253,7 +253,7 @@ myStartupHook = do
     spawnOnce "dunst"
     spawnOnce "xss-lock -- \"$HOME/.scripts/portable-lock\""
     spawnOnce "autorandr --change"
-    spawnOnce "protonmail-bridge"
+    spawnOnce "while true; do sleep 5 && protonmail-bridge -n; done"
 
 main = do xmonad
     $ ewmh

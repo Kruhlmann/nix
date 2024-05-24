@@ -39,8 +39,8 @@ in {
     serviceConfig = {
       BusName = "uk.org.thekelleys.dnsmasq.%i";
       ExecStartPre = [
-        "${pkgs.dnsmasq}/bin/dnsmasq --test --conf-file=/etc/dnsmasq.d/%i.cfg"
         "${pkgs.coreutils}/bin/mkdir -m 755 -p /run/dnsmasq"
+        "${pkgs.dnsmasq}/bin/dnsmasq --test --conf-file=/etc/dnsmasq.d/%i.cfg"
         "${pkgs.dnsmasq}/bin/dnsmasq --test"
       ];
       ExecStart =
