@@ -83,6 +83,7 @@ in {
     gtk3
     home-manager
     htop
+    inetutils
     jq
     killall
     lazygit

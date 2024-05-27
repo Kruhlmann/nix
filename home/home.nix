@@ -50,6 +50,7 @@
     obs-studio-plugins.obs-vertical-canvas
     opam
     page
+    gnupg
     polybar
     postgresql
     protonmail-bridge

@@ -40,19 +40,7 @@
 	conflicts = diff --name-only --diff-filter=U
 
 [include]
-    path = ~/.config/git/siemens.includes
-
-[includeIf "gitdir:~/fast-src/"]
     path = ~/.config/git/personal
 
-[includeIf "gitdir:~/doc/src/github.com/"]
-    path = ~/.config/git/personal
-
-[includeIf "gitdir:/mnt/hdd/home/doc/src/github.com/"]
-    path = ~/.config/git/personal
-
-[includeIf "gitdir:~/doc/src/gitlab.com/"]
-    path = ~/.config/git/personal
-
-[includeIf "gitdir:~/.calcurse"]
-    path = ~/.config/git/personal
+[includeIf "gitdir:~/doc/src/code.siemens.com/"]
+    path = ~/.config/git/work

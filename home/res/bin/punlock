@@ -30,7 +30,7 @@ test -d "$punlock_temp" && sudo umount "$punlock_temp" 2>/dev/null && sudo rm -r
 mkdir -p "$punlock_temp"
 sudo mount -t tmpfs -o size=50M tmpfs "$punlock_temp" 2>/dev/null
 sudo chown "$USER" -R "$punlock_temp"
-mkdir -p "$punlock_temp/"{pass,ssh,user,etc}
+mkdir -p "$punlock_temp/"{pass,ssh,user,etc,gpg}
 
 if [ -f "$punlock_home/bw-email" ]; then
     email=$(cat "$punlock_home/bw-email")
@@ -55,7 +55,7 @@ unset email
 unset password
 
 store_item() {
-    bw get item "$1" | jq -r "$2" >"$3"
+    test -f "$3" || bw get item "$1" | jq -r "$2" >"$3"
     printf '[%s] %s\n' "$1" "$3"
 }
 
@@ -69,8 +69,25 @@ store_item 1aff8bcc-9d1e-452a-a4a3-ab5d00ac9589 '.notes' "$punlock_temp/ssh/pers
 store_item 1aff8bcc-9d1e-452a-a4a3-ab5d00ac9589 '.fields[0].value' "$punlock_temp/ssh/personal.pub" &
 store_item d7fdba66-36a2-4d9e-997e-ab5d00ac183f '.notes' "$punlock_temp/ssh/work" &
 store_item d7fdba66-36a2-4d9e-997e-ab5d00ac183f '.fields[0].value' "$punlock_temp/ssh/work.pub" &
+store_item ef60e2e2-c440-4726-a0b5-b17a00c6fa14 '.notes' "$punlock_temp/gpg/work.pub.asc" &
+store_item aa5ed890-b55e-45c6-b653-b17a00c769eb '.notes' "$punlock_temp/gpg/work.prv.asc" &
+
+store_item a729df9b-05bc-4095-ad43-b17a00ca6897 '.notes' "$punlock_temp/gpg/personal.pub.asc" &
+store_item 87810eff-9d4f-410e-8371-b17a00ca4b27 '.notes' "$punlock_temp/gpg/personal.prv.asc" &
 
 wait
+
+work_gpg_id=D752B5D684A1C913370C084575A1E330BA85B4B3
+if ! gpg --list-keys "$work_gpg_id" > /dev/null 2>&1; then
+    gpg --import "$punlock_temp/gpg/work.pub.asc"
+    gpg --import "$punlock_temp/gpg/work.prv.asc"
+fi
+
+personal_gpg_id=E5DEAEA22E16B918D00D6644CC5B8872AE9C85DE
+if ! gpg --list-keys "$personal_gpg_id" > /dev/null 2>&1; then
+    gpg --import "$punlock_temp/gpg/personal.pub.asc"
+    gpg --import "$punlock_temp/gpg/personal.prv.asc"
+fi
 
 for f in "$punlock_temp/ssh/"*; do
     ln -sf "$f" "$HOME/.ssh/$(basename "$f")"

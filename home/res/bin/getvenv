@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+VENVDIR="/tmp/.virtual_envionments"
+VENV="$(pwd | md5sum | tr -d '[:space:]-')"
+echo "$VENVDIR/$VENV"

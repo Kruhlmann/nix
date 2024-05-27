@@ -58,7 +58,7 @@ EOF
 sudo systemctl start dnsmasq.service
 sudo systemctl start dnsmasq@nat0.service
 
-sudo openconnect -u "$(cat "/home/ges/.cache/punlock/user/l3-vpn")" "$(cat "/home/ges/.cache/punlock/etc/l3-vpn-host")" <"/home/ges/.cache/punlock/pass/l3-vpn"
+# sudo openconnect -u "$(cat "/home/ges/.cache/punlock/tmp/user/l3-vpn")" "$(cat "/home/ges/.cache/punlock/tmp/etc/l3-vpn-host")" <"/home/ges/.cache/punlock/tmp/pass/l3-vpn" &
 case $1 in
 up | down)
   [ $(id -u) -eq 0 ] || exec sudo "$0" $@

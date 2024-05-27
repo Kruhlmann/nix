@@ -251,9 +251,9 @@ myStartupHook = do
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
     spawnOnce "blueman-manager"
     spawnOnce "dunst"
-    spawnOnce "xss-lock -- \"$HOME/.scripts/portable-lock\""
+    spawnOnce "xss-lock -- portable-lock"
     spawnOnce "autorandr --change"
-    spawnOnce "while true; do sleep 5 && protonmail-bridge -n; done"
+    spawnOnce "siemens_remote up"
 
 main = do xmonad
     $ ewmh
