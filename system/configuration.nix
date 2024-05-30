@@ -1,5 +1,5 @@
 { pkgs, ... }:
-let adaptrandr = import ./pkg/adaptrandr/pkg.nix { inherit pkgs; };
+let turtle-wow = import ./pkg/turtle-wow/pkg.nix { inherit pkgs; };
 in {
   imports = [
     ./hardware-configuration.nix
@@ -62,7 +62,6 @@ in {
     (pkgsi686Linux.sqlite)
     (pkgsi686Linux.vulkan-loader)
     acpid
-    adaptrandr
     alsaLib
     alsaPlugins
     ccid
@@ -73,6 +72,7 @@ in {
     docker-compose
     dunst
     evtest
+    file
     fprintd
     gcc
     giflib
@@ -123,6 +123,7 @@ in {
     sqlite
     sudo
     tldr
+    turtle-wow
     tmux
     unrar
     unzip
@@ -138,6 +139,7 @@ in {
     xorg.xev
     xorg.xinit
     xwaylandvideobridge
+    zip
   ];
   #services.udev.packages = [ adaptrandr ];
 }
