@@ -1,5 +1,21 @@
 #!/usr/bin/env sh
 
 secrets_path="$HOME/.cache/punlock/tmp"
+cat >"$HOME/.ssh/config.d/l3.conf" <<EOF
+Host pdi
+  HostName 10.80.2.11
+  User pdi_manager
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa
+EOF
+sudo openconnect -u "$(cat "$secrets_path/user/l3-vpn")" "$(cat "$secrets_path/etc/l3-vpn-host")" <"$secrets_path/pass/l3-vpn" &
 sudo ip route add 10.80.2.11 via 10.255.255.47 dev tun0
-openconnect -u "$(cat "$secrets_path/user/l3-vpn")" "$(cat "$secrets_path/etc/l3-vpn-host")" <"$secrets_path/pass/l3-vpn" &
+resolv_conf | sudo tee /run/systemd/resolve/stub-resolv.conf
+printf 'Awaiting connection '
+while ! ip -brief a | grep -q '^tun0'; do
+    printf '.'
+    sleep 1
+done
+printf '\n'
+printf 'nameserver 127.0.0.1\nnameserver 8.8.8.8' | sudo tee /etc/resolv.conf
+wait
