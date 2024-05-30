@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+secrets_path="$HOME/.cache/punlock/tmp"
+sudo ip route add 10.80.2.11 via 10.255.255.47 dev tun0
+openconnect -u "$(cat "$secrets_path/user/l3-vpn")" "$(cat "$secrets_path/etc/l3-vpn-host")" <"$secrets_path/pass/l3-vpn" &

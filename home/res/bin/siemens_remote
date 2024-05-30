@@ -7,15 +7,14 @@ DNS=172.31.1.1
 GW=${DNS}
 
 wait_for_zgw(){
-  printf 'Waiting for ZScaler:'
+  printf 'Waiting for DNS:'
     while ! nslookup ${HOST} ${DNS} >/dev/null 2>&1; do
     printf '.'
     sleep 3s
   done
+  printf 'DNS Resolution completed'
   echo 'OK'
 }
-
-
 
 routing(){
   set -x
@@ -32,8 +31,6 @@ routing(){
   ip route $1 212.98.116.57 via ${GW}
   # Active directory
   ip route $1 129.103.0.0/16 via ${GW}
-  # VPN L3
-  ip route $1 10.80.2.11 via 10.255.255.47 dev tun0
   set +x
 }
 
@@ -58,7 +55,6 @@ EOF
 sudo systemctl start dnsmasq.service
 sudo systemctl start dnsmasq@nat0.service
 
-# sudo openconnect -u "$(cat "/home/ges/.cache/punlock/tmp/user/l3-vpn")" "$(cat "/home/ges/.cache/punlock/tmp/etc/l3-vpn-host")" <"/home/ges/.cache/punlock/tmp/pass/l3-vpn" &
 case $1 in
 up | down)
   [ $(id -u) -eq 0 ] || exec sudo "$0" $@
