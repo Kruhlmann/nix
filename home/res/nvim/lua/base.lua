@@ -91,6 +91,43 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end,
 })
 
+function add_banner_comment()
+    local filepath = vim.fn.expand('%:p')
+    if not filepath:match('^' .. vim.fn.expand('~/doc/src/code.siemens.com')) then
+        return
+    end
+
+    local current_year = os.date("%Y")
+    local banner_lines = { "Copyright (c) Siemens Mobility A/S " ..
+    current_year .. ", All Rights Reserved - CONFIDENTIAL", }
+    local current_lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    for _, line in ipairs(current_lines) do
+        if line:find("CONFIDENTIAL") then
+            return
+        end
+    end
+
+    local insertion_point = 0
+    if #current_lines > 0 and current_lines[1]:find("^#!") then
+        insertion_point = 1
+    end
+
+    vim.api.nvim_buf_set_lines(0, insertion_point, insertion_point, false, banner_lines)
+    local end_line = insertion_point + #banner_lines
+    vim.api.nvim_input(string.format(":%d,%dCommentary<cr>", insertion_point + 1, end_line))
+end
+
+vim.api.nvim_exec([[
+  augroup add_banner
+    autocmd!
+    autocmd FileType * lua add_banner_comment()
+  augroup END
+]], false)
+
+vim.cmd [[
+    au BufRead,BufNewFile *.alc setfiletype alchemy
+]]
+
 local colorscheme = "gruvbox"
 vim.g.gruvbox_italic = 1
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)

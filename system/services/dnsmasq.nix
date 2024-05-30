@@ -26,7 +26,7 @@ in {
     dhcp-option=option:dns-server,172.31.0.2
     domain=modi.nat0,172.31.0.0/24
     local=/modi.nat0/
-    dhcp-host=set:gain,siemens-gateway,172.31.0.101
+    dhcp-host=set:gain,gateway,172.31.0.101
     dhcp-option=tag:gain,option:dns-server,172.31.0.1
     dhcp-option=tag:gain,option:domain-name,ad001.siemens.net
   '';
