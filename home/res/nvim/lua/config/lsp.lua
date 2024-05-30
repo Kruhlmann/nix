@@ -12,6 +12,7 @@ local servers = {
     gopls = {},
     svelte = {},
     tsserver = {},
+    rust_analyzer = {},
     jdtls = {},
     ruff_lsp = {},
     taplo = {},
