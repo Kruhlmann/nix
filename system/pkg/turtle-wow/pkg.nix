@@ -12,7 +12,7 @@ pkgs.stdenv.mkDerivation rec {
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5kziZqFv4kii1P8K8MYnl3XkME-ZF2TWSf6T2uPWArDYLYDEn";
     sha256 = "sha256-0XdP81dd9InEAhdFkR5QfUIbcwn3zSKQJeCPURJUZh0=";
   };
-  nativeBuildInputs = [ pkgs.unzip pkgs.copyDesktopItems pkgs.gtk3 ];
+  nativeBuildInputs = [ pkgs.unzip pkgs.copyDesktopItems ];
   buildInputs = [ pkgs.wineWowPackages.full pkgs.vulkan-loader ];
   dontBuild = true;
   installPhase = ''
