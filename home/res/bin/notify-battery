@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+battery_path=$(upower -e | grep 'BAT')
+if [ -z "$battery_path" ]; then
+  notify-send "Battery" "No battery found"
+  exit 1
+fi
+
+battery_info=$(upower -i "$battery_path")
+percentage=$(echo "$battery_info" | grep 'percentage:' | awk '{print $2}')
+state=$(echo "$battery_info" | grep 'state:' | awk '{print $2}')
+time_to_empty=$(echo "$battery_info" | grep 'time to empty' | awk '{print $4, $5}')
+time_to_full=$(echo "$battery_info" | grep 'time to full' | awk '{print $4, $5}')
+
+message="$percentage ($state)\n$time_to_full$time_to_empty"
+notify-send -t 1500 "Battery" "$message"
