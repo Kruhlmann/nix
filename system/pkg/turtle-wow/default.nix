@@ -1,5 +1,5 @@
-{ pkgs, addons ? [ ], realmlist ? "logon.turtle-wow.org"
-, wine-prefix ? "~/.cache/turtle-wow/.wine-prefix", config ? { } }:
+{ pkgs, addons ? [ ], wine-prefix ? "~/.cache/turtle-wow/.wine-prefix"
+, config ? { } }:
 
 let
   buildAddon = import ./addons/default.nix { inherit pkgs; };

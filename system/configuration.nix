@@ -18,7 +18,7 @@ let
       accountName = "ges";
       MusicVolume = "0.4";
       MasterVolume = "0.1";
-      gxResolution = "2550x1440"
+      gxResolution = "2550x1440";
     };
     addons = [
       aux
