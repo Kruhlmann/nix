@@ -11,7 +11,7 @@
   gxRefresh = "60"; # Sets the screen refresh rate in Hz
   gxMultisampleQuality =
     "0.000000"; # Sets the multisampling quality for anti-aliasing
-  gxFixLag = "0"; # Disables lag fix
+  gxFixLag = "0"; # Fix cursor lag. Requires gxCursor "1"
   fullAlpha = "1"; # Enables full alpha transparency
   lodDist = "100.000000"; # Level of detail distance
   SmallCull = "0.040000"; # Sets the distance at which small objects are culled
