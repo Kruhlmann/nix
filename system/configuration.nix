@@ -1,7 +1,31 @@
 { pkgs, ... }:
-let 
-    turtle-wow = import ./pkg/turtle-wow/pkg.nix { inherit pkgs; };
-    turtle-wow-pfui = import ./pkg/turtle-wow-pfui/pkg.nix { inherit pkgs; };
+let
+  aux = import ./pkg/turtle-wow/addons/aux.nix { };
+  big-wigs = import ./pkg/turtle-wow/addons/big-wigs.nix { };
+  mcp = import ./pkg/turtle-wow/addons/mcp.nix { };
+  mpowa = import ./pkg/turtle-wow/addons/mpowa.nix { };
+  pfui = import ./pkg/turtle-wow/addons/pfui.nix { };
+  pfquest = import ./pkg/turtle-wow/addons/pfquest.nix { };
+  pfquest-turtle = import ./pkg/turtle-wow/addons/pfquest-turtle.nix { };
+  shagu-bop = import ./pkg/turtle-wow/addons/shagu-bop.nix { };
+  shagu-mount = import ./pkg/turtle-wow/addons/shagu-mount.nix { };
+  wim = import ./pkg/turtle-wow/addons/wim.nix { };
+  turtle-wow = import ./pkg/turtle-wow/default.nix {
+    inherit pkgs;
+    realmlist = "logon.turtle-wow.org";
+    addons = [
+      aux
+      big-wigs
+      mcp
+      mpowa
+      pfui
+      pfquest
+      pfquest-turtle
+      shagu-bop
+      shagu-mount
+      wim
+    ];
+  };
 in {
   imports = [
     ./hardware-configuration.nix
@@ -13,6 +37,7 @@ in {
     ./services/default.nix
     ./programs/default.nix
   ];
+
   nix.optimise.automatic = true;
   nix.gc = {
     automatic = true;
@@ -126,7 +151,6 @@ in {
     sudo
     tldr
     turtle-wow
-    turtle-wow-pfui
     tmux
     unrar
     unzip
