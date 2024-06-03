@@ -13,6 +13,7 @@ let
   turtle-wow = import ./pkg/turtle-wow/default.nix {
     inherit pkgs;
     realmlist = "logon.turtle-wow.org";
+    wine-prefix = "~/.cache/turtle-wow/.wine-prefix";
     addons = [
       aux
       big-wigs

@@ -1,27 +1,8 @@
-{ pkgs, addons ? [ ], realmlist ? "logon.turtle-wow.org" }:
+{ pkgs, addons ? [ ], realmlist ? "logon.turtle-wow.org", wine-prefix ? "~/.cache/turtle-wow/.wine-prefix" }:
 
 let
-  buildAddon = { owner, repo, rev, sha256, name }:
-    pkgs.stdenv.mkDerivation {
-      pname = "${name}";
-      version = rev;
-      src = pkgs.fetchFromGitHub { inherit owner repo rev sha256; };
-      dontBuild = true;
-      installPhase = ''
-        mkdir -p $out/share/${name}
-        cp -r $src/* $out/share/${name}
-        ls -la >$out/share/${name}/${name}.txt
-      '';
-      meta = with pkgs.lib; {
-        description = "${repo} addon for Turtle WoW";
-        homepage = "https://github.com/${owner}/${repo}";
-        license = licenses.mit;
-        platforms = platforms.linux;
-      };
-    };
-
+  buildAddon = import ./addons/default.nix { inherit pkgs; };
   buildAddons = map buildAddon addons;
-
 in pkgs.stdenv.mkDerivation rec {
   pname = "turtle-wow";
   version = "1171";
@@ -46,10 +27,11 @@ in pkgs.stdenv.mkDerivation rec {
       echo "setting up turtle wow addon ${addon.pname} from ${addon}..."
       cp -r ${addon}/share/${addon.pname} $out/share/turtle-wow/Interface/AddOns/
     '') buildAddons}
-    echo "#!/usr/bin/env sh" > $out/bin/turtle-wow
-    echo "WINEPREFIX="~/.wine-turtle-wow" WINEARCH=win32 wine $out/share/turtle-wow/WoW.exe" >> $out/bin/turtle-wow
+    echo "#!/usr/bin/env sh" >$out/bin/turtle-wow
+    echo "mkdir -p ${wine-prefix}" >>$out/bin/turtle-wow
+    echo "WINEPREFIX="${wine-prefix}" WINEARCH=win32 ${pkgs.wineWowPackages.full}/bin/wine $out/share/turtle-wow/WoW.exe" >>$out/bin/turtle-wow
     chmod +x $out/bin/turtle-wow
-    printf 'set realmlist %s\nset patchlist %s\n' "${realmlist}" "${realmlist}" > $out/share/turtle-wow/realmlist.wtf
+    printf 'set realmlist %s\nset patchlist %s\n' "${realmlist}" "${realmlist}" >$out/share/turtle-wow/realmlist.wtf
   '';
   desktop = pkgs.makeDesktopItem {
     type = "Application";

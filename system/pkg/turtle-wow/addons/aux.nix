@@ -1,5 +1,5 @@
 { ... }: {
-  name = "aux-addon-vanilla";
+  name = "aux-addon";
   owner = "shirsig";
   repo = "aux-addon-vanilla";
   rev = "6b56d0fec36eb2c4465b73727223aeaf547da6d7";
