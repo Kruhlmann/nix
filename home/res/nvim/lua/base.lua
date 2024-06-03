@@ -72,6 +72,10 @@ function add_banner_comment()
     if not filepath:match('^' .. vim.fn.expand('~/doc/src/code.siemens.com')) then
         return
     end
+    local commentstring = vim.api.nvim_buf_get_option(0, 'commentstring')
+    if commentstring == '' or not commentstring:find('%%s') then
+        return
+    end
 
     local current_year = os.date("%Y")
     local banner_lines = { "Copyright (c) Siemens Mobility A/S " ..

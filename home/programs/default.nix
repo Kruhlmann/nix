@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./alacritty.nix ./nvim.nix ./zsh.nix ]; }
+{ ... }: { imports = [ ./alacritty.nix ./nvim.nix ./steam.nix ./zsh.nix ]; }

@@ -1,5 +1,6 @@
 { config, pkgs, ... }: {
   imports = [ ./programs ./services ];
+  home-manager.useGlobalPkgs = true;
   home.stateVersion = "23.11";
   home.username = "ges";
   home.homeDirectory = "/home/ges";
@@ -57,7 +58,7 @@
     rofi
     rustup
     steam
-    steam-tui
+    steam-run
     steamPackages.steamcmd
     teams-for-linux
     texliveFull

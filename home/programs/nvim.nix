@@ -83,7 +83,6 @@
       nvim-web-devicons
       packer-nvim
       plenary-nvim
-      rustaceanvim
       vim-commentary
       vim-svelte
       which-key-nvim

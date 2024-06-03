@@ -1,5 +1,7 @@
 { pkgs, ... }:
-let turtle-wow = import ./pkg/turtle-wow/pkg.nix { inherit pkgs; };
+let 
+    turtle-wow = import ./pkg/turtle-wow/pkg.nix { inherit pkgs; };
+    turtle-wow-pfui = import ./pkg/turtle-wow-pfui/pkg.nix { inherit pkgs; };
 in {
   imports = [
     ./hardware-configuration.nix
@@ -124,6 +126,7 @@ in {
     sudo
     tldr
     turtle-wow
+    turtle-wow-pfui
     tmux
     unrar
     unzip
