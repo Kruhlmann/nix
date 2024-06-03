@@ -14,6 +14,11 @@ let
     inherit pkgs;
     realmlist = "logon.turtle-wow.org";
     wine-prefix = "~/.cache/turtle-wow/.wine-prefix";
+    config = {
+      accountName = "ges";
+      MusicVolume = "0.4";
+      MasterVolume = "0.1";
+    };
     addons = [
       aux
       big-wigs
