@@ -1,36 +1,50 @@
 { pkgs, ... }:
 let
-  aux = import ./pkg/turtle-wow/addons/aux.nix { };
-  big-wigs = import ./pkg/turtle-wow/addons/big-wigs.nix { };
-  mcp = import ./pkg/turtle-wow/addons/mcp.nix { };
-  mpowa = import ./pkg/turtle-wow/addons/mpowa.nix { };
-  pfui = import ./pkg/turtle-wow/addons/pfui.nix { };
-  pfquest = import ./pkg/turtle-wow/addons/pfquest.nix { };
-  pfquest-turtle = import ./pkg/turtle-wow/addons/pfquest-turtle.nix { };
-  shagu-bop = import ./pkg/turtle-wow/addons/shagu-bop.nix { };
-  shagu-mount = import ./pkg/turtle-wow/addons/shagu-mount.nix { };
-  wim = import ./pkg/turtle-wow/addons/wim.nix { };
+  wow = import ./pkg/turtle-wow/wow-types.nix { };
+  servers = import ./pkg/turtle-wow/servers.nix { };
+  addons = import ./pkg/turtle-wow/addons.nix { };
   turtle-wow = import ./pkg/turtle-wow/default.nix {
     inherit pkgs;
-    realmlist = "logon.turtle-wow.org";
-    wine-prefix = "~/.cache/turtle-wow/.wine-prefix";
-    config = {
-      accountName = "ges";
+    ver = "1171";
+    gameConfig = {
       MusicVolume = "0.4";
       MasterVolume = "0.1";
-      gxResolution = "2550x1440";
+      realmName = servers.turtleWow.realms.RP.Nordanaar;
+      realmList = servers.turtleWow.realmList;
+      patchlist = servers.turtleWow.patchlist;
+      accountName = "ges";
+      UnitNameOwn = wow.true;
+      cameraPivot = wow.false;
+      showGameTips = wow.false;
+      cameraDistanceMaxFactor = "2";
     };
+    accountConfigs = { ges = { AUTO_QUEST_WATCH = wow.false; }; };
     addons = [
-      aux
-      big-wigs
-      mcp
-      mpowa
-      pfui
-      pfquest
-      pfquest-turtle
-      shagu-bop
-      shagu-mount
-      wim
+      addons.balakethelock.twthreat
+      addons.berranzan.modifiedpowerauras-continued
+      addons.doorknob6.pfui-turtle
+      addons.einbaum.sp_swingtimer
+      addons.hosq.bigwigs
+      addons.isitlove.outfitter
+      addons.jsb.gatherer
+      addons.kakysha.honorspy
+      addons.kxseven.vanillaratingbuster
+      addons.lexiebean.atlasloot
+      addons.mrrosh.healcomm
+      addons.mrrosh.mcp
+      addons.road-block.classicsnowfall
+      addons.shagu.pfquest
+      addons.shagu.pfquest-turtle
+      addons.shagu.pfui
+      addons.shagu.shagudps
+      addons.shirsig.aux-addon-vanilla
+      addons.shirsig.aux_merchant_prices
+      addons.shirsig.unitscan
+      addons.shirsig.wim
+      addons.tercioo.details-damage-meter
+      addons.wow-vanilla-addons.accountant
+      addons.wow-vanilla-addons.postal
+      addons.yogo1212.healbot-classic
     ];
   };
 in {
@@ -109,6 +123,7 @@ in {
     file
     fprintd
     gcc
+    gcr
     giflib
     git
     git-lfs
@@ -149,6 +164,7 @@ in {
     pavucontrol
     pcsctools
     pinentry
+    pinentry-curses
     powershell
     python311
     qemu
