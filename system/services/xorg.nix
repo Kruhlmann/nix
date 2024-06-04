@@ -1,5 +1,4 @@
 { ... }: {
-  #services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver = {
     enable = true;
     desktopManager.xterm.enable = false;
@@ -11,5 +10,6 @@
     windowManager.xmonad.enable = true;
     layout = "us";
     xkbVariant = "altgr-intl";
+    videoDrivers = [ "amdgpu" ];
   };
 }

@@ -3,4 +3,4 @@
     signingkey = E5DEAEA22E16B918D00D6644CC5B8872AE9C85DE
 
 [commit]
-    gpgsign = true
+    gpgsign = false
