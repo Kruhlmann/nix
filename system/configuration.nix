@@ -23,7 +23,7 @@ let
       addons.balakethelock.twthreat
       addons.berranzan.modifiedpowerauras-continued
       addons.doorknob6.pfui-turtle
-      addons.einbaum.sp_swingtimer
+      addons.firenahzku.vgattackbar
       addons.hosq.bigwigs
       addons.isitlove.outfitter
       addons.jsb.gatherer
@@ -41,10 +41,15 @@ let
       addons.shirsig.aux_merchant_prices
       addons.shirsig.unitscan
       addons.shirsig.wim
+      addons.satan666.trinketmenu-fix
+      addons.opcow.buffreminder
+      addons.danieladolfsson.clevermacro
       addons.tercioo.details-damage-meter
       addons.wow-vanilla-addons.accountant
       addons.wow-vanilla-addons.postal
       addons.yogo1212.healbot-classic
+      addons.fiskehatt.saysapped
+      addons.proxicide.macroextender
     ];
   };
 in {
