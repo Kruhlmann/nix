@@ -1,0 +1,90 @@
+#!/usr/bin/env sh
+
+# This script generates a Nix expression file from a list of GitHub URLs pointing to vanilla WoW addons.
+# The program outputs the Nix expression to stdout, so it should be redirected to a file.
+#
+# Example usage:
+# $ cat addons.json
+# [
+#    "https://github.com/Fiurs-Hearth/WIIIUI",
+#    "https://github.com/xorann/Abraxas",
+#    "https://github.com/firenahzku/ActionBarProfiles"
+# ]
+# $ ./gen_addons.sh addons.json > addons.nix
+#
+# Output (addons.nix):
+# { ... }:
+# {
+#   firenahzku.actionbarprofiles = { name = "ActionBarProfiles"; owner = "firenahzku"; repo = "ActionBarProfiles"; rev = "511a4651ffe1388004b92faed1604d4ec8284ca5"; sha256 = "sha256-A2J3mTbuJ55oEEzA9nP35nvX9j3wabl3QDuy3ckd76U=" };
+#   fiurs-hearth.wiiiui = { name = "WIIIUI"; owner = "Fiurs-Hearth"; repo = "WIIIUI"; rev = "c6a6d1dfa68ed80aea8343ad9ec4fcba39588600"; sha256 = "sha256-PweWEWq6WpuqEL7KVi0CvMZDPUrj0RddCxzwb6eZL2o=" };
+#   xorann.abraxas = { name = "Abraxas"; owner = "xorann"; repo = "Abraxas"; rev = "9eb1bc1b81f27943c605bb39d383f10fad4fe0b7"; sha256 = "sha256-rw2vS8Ov2WXWIsDx7WD9/zaqjP5k/RBDUEnSDOWo6Fk=" };
+# }
+
+set -eu
+
+if ! command -v git >/dev/null 2>&1; then
+    echo "Error: git is not installed." >&2
+    exit 1
+fi
+
+if ! command -v jq >/dev/null 2>&1; then
+    echo "Error: jq is not installed." >&2
+    exit 1
+fi
+
+if ! command -v nix-build >/dev/null 2>&1; then
+    echo "Error: nix-build is not installed." >&2
+    exit 1
+fi
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <addons.json>" >&2
+    exit 1
+fi
+
+if [ ! -f "$1" ]; then
+    echo "Error: File '$1' not found." >&2
+    exit 1
+fi
+
+printf '{ ... }:\n{\n'
+jq -r '.[]' < "$1" | sed -e 's|^.*://github.com/\([^/]*\)/\([^/]*\).*|\1/\2|' | uniq | while read -r repo; do
+    printf 'Settting up %s...\n' "$repo" >&2
+    c_dir=$(mktemp -d)
+    trap 'rm -rf "$c_dir"' EXIT
+
+    if ! git clone "git@github.com:$repo.git" "$c_dir" 2>/dev/null; then
+        echo "Unable to clone $repo. Skipping" >&2
+        rm -rf "$c_dir"
+        continue
+    fi
+    rev=$(git -C "$c_dir" rev-parse HEAD)
+    nix_file=$(mktemp)
+    trap 'rm -f "$nix_file"' EXIT
+    cat >"$nix_file" <<EOF
+with import <nixpkgs> {};
+let
+  src = fetchgit {
+    url = "https://github.com/$repo.git";
+    rev = "$rev";
+    sha256 = lib.fakeSha256;
+  };
+in src
+EOF
+    sha=$(nix-build "$nix_file" 2>&1 | grep 'got:' | awk '{ print $2 }')
+    common_name=$(echo "$repo" | tr '[:upper:]/' '[:lower:].')
+    owner=$(echo "$repo" | cut -d'/' -f1)
+    repo_name=$(echo "$repo" | cut -d'/' -f2)
+    tocname=$(find "$c_dir" -name '*.toc' | head -n 1 | sed -e 's/\.toc$//')
+    if [ -z "$tocname" ]; then
+        echo "Unable to find .toc file in repository $repo. Skipping" >&2
+        rm -rf "$c_dir" "$nix_file"
+        continue
+    fi
+    name=$(basename "$tocname")
+    printf '  %s = { name = "%s"; owner = "%s"; repo = "%s"; rev = "%s"; sha256 = "%s"; };\n' \
+        "$common_name" "$name" "$owner" "$repo_name" "$rev" "$sha"
+    rm -rf "$c_dir" "$nix_file"
+done | sort
+
+printf '}\n'

@@ -1,0 +1,44 @@
+{ }:
+let wow = import ../../wow-types.nix { };
+in {
+  TALENT_FRAME_WAS_SHOWN = wow.nil;
+  SHOW_FULLSCREEN_STATUS = wow.true;
+  SIMPLE_CHAT = wow.false;
+  CHAT_LOCKED = wow.false;
+  REMOVE_CHAT_DELAY = wow.false;
+  SHOW_NEWBIE_TIPS = wow.true;
+  LOCK_ACTIONBAR = wow.false;
+  SHOW_BUFF_DURATIONS = wow.true;
+  ALWAYS_SHOW_MULTIBARS = wow.true;
+  SHOW_PARTY_PETS = wow.true;
+  QUEST_FADING_DISABLE = wow.true;
+  SHOW_PARTY_BACKGROUND = wow.false;
+  HIDE_PARTY_INTERFACE = wow.false;
+  SHOW_TARGET_OF_TARGET = wow.false;
+  SHOW_TARGET_OF_TARGET_STATE = wow.show_target_of_target.always;
+  HIDE_OUTDOOR_WORLD_STATE = wow.false;
+  AUTO_QUEST_WATCH = wow.true;
+  SHOW_COMBAT_TEXT = wow.true;
+  COMBAT_TEXT_SHOW_LOW_HEALTH_MANA = wow.true;
+  COMBAT_TEXT_SHOW_AURAS = wow.true;
+  COMBAT_TEXT_SHOW_AURA_FADE = wow.true;
+  COMBAT_TEXT_SHOW_COMBAT_STATE = wow.true;
+  COMBAT_TEXT_SHOW_DODGE_PARRY_MISS = wow.true;
+  COMBAT_TEXT_SHOW_RESISTANCES = wow.true;
+  COMBAT_TEXT_SHOW_REPUTATION = wow.true;
+  COMBAT_TEXT_SHOW_REACTIVES = wow.true;
+  COMBAT_TEXT_SHOW_FRIENDLY_NAMES = wow.true;
+  COMBAT_TEXT_SHOW_COMBO_POINTS = wow.true;
+  COMBAT_TEXT_SHOW_MANA = wow.true;
+  COMBAT_TEXT_FLOAT_MODE = wow.true;
+  COMBAT_TEXT_SHOW_HONOR_GAINED = wow.true;
+  NAMEPLATES_ON = wow.true;
+  SHOW_KEYRING = wow.true;
+  PARTYBACKGROUND_OPACITY = "0.5";
+  SHOW_OFFLINE_GUILD_MEMBERS = wow.true;
+  SHOW_DISPELLABLE_DEBUFFS = wow.false;
+  SHOW_CASTABLE_BUFFS = wow.false;
+  WORLDMAP_WINDOWED = wow.true;
+  SHOW_BATTLEFIELD_MINIMAP = wow.false;
+  TWS_HIDE_MINIMAP_BUTTON = wow.false;
+}

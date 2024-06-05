@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+export WINEARCH=win32
+
+src="$0"
+while [ -h "$src" ]; do
+    dir=$(dirname "$src")
+    src=$(readlink "$src")
+    case $src in
+        /*) ;;
+        *) src="$dir/$src" ;;
+    esac
+done
+dir=$(cd -P "$(dirname "$src")" >/dev/null 2>&1 && pwd)
+
+. "$dir/turtle-wow.env"
+
+mkdir -p "$WINEPREFIX"
+if ! test -f "${HOME}/.cache/turtle-wow/WTF/Config.wtf"; then
+    mkdir -p "${HOME}/.cache/turtle-wow/WTF/"
+    cp -r "${TURTLE_WOW_STORE}"/share/turtle-wow/WTF.original/* "${HOME}/.cache/turtle-wow/WTF/"
+fi
+rm -rf /tmp/turtle-wow
+ln -sf "${HOME}/.cache/turtle-wow/WTF" /tmp/turtle-wow
+find "${HOME}/.cache/turtle-wow/WTF/" -type d -exec chmod 700 {} \;
+find "${HOME}/.cache/turtle-wow/WTF/" -type f -exec chmod 600 {} \;
+WINEARCH=win32 "${WINE_STORE}/bin/wine" "${TURTLE_WOW_STORE}/share/turtle-wow/WoW.exe"

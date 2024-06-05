@@ -57,7 +57,7 @@
     rofi
     rustup
     steam
-    steam-tui
+    steam-run
     steamPackages.steamcmd
     teams-for-linux
     texliveFull

@@ -14,9 +14,6 @@
       delve
       fd
       gitlint
-      go
-      golangci-lint
-      gopls
       lua-language-server
       nil
       nixpkgs-fmt
@@ -34,7 +31,6 @@
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
       nodePackages.yaml-language-server
-      ocamlPackages.ocamlformat
       jdt-language-server
       ripgrep
       selene
@@ -83,7 +79,6 @@
       nvim-web-devicons
       packer-nvim
       plenary-nvim
-      rustaceanvim
       vim-commentary
       vim-svelte
       which-key-nvim
