@@ -218,14 +218,39 @@ in {
   macros = {
     ges = [
       {
-        name = "Faerie Fire";
-        icon = "Ability_Marksmanship";
-        body = "/cast Moonfire; /cast Wrath";
+        name = " ";
+        icon = "";
+        body = "/cast [nostance] Faerie Fire; Faerie Fire (Feral)()";
       }
       {
-        name = "Another Macro";
-        icon = "Spell_Nature_Polymorph";
-        body = "/cast Polymorph";
+        name = " ";
+        icon = "";
+        body = "/cast [nocombat, stance:3, nostealth] Prowl; [nocombat, nostealth] Shadowmeld";
+      }
+      {
+        name = " ";
+        icon = "";
+        body = "/target totem; /cast [harm] Moonfire(Rank 1)";
+      }
+      {
+        name = " ";
+        icon = "";
+        body = "/cancelaura [stance:1] Bear Form; [stance:2] Aquatic Form; [stance:3] Cat Form; [stance:4] Travel Form; [stance:5] Moonkin Form";
+      }
+      {
+        name = " ";
+        icon = "";
+        body = "/cancelaura [stance:1] Bear Form; [stance:2] Aquatic Form; [stance:4] Travel Form; [stance:5] Moonkin Form";
+      }
+      {
+        name = " ";
+        icon = "";
+        body = "/cancelaura [stance:1] Bear Form; [stance:2] Aquatic Form; [stance:4] Travel Form; [stance:5] Moonkin Form; /cast [nostance] Cat Form; [stance:3, nostealth] Prowl";
+      }
+      {
+        name = " ";
+        icon = "";
+        body = "/cancelaura [stance:1] Bear Form; [stance:2] Aquatic Form; [stance:3] Cat Form; [stance:5] Moonkin Form; /cast [nostance, swimming] Aquatic Form; [nostance, outdoors] Travel Form";
       }
     ];
   };
