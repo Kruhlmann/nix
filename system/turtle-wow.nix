@@ -3,6 +3,8 @@ let
   wow = import ./pkg/turtle-wow/wow-types.nix { };
   servers = import ./pkg/turtle-wow/servers.nix { };
   addons = import ./pkg/turtle-wow/addons/default.nix { };
+  macros_orangeges =
+    import ./pkg/turtle-wow/macros/preset.nix { character-name = "Orangeges"; };
 in {
   ver = "1171";
   gameConfig = {
@@ -216,42 +218,20 @@ in {
     };
   };
   macros = {
-    ges = [
-      {
-        name = " ";
-        icon = "";
-        body = "/cast [nostance] Faerie Fire; Faerie Fire (Feral)()";
-      }
-      {
-        name = " ";
-        icon = "";
-        body = "/cast [nocombat, stance:3, nostealth] Prowl; [nocombat, nostealth] Shadowmeld";
-      }
-      {
-        name = " ";
-        icon = "";
-        body = "/target totem; /cast [harm] Moonfire(Rank 1)";
-      }
-      {
-        name = " ";
-        icon = "";
-        body = "/cancelaura [stance:1] Bear Form; [stance:2] Aquatic Form; [stance:3] Cat Form; [stance:4] Travel Form; [stance:5] Moonkin Form";
-      }
-      {
-        name = " ";
-        icon = "";
-        body = "/cancelaura [stance:1] Bear Form; [stance:2] Aquatic Form; [stance:4] Travel Form; [stance:5] Moonkin Form";
-      }
-      {
-        name = " ";
-        icon = "";
-        body = "/cancelaura [stance:1] Bear Form; [stance:2] Aquatic Form; [stance:4] Travel Form; [stance:5] Moonkin Form; /cast [nostance] Cat Form; [stance:3, nostealth] Prowl";
-      }
-      {
-        name = " ";
-        icon = "";
-        body = "/cancelaura [stance:1] Bear Form; [stance:2] Aquatic Form; [stance:3] Cat Form; [stance:5] Moonkin Form; /cast [nostance, swimming] Aquatic Form; [nostance, outdoors] Travel Form";
-      }
-    ];
+    ges = {
+      global = [
+        macros_orangeges.general.print.rested-xp
+        macros_orangeges.general.print.shape-shift-info
+        macros_orangeges.general.set-max-camera-distance
+      ];
+      servers = {
+        Nordanaar = {
+          Orangeges = [
+            macros_orangeges.race.night-elf.shadowmeld
+            macros_orangeges.class.druid.kill-totem
+          ];
+        };
+      };
+    };
   };
 }

@@ -8,6 +8,7 @@ let
     accountConfigs = turtle-wow-config.accountConfigs;
     addons = turtle-wow-config.addons;
     bindings = turtle-wow-config.bindings;
+    macros = turtle-wow-config.macros;
   };
 in {
   imports = [
