@@ -101,6 +101,7 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
     eval "$(ssh-agent -s)"
 fi
 printf 'Creating ssh key symlinks\n' >/dev/stderr
+eval $(ssh-agent -s)
 for f in "$punlock_temp/ssh/"*; do
     ln -sf "$f" "$HOME/.ssh/$(basename "$f")"
     ssh-add "$HOME/.ssh/$(basename "$f")"
