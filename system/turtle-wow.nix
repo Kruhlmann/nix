@@ -26,6 +26,23 @@ in {
     cameraYawC = "0.000000";
   };
   accountConfigs = { ges = { AUTO_QUEST_WATCH = wow.false; }; };
+  macros = {
+    ges = {
+      global = [
+        macros_orangeges.general.print.rested-xp
+        macros_orangeges.general.print.shape-shift-info
+        macros_orangeges.general.set-max-camera-distance
+      ];
+      servers = {
+        Nordanaar = {
+          Orangeges = [
+            macros_orangeges.race.night-elf.shadowmeld
+            macros_orangeges.class.druid.kill-totem
+          ];
+        };
+      };
+    };
+  };
   addons = [
     addons.balakethelock.twthreat
     addons.berranzan.modifiedpowerauras-continued
@@ -215,23 +232,6 @@ in {
       CTRL-X = "MULTIACTIONBAR3BUTTON1";
       CTRL-C = "MULTIACTIONBAR3BUTTON2";
       CTRL-B = "MULTIACTIONBAR3BUTTON4";
-    };
-  };
-  macros = {
-    ges = {
-      global = [
-        macros_orangeges.general.print.rested-xp
-        macros_orangeges.general.print.shape-shift-info
-        macros_orangeges.general.set-max-camera-distance
-      ];
-      servers = {
-        Nordanaar = {
-          Orangeges = [
-            macros_orangeges.race.night-elf.shadowmeld
-            macros_orangeges.class.druid.kill-totem
-          ];
-        };
-      };
     };
   };
 }
