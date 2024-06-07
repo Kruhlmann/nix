@@ -5,6 +5,6 @@
   boot.loader.systemd-boot.consoleMode = "auto";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelParams = [ "splash" ];
-  boot.initrd.kernelModules = [ "kvm-intel" ];
-  #boot.initrd.kernelModules = [ "amdgpu" "kvm-amd" "kvm-intel" ];
+  #boot.initrd.kernelModules = [ "kvm-intel" ];
+  boot.initrd.kernelModules = [ "amdgpu" "kvm-amd" "kvm-intel" ];
 }

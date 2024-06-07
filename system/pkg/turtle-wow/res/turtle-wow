@@ -15,7 +15,7 @@ dir=$(cd -P "$(dirname "$src")" >/dev/null 2>&1 && pwd)
 . "$dir/turtle-wow.env"
 
 mkdir -p "$WINEPREFIX"
-if ! test -d "${HOME}/.cache/turtle-wow/WTF/"; then
+if ! test -f "${HOME}/.cache/turtle-wow/WTF/Config.wtf"; then
     mkdir -p "${HOME}/.cache/turtle-wow/WTF/"
     cp -r "${TURTLE_WOW_STORE}"/share/turtle-wow/WTF.original/* "${HOME}/.cache/turtle-wow/WTF/"
 fi
