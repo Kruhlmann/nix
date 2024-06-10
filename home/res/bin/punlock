@@ -29,10 +29,10 @@ punlock_temp="$punlock_home/tmp"
 test -d "$punlock_temp" && sudo umount "$punlock_temp" 2>/dev/null && sudo rm -r "$punlock_temp"
 mkdir -p "$punlock_temp"
 sudo mount -t tmpfs -o size=50M tmpfs "$punlock_temp" 2>/dev/null
-printf 'Created temporary filesystem\n' >/dev/stderr
+printf 'Created temporary filesystem\n' >&2
 sudo chown "$USER" -R "$punlock_temp"
 mkdir -p "$punlock_temp/"{pass,ssh,user,etc,gpg}
-printf 'Created directories\n' >/dev/stderr
+printf 'Created directories\n' >&2
 
 if [ -f "$punlock_home/bw-email" ]; then
     email=$(cat "$punlock_home/bw-email")
@@ -61,7 +61,7 @@ printf 'Aquired bitwarden session\n'
 
 store_item() {
     test -f "$3" || bw get item "$1" | jq -r "$2" >"$3"
-    printf '[%s] %s\n' "$1" "$3" >/dev/stderr
+    printf '[%s] %s\n' "$1" "$3" >&2
 }
 
 umask 266
@@ -83,7 +83,7 @@ store_item 87810eff-9d4f-410e-8371-b17a00ca4b27 '.notes' "$punlock_temp/gpg/pers
 
 wait
 
-printf 'Importing gpg keys\n' >/dev/stderr
+printf 'Importing gpg keys\n' >&2
 work_gpg_id=D752B5D684A1C913370C084575A1E330BA85B4B3
 if ! gpg --list-keys "$work_gpg_id" > /dev/null 2>&1; then
     gpg --import "$punlock_temp/gpg/work.pub.asc"
@@ -100,7 +100,7 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
     printf 'Starting ssh agent\n'
     eval "$(ssh-agent -s)"
 fi
-printf 'Creating ssh key symlinks\n' >/dev/stderr
+printf 'Creating ssh key symlinks\n' >&2
 eval $(ssh-agent -s)
 for f in "$punlock_temp/ssh/"*; do
     ln -sf "$f" "$HOME/.ssh/$(basename "$f")"
