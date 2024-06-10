@@ -38,7 +38,8 @@ in {
     [ "en_US.UTF-8/UTF-8" "da_DK.UTF-8/UTF-8" "en_DK.UTF-8/UTF-8" ];
   sound.enable = true;
   security.rtkit.enable = true;
-  security.pki.certificateFiles = [ "${siemens-certs}/etc/ssl/certs/siemens.pem" ];
+  security.pki.certificateFiles =
+    [ "${siemens-certs}/etc/ssl/certs/siemens.pem" ];
   security.sudo.extraConfig = ''
     %wheel ALL=(ALL) NOPASSWD: ALL
   '';

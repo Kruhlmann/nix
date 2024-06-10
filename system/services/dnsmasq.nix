@@ -1,5 +1,7 @@
-{ pkgs, ... }: 
-let dnsmasq-dbus-config = import ../pkg/dnsmasq-dbus/default.nix { inherit pkgs; };
+{ pkgs, ... }:
+let
+  dnsmasq-dbus-config =
+    import ../pkg/dnsmasq-dbus/default.nix { inherit pkgs; };
 in {
   services.dnsmasq = {
     enable = true;
