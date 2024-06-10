@@ -1,16 +1,16 @@
 { pkgs, ... }:
 
 pkgs.stdenv.mkDerivation {
-  name = "siemens-certs";
+  name = "extra-certs";
   version = "1.0";
   src = ./.;
   buildPhase = "true";
   installPhase = ''
     mkdir -p $out/etc/ssl/certs
-    cat $src/certs/*.cer > $out/etc/ssl/certs/siemens.pem
+    cat $src/certs/*.cer > $out/etc/ssl/certs/extra.pem
   '';
   meta = {
-    description = "Siemens SSL certificates";
+    description = "Extra SSL certificates";
     license = pkgs.lib.licenses.mit;
   };
 }
