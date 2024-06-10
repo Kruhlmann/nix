@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   notify-connect =
-    import ../../system/pkg/notify-connect/default.nix { inherit pkgs; };
+    import ../../pkg/notify-connect/default.nix { inherit pkgs; };
 in {
   systemd.user.services.sconnect-loop = {
     Unit = { Description = "SConnect loop"; };

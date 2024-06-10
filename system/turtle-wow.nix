@@ -1,10 +1,11 @@
 { ... }:
 let
-  wow = import ./pkg/turtle-wow/wow-types.nix { };
-  servers = import ./pkg/turtle-wow/servers.nix { };
-  addons = import ./pkg/turtle-wow/addons/default.nix { };
-  macros_orangeges =
-    import ./pkg/turtle-wow/macros/preset.nix { character-name = "Orangeges"; };
+  wow = import ../pkg/turtle-wow/wow-types.nix { };
+  servers = import ../pkg/turtle-wow/servers.nix { };
+  addons = import ../pkg/turtle-wow/addons/default.nix { };
+  macros_orangeges = import ../pkg/turtle-wow/macros/preset.nix {
+    character-name = "Orangeges";
+  };
 in {
   ver = "1171";
   gameConfig = {
