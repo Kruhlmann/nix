@@ -96,15 +96,9 @@ if ! gpg --list-keys "$personal_gpg_id" > /dev/null 2>&1; then
     gpg --import "$punlock_temp/gpg/personal.prv.asc"
 fi
 
-if [ -z "$SSH_AUTH_SOCK" ]; then
-    printf 'Starting ssh agent\n'
-    eval "$(ssh-agent -s)"
-fi
 printf 'Creating ssh key symlinks\n' >&2
-eval $(ssh-agent -s)
 for f in "$punlock_temp/ssh/"*; do
     ln -sf "$f" "$HOME/.ssh/$(basename "$f")"
-    ssh-add "$HOME/.ssh/$(basename "$f")"
 done
 
 unset BW_SESSION

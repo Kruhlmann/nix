@@ -228,6 +228,7 @@ myManageHook = composeAll [
     className =? "ckb-next" --> doShift "Settings",
     className =? "blueman-manager" --> doShift "Settings",
     className =? "Blueman-manager" --> doShift "Settings",
+    className =? "zenity" --> doCenterFloat,
     resource  =? "floatterm" --> doRectFloat (W.RationalRect 0.2 0.2 0.6 0.6),
     resource  =? "pavucontrol" --> doRectFloat (W.RationalRect 0.2 0.2 0.6 0.6),
     resource  =? "gnome-panel" --> doCenterFloat,
