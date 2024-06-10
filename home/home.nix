@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let
+  notify-connect =
+    import ../system/pkg/notify-connect/default.nix { inherit pkgs; };
+in {
   imports = [ ./programs ./services ];
   home.stateVersion = "23.11";
   home.username = "ges";
