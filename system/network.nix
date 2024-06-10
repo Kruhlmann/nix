@@ -1,6 +1,13 @@
 { pkgs, ... }: {
   networking.hostName = "gesnix";
   networking.networkmanager.enable = true;
+  networking.networkmanager.unmanaged = [ "nat0" "nat1" ];
+  networking.networkmanager.settings = {
+    main = {
+      dns = "none";
+      systemd-resolved = "false";
+    };
+  };
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
   systemd.network.enable = true;
@@ -10,6 +17,7 @@
     networkConfig.Address = [ "172.31.0.1/24" "172.31.0.2/24" ];
     networkConfig.IPMasquerade = true;
     networkConfig.ConfigureWithoutCarrier = true;
+    dns = [ "172.31.0.2" ];
   };
   systemd.network.netdevs.nat0 = {
     enable = true;
