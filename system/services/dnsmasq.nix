@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: 
+let dnsmasq-dbus-config = import ../pkg/dnsmasq-dbus/default.nix { inherit pkgs; };
+in {
   services.dnsmasq = {
     enable = true;
     extraConfig = ''
@@ -50,5 +52,5 @@
     };
     wantedBy = [ "multi-user.target" ];
   };
-  #services.dbus.packages = [ dnsmasq_dbus_config ];
+  services.dbus.packages = [ dnsmasq-dbus-config ];
 }
