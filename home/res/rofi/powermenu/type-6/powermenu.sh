@@ -14,8 +14,8 @@ dir="$HOME/.config/rofi/powermenu/type-6"
 theme='style-1'
 
 # CMDs
-lastlogin="`last $USER | head -n1 | tr -s ' ' | cut -d' ' -f5,6,7`"
-uptime="`uptime -p | sed -e 's/up //g'`"
+lastlogin="$(last "$USER" | head -n1 | tr -s ' ' | cut -d' ' -f5,6,7)"
+uptime="$(uptime -p | sed -e 's/up //g')"
 host=`hostname`
 
 # Options
@@ -33,7 +33,7 @@ rofi_cmd() {
 	rofi -dmenu \
 		-p " $USER@$host" \
 		-mesg " Uptime: $uptime" \
-		-theme ${dir}/${theme}.rasi
+		-theme "$dir/$theme".rasi
 }
 
 # Confirmation CMD
@@ -46,7 +46,7 @@ confirm_cmd() {
 		-dmenu \
 		-p 'Confirmation' \
 		-mesg 'Are you Sure?' \
-		-theme ${dir}/${theme}.rasi
+		-theme "$dir/$theme".rasi
 }
 
 # Ask for confirmation
