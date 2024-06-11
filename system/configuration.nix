@@ -11,6 +11,7 @@ let
     macros = turtle-wow-config.macros;
   };
   extra-certs = import ../pkg/extra-certs/default.nix { inherit pkgs; };
+  autorandr-udev = import ../pkg/autorandr-udev/default.nix { inherit pkgs; };
 in {
   imports = [
     ./hardware-configuration.nix
@@ -77,6 +78,7 @@ in {
     acpid
     alsaLib
     alsaPlugins
+    autorandr-udev
     ccid
     curl
     dash

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 pkgs.stdenv.mkDerivation {
-  name = "dnsmasq_dbus";
+  name = "dnsmasq-dbus";
   version = "1.0";
   src = ./.;
   buildPhase = "true";

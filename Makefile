@@ -5,7 +5,9 @@ install:
 
 .PHONY: install-system
 install-system:
+	mkdir -p /etc/pkg
 	cp -rf ./system/* /etc/nixos/
+	cp -rf ./pkg/* /etc/pkg/
 	nix-channel --update
 	nixos-rebuild switch -j 7 --upgrade-all --show-trace
 
@@ -16,6 +18,7 @@ install-user:
 	nix-channel --update
 	mkdir -p $$HOME/.config
 	ln -sfT $(shell pwd)/home $$HOME/.config/home-manager
+	ln -sfT $(shell pwd)/pkg $$HOME/.config/pkg
 	home-manager switch -j 7 --show-trace
 
 .PHONY: fix
