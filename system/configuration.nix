@@ -64,7 +64,6 @@ in {
     (pkgsi686Linux.alsaLib)
     (pkgsi686Linux.alsaPlugins)
     (pkgsi686Linux.gnutls)
-    (pkgsi686Linux.gtk3)
     (pkgsi686Linux.libgcrypt)
     (pkgsi686Linux.libjpeg)
     (pkgsi686Linux.mpg123)
@@ -82,8 +81,6 @@ in {
     dash
     dig
     docker
-    docker-compose
-    dunst
     evtest
     file
     fprintd
@@ -94,13 +91,10 @@ in {
     git-lfs
     gnumake
     gnutls
-    gtk3
     home-manager
-    htop
     inetutils
     jq
     killall
-    lazygit
     less
     libfprint
     libgcrypt
@@ -114,10 +108,7 @@ in {
     lxappearance
     modem-manager-gui
     modemmanager
-    mpc-cli
-    mpd
     mpg123
-    ncmpcpp
     ncurses
     ocl-icd
     openal
@@ -125,26 +116,19 @@ in {
     openldap
     opensc
     openssl
-    papirus-icon-theme
-    pavucontrol
     pcsctools
     pinentry
     pinentry-curses
-    powershell
     python311
     qemu
-    ruby
-    rustc
     extra-certs
     sqlite
     sudo
-    tldr
     turtle-wow
     tmux
     unrar
     unzip
     v4l-utils
-    vim
     virt-manager
     vulkan-loader
     vulkan-tools
@@ -154,7 +138,6 @@ in {
     xorg.xauth
     xorg.xev
     xorg.xinit
-    xwaylandvideobridge
     zip
   ];
 }

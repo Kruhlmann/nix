@@ -15,6 +15,7 @@
     dialog
     direnv
     discord
+    dunst
     entr
     fd
     feh
@@ -71,6 +72,14 @@
     xorg.xmodmap
     xorg.xrandr
     zathura
+    pavucontrol
+    powershell
+    papirus-icon-theme
+    htop
+    mpc-cli
+    tldr
+    mpd
+    lazygit
     zsh-autosuggestions
   ];
   gtk.enable = true;
