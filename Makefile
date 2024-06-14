@@ -1,3 +1,14 @@
+NIX_VERSION=24.05
+SUPPORTED_SHELLS=bash|dash|zsh|sh
+SHELL_FILES=$(shell git ls-files | grep -El '#!/.*(bash|dash|zsh|sh)' | grep -v Makefile)
+HASKELL_FILES=$(shell git ls-files '*.hs')
+MAKE_FILES=$(shell find . -name 'Makefile' -o -name 'makefile' -o -name 'GNUmakefile' -o -name '*.mk' -o -name '*.make')
+
+.ONESHELL:
+
+.PHONY: all
+all: install
+
 .PHONY: install
 install:
 	sudo make install-system
@@ -5,6 +16,7 @@ install:
 
 .PHONY: install-system
 install-system:
+	nix-channel --add https://nixos.org/channels/nixos-"$(NIX_VERSION)" nixos
 	mkdir -p /etc/pkg
 	cp -rf ./system/* /etc/nixos/
 	cp -rf ./pkg/* /etc/pkg/
@@ -13,7 +25,7 @@ install-system:
 
 .PHONY: install-user
 install-user:
-	sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager
+	sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-$(NIX_VERSION).tar.gz home-manager
 	sudo nix-channel --update
 	nix-channel --update
 	mkdir -p $$HOME/.config
@@ -24,7 +36,12 @@ install-user:
 .PHONY: fix
 fix:
 	nixfmt .
+	ormolu --mode inplace $(HASKELL_FILES)
+	shellharden --replace $(SHELL_FILES)
 
 .PHONY: lint
 lint:
 	nixfmt --check .
+	ormolu --mode check $(HASKELL_FILES)
+	shellharden $(SHELL_FILES)
+	checkmake Makefile

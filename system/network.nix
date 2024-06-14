@@ -5,11 +5,17 @@
   networking.networkmanager.settings = {
     main = {
       dns = "none";
-      systemd-resolved = "false";
+      systemd-resolved = "true";
     };
   };
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
+  networking.nameservers = [ "127.0.0.1" "172.31.0.2" "8.8.8.8" ];
+  services.resolved = {
+    enable = true;
+    fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
+    dnsovertls = "false";
+  };
   systemd.network.enable = true;
   systemd.network.networks.nat0 = {
     enable = true;

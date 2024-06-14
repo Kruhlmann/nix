@@ -1,5 +1,6 @@
 { pkgs, ... }: {
-  systemd.user.services.autorandr-loop = {
+  systemd.user.services."autorandr-loop" = {
+    #wantedBy = [ "default.target" ];
     Unit = { Description = "AutoRandR loop"; };
     Service = {
       Type = "simple";

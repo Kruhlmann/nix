@@ -28,7 +28,7 @@ else
 fi
 
 # Options
-layout=`cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2`
+layout=`cat "$theme" | grep 'USE_ICON' | cut -d'=' -f2`
 if [[ "$layout" == 'NO' ]]; then
 	option_1=" Google"
 	option_2=" Gmail"
@@ -54,7 +54,7 @@ rofi_cmd() {
 		-p "$prompt" \
 		-mesg "$mesg" \
 		-markup-rows \
-		-theme ${theme}
+		-theme "$theme"
 }
 
 # Pass variables to rofi dmenu

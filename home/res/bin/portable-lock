@@ -33,13 +33,13 @@ lock() {
 		--pass-volume-keys \
 		--pass-power-keys  &
     lock_pid=$!
-    while kill -0 $lock_pid 2>/dev/null; do
+    while kill -0 "$lock_pid" 2>/dev/null; do
         if fprintd-verify; then
-            kill $lock_pid
+            kill "$lock_pid"
         fi
         sleep 1
     done
-    pgrep fprintd-verify | while read -r pid; do kill $pid; done
+    pgrep fprintd-verify | while read -r pid; do kill "$pid"; done
 	untrap_notifications
 }
 

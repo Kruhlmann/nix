@@ -4,7 +4,7 @@ LAST_STATE_FILE=/tmp/sconnect_last_state
 URL="https://software.siemens.dk"
 TIMEOUT=5
 
-curl --connect-timeout $TIMEOUT $URL
+curl --connect-timeout "$TIMEOUT" "$URL"
 CURL_EXIT_CODE=$?
 
 if [ -f "$LAST_STATE_FILE" ]; then
@@ -13,10 +13,10 @@ else
   LAST_STATE=127
 fi
 
-if [ $CURL_EXIT_CODE -ne 0 ] && [ "$LAST_STATE" -eq 0 ]; then
+if [ "$CURL_EXIT_CODE" -ne 0 ] && [ "$LAST_STATE" -eq 0 ]; then
   notify-send "SConnect loop" "Connection to $URL failed."
-elif [ $CURL_EXIT_CODE -eq 0 ] && [ "$LAST_STATE" -ne 0 ]; then
+elif [ "$CURL_EXIT_CODE" -eq 0 ] && [ "$LAST_STATE" -ne 0 ]; then
   notify-send "SConnect loop" "Connection to $URL succeeded."
 fi
 
-echo $CURL_EXIT_CODE >$LAST_STATE_FILE
+echo "$CURL_EXIT_CODE" >"$LAST_STATE_FILE"

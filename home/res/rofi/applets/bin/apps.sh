@@ -11,7 +11,7 @@ theme="$type/$style"
 
 # Theme Elements
 prompt='Applications'
-mesg="Installed Packages : `pacman -Q | wc -l` (pacman)"
+mesg="Installed Packages : $(pacman -Q | wc -l) (pacman)"
 
 if [[ ( "$theme" == *'type-1'* ) || ( "$theme" == *'type-3'* ) || ( "$theme" == *'type-5'* ) ]]; then
 	list_col='1'
@@ -30,7 +30,7 @@ music_cmd='alacritty -e ncmpcpp'
 setting_cmd='xfce4-settings-manager'
 
 # Options
-layout=`cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2`
+layout=`cat "$theme" | grep 'USE_ICON' | cut -d'=' -f2`
 if [[ "$layout" == 'NO' ]]; then
 	option_1=" Terminal <span weight='light' size='small'><i>($term_cmd)</i></span>"
 	option_2=" Files <span weight='light' size='small'><i>($file_cmd)</i></span>"
@@ -55,7 +55,7 @@ rofi_cmd() {
 		-p "$prompt" \
 		-mesg "$mesg" \
 		-markup-rows \
-		-theme ${theme}
+		-theme "$theme"
 }
 
 # Pass variables to rofi dmenu
@@ -66,17 +66,17 @@ run_rofi() {
 # Execute Command
 run_cmd() {
 	if [[ "$1" == '--opt1' ]]; then
-		${term_cmd}
+		"$term_cmd"
 	elif [[ "$1" == '--opt2' ]]; then
-		${file_cmd}
+		"$file_cmd"
 	elif [[ "$1" == '--opt3' ]]; then
-		${text_cmd}
+		"$text_cmd"
 	elif [[ "$1" == '--opt4' ]]; then
-		${web_cmd}
+		"$web_cmd"
 	elif [[ "$1" == '--opt5' ]]; then
-		${music_cmd}
+		"$music_cmd"
 	elif [[ "$1" == '--opt6' ]]; then
-		${setting_cmd}
+		"$setting_cmd"
 	fi
 }
 

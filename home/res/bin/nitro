@@ -30,7 +30,7 @@ imgname=$(ls "$dir" \
     | rofi -dmenu -i -theme launchers/type-3/style-1 -p "Select a sticker")
 imgid=$(cat "$HOME/.config/stickers/$imgname")
 
-if [ -z "$imgname" ]; then
+if [ "$imgname" = "" ]; then
     notify-send -t 1000 "No file selected."
     exit 1
 fi

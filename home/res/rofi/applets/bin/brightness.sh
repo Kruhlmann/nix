@@ -10,8 +10,8 @@ source "$HOME"/.config/rofi/applets/shared/theme.bash
 theme="$type/$style"
 
 # Brightness Info
-backlight="$(printf "%.0f\n" `light -G`)"
-card="`light -L | grep 'backlight' | head -n1 | cut -d'/' -f3`"
+backlight="$(printf "%.0f\n" "$(light -G)")"
+card="$(light -L | grep 'backlight' | head -n1 | cut -d'/' -f3)"
 
 if [[ $backlight -ge 0 ]] && [[ $backlight -le 29 ]]; then
     level="Low"
@@ -46,7 +46,7 @@ elif [[ ( "$theme" == *'type-2'* ) || ( "$theme" == *'type-4'* ) ]]; then
 fi
 
 # Options
-layout=`cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2`
+layout=`cat "$theme" | grep 'USE_ICON' | cut -d'=' -f2`
 if [[ "$layout" == 'NO' ]]; then
 	option_1=" Increase"
 	option_2=" Optimal"
@@ -68,7 +68,7 @@ rofi_cmd() {
 		-p "$prompt" \
 		-mesg "$mesg" \
 		-markup-rows \
-		-theme ${theme}
+		-theme "$theme"
 }
 
 # Pass variables to rofi dmenu

@@ -51,7 +51,6 @@
     opam
     page
     gnupg
-    polybar
     postgresql
     protonmail-bridge
     rofi
@@ -85,10 +84,6 @@
     };
     "${config.xdg.configHome}/git" = {
       source = res/git;
-      recursive = true;
-    };
-    "${config.xdg.configHome}/polybar" = {
-      source = res/polybar;
       recursive = true;
     };
     "${config.xdg.configHome}/rofi" = {

@@ -10,10 +10,10 @@ source "$HOME"/.config/rofi/applets/shared/theme.bash
 theme="$type/$style"
 
 # Battery Info
-battery="`acpi -b | cut -d',' -f1 | cut -d':' -f1`"
-status="`acpi -b | cut -d',' -f1 | cut -d':' -f2 | tr -d ' '`"
-percentage="`acpi -b | cut -d',' -f2 | tr -d ' ',\%`"
-time="`acpi -b | cut -d',' -f3`"
+battery="$(acpi -b | cut -d',' -f1 | cut -d':' -f1)"
+status="$(acpi -b | cut -d',' -f1 | cut -d':' -f2 | tr -d ' ')"
+percentage="$(acpi -b | cut -d',' -f2 | tr -d ' ',\%)"
+time="$(acpi -b | cut -d',' -f3)"
 
 if [[ -z "$time" ]]; then
 	time=' Fully Charged'
@@ -69,7 +69,7 @@ elif [[ $percentage -ge 80 ]] && [[ $percentage -le 100 ]]; then
 fi
 
 # Options
-layout=`cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2`
+layout=`cat "$theme" | grep 'USE_ICON' | cut -d'=' -f2`
 if [[ "$layout" == 'NO' ]]; then
 	option_1=" Remaining ${percentage}%"
 	option_2=" $status"
@@ -90,9 +90,9 @@ rofi_cmd() {
 		-dmenu \
 		-p "$prompt" \
 		-mesg "$mesg" \
-		${active} ${urgent} \
+		"$active" "$urgent" \
 		-markup-rows \
-		-theme ${theme}
+		-theme "$theme"
 }
 
 # Pass variables to rofi dmenu
@@ -110,7 +110,7 @@ run_cmd() {
 	elif [[ "$1" == '--opt3' ]]; then
 		xfce4-power-manager-settings
 	elif [[ "$1" == '--opt4' ]]; then
-		${polkit_cmd} alacritty -e powertop
+		"$polkit_cmd" alacritty -e powertop
 	fi
 }
 

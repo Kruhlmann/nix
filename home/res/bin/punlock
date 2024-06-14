@@ -13,7 +13,7 @@ cli_pwd() {
 }
 
 get_email() {
-    if [ -n "$DISPLAY" ]; then
+    if [ "$DISPLAY" != "" ]; then
         zenity --entry --title="Enter Bitwarden email"
     else
         read -rsp "Enter Bitwarden email: " email
@@ -40,16 +40,16 @@ else
     email=$(get_email)
 fi
 printf 'Aquired email\n'
-test -z "$email" && exit 0
+test "$email" = "" && exit 0
 echo "$email" >"$punlock_home/bw-email"
 
-if [ -n "$DISPLAY" ]; then
+if [ "$DISPLAY" != "" ]; then
     password=$(zenity --password --title="Enter Bitwarden password")
 else
     read -rsp "Enter Bitwarden password: " password
     echo
 fi
-test -z "$password" && exit 0
+test "$password" = "" && exit 0
 printf 'Aquired password\n'
 
 bw logout >/dev/null || true

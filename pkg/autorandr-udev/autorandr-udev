@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-notify-send "Autorandr" "Checking for new monitors..."
-sleep 1
-autorandr -c

@@ -10,13 +10,13 @@ source "$HOME"/.config/rofi/applets/shared/theme.bash
 theme="$type/$style"
 
 # Theme Elements
-status="`mpc status`"
+status="$(mpc status)"
 if [[ -z "$status" ]]; then
 	prompt='Offline'
 	mesg="MPD is Offline"
 else
-	prompt="`mpc -f "%artist%" current`"
-	mesg="`mpc -f "%title%" current` :: `mpc status | grep "#" | awk '{print $3}'`"
+	prompt="$(mpc -f "%artist%" current)"
+	mesg="$(mpc -f "%title%" current) :: $(mpc status | grep "#" | awk '{print $3}')"
 fi
 
 if [[ ( "$theme" == *'type-1'* ) || ( "$theme" == *'type-3'* ) || ( "$theme" == *'type-5'* ) ]]; then
@@ -28,7 +28,7 @@ elif [[ ( "$theme" == *'type-2'* ) || ( "$theme" == *'type-4'* ) ]]; then
 fi
 
 # Options
-layout=`cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2`
+layout=`cat "$theme" | grep 'USE_ICON' | cut -d'=' -f2`
 if [[ "$layout" == 'NO' ]]; then
 	if [[ ${status} == *"[playing]"* ]]; then
 		option_1=" Pause"
@@ -66,9 +66,9 @@ else
 fi
 # Random
 if [[ ${status} == *"random: on"* ]]; then
-    [ -n "$active" ] && active+=",5" || active="-a 5"
+    [ "$active" != "" ] && active+=",5" || active="-a 5"
 elif [[ ${status} == *"random: off"* ]]; then
-    [ -n "$urgent" ] && urgent+=",5" || urgent="-u 5"
+    [ "$urgent" != "" ] && urgent+=",5" || urgent="-u 5"
 else
     option_6=" Parsing Error"
 fi
@@ -80,9 +80,9 @@ rofi_cmd() {
 		-dmenu \
 		-p "$prompt" \
 		-mesg "$mesg" \
-		${active} ${urgent} \
+		"$active" "$urgent" \
 		-markup-rows \
-		-theme ${theme}
+		-theme "$theme"
 }
 
 # Pass variables to rofi dmenu
@@ -93,13 +93,13 @@ run_rofi() {
 # Execute Command
 run_cmd() {
 	if [[ "$1" == '--opt1' ]]; then
-		mpc -q toggle && notify-send -u low -t 1000 " `mpc current`"
+		mpc -q toggle && notify-send -u low -t 1000 " $(mpc current)"
 	elif [[ "$1" == '--opt2' ]]; then
 		mpc -q stop
 	elif [[ "$1" == '--opt3' ]]; then
-		mpc -q prev && notify-send -u low -t 1000 " `mpc current`"
+		mpc -q prev && notify-send -u low -t 1000 " $(mpc current)"
 	elif [[ "$1" == '--opt4' ]]; then
-		mpc -q next && notify-send -u low -t 1000 " `mpc current`"
+		mpc -q next && notify-send -u low -t 1000 " $(mpc current)"
 	elif [[ "$1" == '--opt5' ]]; then
 		mpc -q repeat
 	elif [[ "$1" == '--opt6' ]]; then
