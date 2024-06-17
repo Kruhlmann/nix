@@ -14,4 +14,7 @@ in {
   services.acpid.enable = true;
 
   services.dbus.packages = [ dnsmasq-dbus-config ];
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
+  '';
 }

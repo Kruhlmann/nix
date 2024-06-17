@@ -26,13 +26,18 @@
     gnome.nautilus
     gnome.sushi
     gnome.zenity
+    gnupg
     graphviz
+    htop
     i3lock-color
     imagemagickBig
+    lazygit
     libreoffice-fresh
     lutris
     maim
     mangohud
+    mpc-cli
+    mpd
     mpv
     nautilus-open-any-terminal
     networkmanagerapplet
@@ -51,8 +56,10 @@
     obs-studio-plugins.obs-vertical-canvas
     opam
     page
-    gnupg
+    papirus-icon-theme
+    pavucontrol
     postgresql
+    powershell
     protonmail-bridge
     rofi
     rustup
@@ -63,8 +70,10 @@
     texliveFull
     thefuck
     thunderbird
+    tldr
     trayer
     tree
+    wireshark
     xcape
     xclip
     xdotool
@@ -72,14 +81,6 @@
     xorg.xmodmap
     xorg.xrandr
     zathura
-    pavucontrol
-    powershell
-    papirus-icon-theme
-    htop
-    mpc-cli
-    tldr
-    mpd
-    lazygit
     zsh-autosuggestions
   ];
   gtk.enable = true;
