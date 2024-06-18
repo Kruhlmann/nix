@@ -6,7 +6,6 @@ Host *
   SetEnv TERM=xterm
   IdentityFile ~/.ssh/personal
   PreferredAuthentications publickey
-  Port 22
 
 Host wert.dk
   HostName wert.dk

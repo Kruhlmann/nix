@@ -48,7 +48,6 @@
     obs-studio-plugins.obs-backgroundremoval
     obs-studio-plugins.obs-command-source
     obs-studio-plugins.obs-mute-filter
-    obs-studio-plugins.obs-pipewire-audio-capture
     obs-studio-plugins.obs-source-clone
     obs-studio-plugins.obs-source-switcher
     obs-studio-plugins.obs-text-pthread
