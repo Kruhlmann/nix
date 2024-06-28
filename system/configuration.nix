@@ -55,6 +55,7 @@ in {
   '';
   environment.etc."lib/onepin.so".source =
     "${pkgs.opensc}/lib/opensc-pkcs11.so";
+  environment.sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
   fonts.packages = with pkgs; [
     terminus-nerdfont
     fira-code-nerdfont

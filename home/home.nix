@@ -117,6 +117,10 @@
       source = res/zsh;
       recursive = true;
     };
+    "${config.xdg.configHome}/libvirt" = {
+      source = res/libvirt;
+      recursive = true;
+    };
     "${config.xdg.configHome}/gtk-3.0" = {
       source = res/gtk-3.0;
       recursive = true;
