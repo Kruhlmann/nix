@@ -62,6 +62,7 @@
     protonmail-bridge
     rofi
     rustup
+    sccache
     steam
     steam-run
     steamPackages.steamcmd
@@ -80,6 +81,7 @@
     xorg.xmodmap
     xorg.xrandr
     zathura
+    zed-editor
     zsh-autosuggestions
   ];
   gtk.enable = true;

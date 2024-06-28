@@ -74,9 +74,3 @@ up | down)
 esac
 sudo systemctl restart dnsmasq.service
 sudo systemctl restart dnsmasq@nat0.service
-
-printf 'Waiting for HTTP verification .'
-while ! curl -lks "$HOST" >/dev/null; do
-    printf '.'
-    sleep 1
-done

@@ -10,11 +10,14 @@
   };
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
-  networking.nameservers = [ "127.0.0.1" "172.31.0.2" "8.8.8.8" ];
+  #networking.nameservers = [ "172.31.1.1" "1.1.1.1" ];
   services.resolved = {
     enable = true;
-    fallbackDns = [ "1.1.1.1" "8.8.8.8" ];
+    fallbackDns = [ "1.1.1.1" ];
     dnsovertls = "false";
+    extraConfig = ''
+        Cache=No
+    '';
   };
   systemd.network.enable = true;
   systemd.network.networks.nat0 = {
@@ -42,8 +45,8 @@
     netdevConfig.Kind = "bridge";
   };
   systemd.network.wait-online.enable = false;
-  systemd.services.systemd-networkd.serviceConfig.ExecStartPost =
-    "${pkgs.nftables}/bin/nft -f /etc/nftables-nat0.conf";
+#  systemd.services.systemd-networkd.serviceConfig.ExecStartPost =
+#    "${pkgs.nftables}/bin/nft -f /etc/nftables-nat0.conf";
   networking.nftables.enable = true;
 #  networking.nftables.ruleset = ''
 #    flush ruleset

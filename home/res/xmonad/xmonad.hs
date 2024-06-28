@@ -277,6 +277,7 @@ myStartupHook = do
   spawnOnce "dunst"
   spawnOnce "xss-lock -- portable-lock"
   spawnOnce "autorandr --change"
+  spawnOnce "feh --bg-scale ~/img/lib/lock.jpg"
 
 main =
   do xmonad
