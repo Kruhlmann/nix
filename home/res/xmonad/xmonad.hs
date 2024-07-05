@@ -24,7 +24,7 @@ import XMonad.Layout.Gaps
 import XMonad.Layout.Grid
 import XMonad.Layout.IM
 import XMonad.Layout.Mosaic
-import XMonad.Layout.Named
+import XMonad.Layout.Renamed
 import XMonad.Layout.NoBorders
 import XMonad.Layout.NoFrillsDecoration
 import XMonad.Layout.PerWorkspace
@@ -250,6 +250,7 @@ myManageHook =
       className =? "blueman-manager" --> doShift "Settings",
       className =? "Blueman-manager" --> doShift "Settings",
       className =? "zenity" --> doCenterFloat,
+      className =? "relic-client" --> doCenterFloat,
       resource =? "floatterm" --> doRectFloat (W.RationalRect 0.2 0.2 0.6 0.6),
       resource =? "pavucontrol" --> doRectFloat (W.RationalRect 0.2 0.2 0.6 0.6),
       resource =? "gnome-panel" --> doCenterFloat,
