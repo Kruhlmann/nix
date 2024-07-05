@@ -62,6 +62,7 @@
     protonmail-bridge
     rofi
     rustup
+    sc-im
     sccache
     steam
     steam-run
