@@ -3,7 +3,7 @@
 set -e
 
 gui_pwd() {
-    zenity --password --title="Unlock password store"
+    zenity --password --title="Unlock password store" 2>/dev/null
 }
 
 cli_pwd() {
@@ -14,7 +14,7 @@ cli_pwd() {
 
 get_email() {
     if [ "$DISPLAY" != "" ]; then
-        zenity --entry --title="Enter Bitwarden email"
+        zenity --entry --title="Enter Bitwarden email" 2>/dev/null
     else
         read -rsp "Enter Bitwarden email: " email
         echo
