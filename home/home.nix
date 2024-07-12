@@ -56,9 +56,6 @@
     protonmail-bridge
     rofi
     rustup
-    steam
-    steam-run
-    steamPackages.steamcmd
     teams-for-linux
     texliveFull
     thefuck

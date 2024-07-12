@@ -317,6 +317,9 @@ in {
     libxslt
     lm_sensors
     lxappearance
+    mesa
+    libGL
+    libGLU
     modem-manager-gui
     modemmanager
     mpc-cli
@@ -341,6 +344,7 @@ in {
     ruby
     rustc
     sqlite
+    steam
     sudo
     tldr
     turtle-wow
@@ -358,7 +362,6 @@ in {
     xorg.xauth
     xorg.xev
     xorg.xinit
-    xwaylandvideobridge
     zip
   ];
   #services.udev.packages = [ adaptrandr ];
