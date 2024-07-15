@@ -26,15 +26,15 @@ if [ ! -d "$dir" ]; then
 fi
 
 file=$(find "$dir" -type f -o -type l | rofi -dmenu -i -p "Select a file")
-if [ -z "$file" ]; then
+if [ "$file" = "" ]; then
     notify-send "No file selected."
     exit 1
 fi
 
 if [ "$display_server" = "wayland" ]; then
     while IFS= read -r line; do
-        $input_tool "$line"
+        "$input_tool" "$line"
     done < "$file"
 else
-    $input_tool type --file "$file"
+    "$input_tool" type --file "$file"
 fi

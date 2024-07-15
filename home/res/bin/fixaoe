@@ -5,7 +5,7 @@ wineVcRedistDir="/home/$USER/.steam/steam/steamapps/compatdata/813780/pfx/drive_
 wineVcRedistPath="$wineVcRedistDir/vc_redist.x64.exe"
 wineCaba10Path="$wineVcRedistDir/a10"
 
-if test -f $gameVcRedistDir; then
+if test -f "$gameVcRedistDir"; then
     echo "Valid wine installation, moving along..."
 else
     echo "Uh-oh, cannot find wine in steam folder."
@@ -13,7 +13,7 @@ else
 fi
 
 echo "Deleting old vc_redist.x64.exe..."
-rm $wineVcRedistPath
+rm "$wineVcRedistPath"
 if test -f "$wineVcRedistPath"; then
 	echo "File was NOT deleted."
 	exit 1
@@ -22,7 +22,7 @@ else
 fi
 
 echo "Deleting old a10..."
-rm $wineCaba10Path
+rm "$wineCaba10Path"
 if test -f "$wineCaba10Path"; then
         echo "File was NOT deleted."
         exit 1
@@ -32,7 +32,7 @@ fi
 
 
 echo "Copying vc_redist.x64.exe..."
-cp $gameVcRedistPath $wineVcRedistPath
+cp "$gameVcRedistPath" "$wineVcRedistPath"
 if test -f "$wineVcRedistPath"; then
         echo "File was copied."
 else
@@ -41,7 +41,7 @@ else
 fi
 
 echo "Extracting vc_redist.x64.exe..."
-cabextract -d $wineVcRedistDir $wineVcRedistPath > /dev/null
+cabextract -d "$wineVcRedistDir" "$wineVcRedistPath" > /dev/null
 if test -f "$wineCaba10Path"; then
         echo "File was extracted."
 else
@@ -50,5 +50,5 @@ else
 fi
 
 echo "Extracting a10..."
-cabextract -d $wineVcRedistDir $wineCaba10Path > /dev/null
+cabextract -d "$wineVcRedistDir" "$wineCaba10Path" > /dev/null
 echo "Done."

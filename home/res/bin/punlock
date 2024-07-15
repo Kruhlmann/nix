@@ -3,7 +3,7 @@
 set -e
 
 gui_pwd() {
-    zenity --password --title="Unlock password store"
+    zenity --password --title="Unlock password store" 2>/dev/null
 }
 
 cli_pwd() {
@@ -13,8 +13,8 @@ cli_pwd() {
 }
 
 get_email() {
-    if [ -n "$DISPLAY" ]; then
-        zenity --entry --title="Enter Bitwarden email"
+    if [ "$DISPLAY" != "" ]; then
+        zenity --entry --title="Enter Bitwarden email" 2>/dev/null
     else
         read -rsp "Enter Bitwarden email: " email
         echo
@@ -29,10 +29,10 @@ punlock_temp="$punlock_home/tmp"
 test -d "$punlock_temp" && sudo umount "$punlock_temp" 2>/dev/null && sudo rm -r "$punlock_temp"
 mkdir -p "$punlock_temp"
 sudo mount -t tmpfs -o size=50M tmpfs "$punlock_temp" 2>/dev/null
-printf 'Created temporary filesystem\n' >/dev/stderr
+printf 'Created temporary filesystem\n' >&2
 sudo chown "$USER" -R "$punlock_temp"
 mkdir -p "$punlock_temp/"{pass,ssh,user,etc,gpg}
-printf 'Created directories\n' >/dev/stderr
+printf 'Created directories\n' >&2
 
 if [ -f "$punlock_home/bw-email" ]; then
     email=$(cat "$punlock_home/bw-email")
@@ -40,16 +40,16 @@ else
     email=$(get_email)
 fi
 printf 'Aquired email\n'
-test -z "$email" && exit 0
+test "$email" = "" && exit 0
 echo "$email" >"$punlock_home/bw-email"
 
-if [ -n "$DISPLAY" ]; then
-    password=$(zenity --password --title="Enter Bitwarden password")
+if [ "$DISPLAY" != "" ]; then
+    password=$(zenity --password --title="Enter Bitwarden password") 2>/dev/null
 else
     read -rsp "Enter Bitwarden password: " password
     echo
 fi
-test -z "$password" && exit 0
+test "$password" = "" && exit 0
 printf 'Aquired password\n'
 
 bw logout >/dev/null || true
@@ -61,7 +61,7 @@ printf 'Aquired bitwarden session\n'
 
 store_item() {
     test -f "$3" || bw get item "$1" | jq -r "$2" >"$3"
-    printf '[%s] %s\n' "$1" "$3" >/dev/stderr
+    printf '[%s] %s\n' "$1" "$3" >&2
 }
 
 umask 266
@@ -75,15 +75,17 @@ store_item 1aff8bcc-9d1e-452a-a4a3-ab5d00ac9589 '.notes' "$punlock_temp/ssh/pers
 store_item 1aff8bcc-9d1e-452a-a4a3-ab5d00ac9589 '.fields[0].value' "$punlock_temp/ssh/personal.pub" &
 store_item d7fdba66-36a2-4d9e-997e-ab5d00ac183f '.notes' "$punlock_temp/ssh/work" &
 store_item d7fdba66-36a2-4d9e-997e-ab5d00ac183f '.fields[0].value' "$punlock_temp/ssh/work.pub" &
-
+store_item 7c7f6678-ad94-4a3e-99d3-b18b00bb5e0d '.notes' "$punlock_temp/ssh/mobnet.conf" &
+store_item c6f03964-915b-4795-a7a9-b18b00bba2f6 '.notes' "$punlock_temp/ssh/l3.conf" &
 store_item ef60e2e2-c440-4726-a0b5-b17a00c6fa14 '.notes' "$punlock_temp/gpg/work.pub.asc" &
 store_item aa5ed890-b55e-45c6-b653-b17a00c769eb '.notes' "$punlock_temp/gpg/work.prv.asc" &
 store_item a729df9b-05bc-4095-ad43-b17a00ca6897 '.notes' "$punlock_temp/gpg/personal.pub.asc" &
 store_item 87810eff-9d4f-410e-8371-b17a00ca4b27 '.notes' "$punlock_temp/gpg/personal.prv.asc" &
+store_item 1781cb63-a7b3-485c-8a22-b19c011209ea '.notes' "$punlock_temp/pass/gitlab-token" &
 
 wait
 
-printf 'Importing gpg keys\n' >/dev/stderr
+printf 'Importing gpg keys\n' >&2
 work_gpg_id=D752B5D684A1C913370C084575A1E330BA85B4B3
 if ! gpg --list-keys "$work_gpg_id" > /dev/null 2>&1; then
     gpg --import "$punlock_temp/gpg/work.pub.asc"
@@ -96,14 +98,15 @@ if ! gpg --list-keys "$personal_gpg_id" > /dev/null 2>&1; then
     gpg --import "$punlock_temp/gpg/personal.prv.asc"
 fi
 
-if [ -z "$SSH_AUTH_SOCK" ]; then
-    printf 'Starting ssh agent\n'
-    eval "$(ssh-agent -s)"
-fi
-printf 'Creating ssh key symlinks\n' >/dev/stderr
+printf 'Creating SSH key symlinks\n' >&2
 for f in "$punlock_temp/ssh/"*; do
     ln -sf "$f" "$HOME/.ssh/$(basename "$f")"
-    ssh-add "$HOME/.ssh/$(basename "$f")"
+done
+
+printf 'Creating SSH config symlinks\n' >&2
+mkdir -p "$HOME/.ssh/config.d"
+for f in "$punlock_temp/ssh/"*.conf; do
+    ln -sf "$f" "$HOME/.ssh/config.d/$(basename "$f")"
 done
 
 unset BW_SESSION

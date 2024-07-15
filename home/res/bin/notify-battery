@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 battery_path=$(upower -e | grep 'BAT')
-if [ -z "$battery_path" ]; then
+if [ "$battery_path" = "" ]; then
   notify-send "Battery" "No battery found"
   exit 1
 fi

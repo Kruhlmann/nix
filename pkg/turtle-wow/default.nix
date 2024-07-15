@@ -1,6 +1,6 @@
 { pkgs, ver ? "1171", addons ? [ ]
 , winePrefix ? "~/.cache/turtle-wow/.wine-prefix", gameConfig ? { }
-, accountConfigs ? { }, bindings ? { } }:
+, accountConfigs ? { }, bindings ? { }, macros ? { } }:
 
 let
   buildAddon = import ./addons/build.nix { inherit pkgs; };
@@ -12,7 +12,6 @@ let
     inherit pkgs;
     settings = combinedConfig;
   };
-
   defaultAccountConfig = import ./config/preset/account.nix { };
   mappedAccountConfigs = pkgs.lib.mapAttrs (accountName: accountConfig:
     pkgs.lib.recursiveUpdate defaultAccountConfig accountConfig) accountConfigs;
@@ -28,6 +27,7 @@ let
       bindings = bindingConfig;
     });
 
+  generateMacroCache = import ./macros/generate.nix { inherit pkgs; };
 in pkgs.stdenv.mkDerivation rec {
   pname = "turtle-wow";
   version = "${ver}";
@@ -83,6 +83,32 @@ in pkgs.stdenv.mkDerivation rec {
             chmod 444 $out/share/turtle-wow/WTF/Account/${upperAccountName}/bindings-cache.wtf  
           '') bindings)
     }    
+    ${pkgs.lib.concatStrings (pkgs.lib.mapAttrsToList
+      (accountName: accountMacros:
+        let upperAccountName = pkgs.lib.toUpper accountName;
+        in ''
+                                      mkdir -p $out/share/turtle-wow/WTF/Account/${upperAccountName}
+                                    echo "${
+                                      generateMacroCache {
+                                        macros = accountMacros.global;
+                                        startId = 1;
+                                      }
+                                    }" > $out/share/turtle-wow/WTF/Account/${upperAccountName}/macros-cache.txt
+          ${
+            pkgs.lib.concatStringsSep "\n" (pkgs.lib.mapAttrsToList
+              (serverName: serverMacros:
+                pkgs.lib.concatStringsSep "\n" (pkgs.lib.mapAttrsToList
+                  (characterName: characterMacros: ''
+                    mkdir -p $out/share/turtle-wow/WTF/Account/${upperAccountName}/${serverName}/${characterName}  
+                    echo "${
+                      generateMacroCache {
+                        macros = characterMacros;
+                        startId = 10000;
+                      }
+                    }" > $out/share/turtle-wow/WTF/Account/${upperAccountName}/${serverName}/${characterName}/macros-cache.txt  
+                  '') serverMacros)) accountMacros.servers)
+          }  
+        '') macros)}
       mv $out/share/turtle-wow/WTF $out/share/turtle-wow/WTF.original
       ln -s /tmp/turtle-wow $out/share/turtle-wow/WTF
   '';
@@ -101,3 +127,8 @@ in pkgs.stdenv.mkDerivation rec {
     platforms = platforms.linux;
   };
 }
+
+#                  generateMacroCache {
+#                    macros = serverMacros;
+#                    startId = 10000;
+#                  }

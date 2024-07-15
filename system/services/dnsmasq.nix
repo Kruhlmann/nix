@@ -9,7 +9,7 @@
   environment.etc."dnsmasq.d/lo.conf".text = ''
     all-servers
     bind-interfaces
-    listen-address=127.0.0.1,172.31.0.2,172.17.0.1
+    listen-address=172.31.0.2
     resolv-file=/run/NetworkManager/resolv.conf
     conf-dir=/run/dnsmasq/,*.conf
     server=/modi.nat0/172.31.0.1
@@ -50,5 +50,4 @@
     };
     wantedBy = [ "multi-user.target" ];
   };
-  #services.dbus.packages = [ dnsmasq_dbus_config ];
 }

@@ -15,6 +15,7 @@
     dialog
     direnv
     discord
+    dunst
     entr
     fd
     feh
@@ -25,13 +26,18 @@
     gnome.nautilus
     gnome.sushi
     gnome.zenity
+    gnupg
     graphviz
+    htop
     i3lock-color
     imagemagickBig
+    lazygit
     libreoffice-fresh
     lutris
     maim
     mangohud
+    mpc-cli
+    mpd
     mpv
     nautilus-open-any-terminal
     networkmanagerapplet
@@ -42,7 +48,6 @@
     obs-studio-plugins.obs-backgroundremoval
     obs-studio-plugins.obs-command-source
     obs-studio-plugins.obs-mute-filter
-    obs-studio-plugins.obs-pipewire-audio-capture
     obs-studio-plugins.obs-source-clone
     obs-studio-plugins.obs-source-switcher
     obs-studio-plugins.obs-text-pthread
@@ -50,18 +55,26 @@
     obs-studio-plugins.obs-vertical-canvas
     opam
     page
-    gnupg
-    polybar
+    papirus-icon-theme
+    pavucontrol
     postgresql
+    powershell
     protonmail-bridge
     rofi
     rustup
+    sc-im
+    sccache
+    steam
+    steam-run
+    steamPackages.steamcmd
     teams-for-linux
     texliveFull
     thefuck
     thunderbird
+    tldr
     trayer
     tree
+    wireshark
     xcape
     xclip
     xdotool
@@ -69,6 +82,7 @@
     xorg.xmodmap
     xorg.xrandr
     zathura
+    zed-editor
     zsh-autosuggestions
   ];
   gtk.enable = true;
@@ -82,10 +96,6 @@
     };
     "${config.xdg.configHome}/git" = {
       source = res/git;
-      recursive = true;
-    };
-    "${config.xdg.configHome}/polybar" = {
-      source = res/polybar;
       recursive = true;
     };
     "${config.xdg.configHome}/rofi" = {
@@ -106,6 +116,10 @@
     };
     "${config.xdg.configHome}/zsh" = {
       source = res/zsh;
+      recursive = true;
+    };
+    "${config.xdg.configHome}/libvirt" = {
+      source = res/libvirt;
       recursive = true;
     };
     "${config.xdg.configHome}/gtk-3.0" = {

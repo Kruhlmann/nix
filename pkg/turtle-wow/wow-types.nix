@@ -1,7 +1,7 @@
 { }: {
-  nil = "nil";
-  false = "0";
-  true = "1";
+  nil = ''"nil"'';
+  false = ''"0"'';
+  true = ''"1"'';
   show_target_of_target = {
     never = ''"0"'';
     raid = ''"1"'';

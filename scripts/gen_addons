@@ -76,7 +76,7 @@ EOF
     owner=$(echo "$repo" | cut -d'/' -f1)
     repo_name=$(echo "$repo" | cut -d'/' -f2)
     tocname=$(find "$c_dir" -name '*.toc' | head -n 1 | sed -e 's/\.toc$//')
-    if [ -z "$tocname" ]; then
+    if [ "$tocname" = "" ]; then
         echo "Unable to find .toc file in repository $repo. Skipping" >&2
         rm -rf "$c_dir" "$nix_file"
         continue
