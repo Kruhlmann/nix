@@ -24,11 +24,11 @@ import XMonad.Layout.Gaps
 import XMonad.Layout.Grid
 import XMonad.Layout.IM
 import XMonad.Layout.Mosaic
-import XMonad.Layout.Renamed
 import XMonad.Layout.NoBorders
 import XMonad.Layout.NoFrillsDecoration
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Reflect
+import XMonad.Layout.Renamed
 import XMonad.Layout.SimpleFloat
 import XMonad.Layout.Simplest
 import XMonad.Layout.Spacing
