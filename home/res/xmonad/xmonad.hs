@@ -276,6 +276,7 @@ myStartupHook = do
   spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
   spawnOnce "blueman-manager"
   spawnOnce "dunst"
+  spawnOnce "conky"
   spawnOnce "xss-lock -- portable-lock"
   spawnOnce "autorandr --change"
   spawnOnce "feh --bg-scale ~/img/lib/lock.jpg"

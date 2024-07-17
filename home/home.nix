@@ -11,6 +11,7 @@
     bitwarden-cli
     cabextract
     ckb-next
+    conky
     dart-sass
     dialog
     direnv
@@ -108,6 +109,10 @@
     };
     "${config.xdg.configHome}/stack" = {
       source = res/stack;
+      recursive = true;
+    };
+    "${config.xdg.configHome}/conky" = {
+      source = res/conky;
       recursive = true;
     };
     "${config.xdg.configHome}/dunst" = {
