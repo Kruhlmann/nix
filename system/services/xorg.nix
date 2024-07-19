@@ -10,6 +10,7 @@
     #videoDrivers = [ "amdgpu" ];
     xkb.layout = "us";
     xkb.variant = "altgr-intl";
+    xkb.options = "caps:escape";
   };
   services.displayManager.defaultSession = "xfce+xmonad";
 }

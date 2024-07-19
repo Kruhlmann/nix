@@ -280,6 +280,7 @@ myStartupHook = do
   spawnOnce "xss-lock -- portable-lock"
   spawnOnce "autorandr --change"
   spawnOnce "feh --bg-scale ~/img/lib/lock.jpg"
+  spawnOnce "xmodmap -e 'remove lock = Caps_Lock'"
 
 main =
   do xmonad

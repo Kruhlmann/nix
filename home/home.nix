@@ -9,6 +9,7 @@
     arandr
     autorandr
     bitwarden-cli
+    btop
     cabextract
     ckb-next
     conky
