@@ -8,7 +8,9 @@
     alacritty
     arandr
     autorandr
+    batsignal
     bitwarden-cli
+    brightnessctl
     btop
     cabextract
     ckb-next
