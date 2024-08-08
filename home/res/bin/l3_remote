@@ -1,0 +1,51 @@
+#!/usr/bin/env sh
+
+set -x
+
+secrets_path="$HOME/.cache/punlock/tmp"
+
+start_openconnect() {
+    test -f /run/openconnect-l3/pid && return
+    mkdir -p /run/openconnect-l3
+    username="$(cat "$secrets_path/user/l3-vpn")"
+    host="$(cat "$secrets_path/etc/l3-vpn-host")"
+    openconnect -u "$username" "$host" <"$secrets_path/pass/l3-vpn" &
+    echo "$?" >/run/openconnect-l3/pid
+    printf 'Awaiting connection '
+    while ! ip -brief a | grep -q '^tun0'; do
+        printf '.'
+        sleep 1
+    done
+    printf '\n'
+}
+
+kill_openconnect() {
+    test -f /run/openconnect-l3/pid || return
+    kill "$(cat /run/openconnect-l3/pid)" || kill -9 "$(cat /run/openconnect-l3/pid)"
+}
+
+routing() {
+    ip route "$1" 10.80.2.11 via 10.255.255.47 dev tun0
+    ip route "$1" 10.80.2.12 via 10.255.255.47 dev tun0
+}
+
+case $1 in
+up | down)
+  [ "$(id -u)" -eq 0 ] || exec sudo "$0" "$@"
+  case $1 in
+  up)
+    start_openconnect
+    routing add
+    ;;
+  down)
+    kill_openconnect
+    routing del
+    ip r del default dev tun0 scope link
+    ;;
+  esac
+  ;;
+*)
+  echo 'Argument [up|down] required!'
+  exit 1
+  ;;
+esac

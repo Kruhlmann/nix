@@ -2,7 +2,7 @@
 umask 0022
 
 DGW=$(ip route | grep 'default via' | cut -d\  -f3 | head -n 1)
-HOST=${2:-software.siemens.dk}
+HOST=${2:-artifacts.mobility.siemens.com}
 DNS=172.31.1.1
 GW=${DNS}
 
