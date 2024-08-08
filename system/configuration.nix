@@ -1,15 +1,5 @@
 { pkgs, ... }:
 let
-  turtle-wow-config = import ./turtle-wow.nix { };
-  turtle-wow = import ../pkg/turtle-wow/default.nix {
-    inherit pkgs;
-    ver = turtle-wow-config.ver;
-    gameConfig = turtle-wow-config.gameConfig;
-    accountConfigs = turtle-wow-config.accountConfigs;
-    addons = turtle-wow-config.addons;
-    bindings = turtle-wow-config.bindings;
-    macros = turtle-wow-config.macros;
-  };
   extra-certs = import ../pkg/extra-certs/default.nix { inherit pkgs; };
 in {
   imports = [
@@ -129,7 +119,6 @@ in {
     sqlite
     steam
     sudo
-    turtle-wow
     tmux
     unrar
     unzip
