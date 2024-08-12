@@ -1,2 +1,5 @@
 home/res/img/lock.png filter=lfs diff=lfs merge=lfs -text
 system/pkg/turtle-wow/res/icon.png filter=lfs diff=lfs merge=lfs -text
+home/res/img/lock/16x10.jpg filter=lfs diff=lfs merge=lfs -text
+home/res/img/lock/16x9.jpg filter=lfs diff=lfs merge=lfs -text
+home/res/img/lock/32x9.jpg filter=lfs diff=lfs merge=lfs -text
