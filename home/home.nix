@@ -135,6 +135,10 @@
       source = res/gtk-3.0;
       recursive = true;
     };
+    "${config.xdg.configHome}/etc" = {
+      source = res/etc;
+      recursive = true;
+    };
     "${config.xdg.dataHome}/.local/bin" = {
       source = res/bin;
       recursive = true;
