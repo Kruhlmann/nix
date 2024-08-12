@@ -65,6 +65,7 @@
     powershell
     protonmail-bridge
     rofi
+    ruff-lsp
     rustup
     sc-im
     sccache
