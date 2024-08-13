@@ -18,16 +18,18 @@ for f in "$HOME"/.config/stickers/*; do
     id=$(cat "$f")
     name=$(basename "$f")
     test -f "$HOME/.cache/stickers/$name.png" && continue
-    url="https://cdn.betterttv.net/emote/$id/3x.webp"
+    printf 'File %s not found. Downloading...\n' "$HOME/.cache/stickers/$name.png"
+    url="https://emotes.kruhlmann.dev/$id.gif"
     printf 'Downloading %s (%s)...\n' "$name" "$url"
-    curl -s "$url" -o "$HOME/.cache/stickers/$name.webp"
-    convert "$HOME/.cache/stickers/$name.webp" "$HOME/.cache/stickers/$name.png"
-    rm "$HOME/.cache/stickers/$name.webp"
+    curl -s "$url" -o "$HOME/.cache/stickers/$name.gif"
+    magick "$HOME/.cache/stickers/$name.gif" "$HOME/.cache/stickers/$name.png"
+    test -f "$HOME/.cache/stickers/$name-0.png" && mv "$HOME/.cache/stickers/$name-0.png" "$HOME/.cache/stickers/$name.png"
+    rm -f "$HOME/.cache/stickers/$name-*.png"
 done
 
 imgname=$(ls "$dir" \
     | while read -r A ; do echo -en "$(basename "$A")\x00icon\x1f$HOME/.cache/stickers/$A.png\n"; done \
-    | rofi -dmenu -i -theme launchers/type-3/style-1 -p "Select a sticker")
+    | rofi -dmenu -i -theme launchers/type-3/style-4 -p "Select a sticker")
 imgid=$(cat "$HOME/.config/stickers/$imgname")
 
 if [ "$imgname" = "" ]; then
@@ -36,7 +38,7 @@ if [ "$imgname" = "" ]; then
 fi
 
 if echo "$XDG_SESSION_TYPE" | grep -qi wayland; then
-    echo "https://cdn.betterttv.net/emote/$imgid/3x.webp" | wl-copy 
+    echo "https://emotes.kruhlmann.dev/$imgid.gif" | wl-copy 
 else
-    echo "https://cdn.betterttv.net/emote/$imgid/3x.webp" | xclip -selection clipboard 
+    echo "https://emotes.kruhlmann.dev/$imgid.gif" | xclip -selection clipboard 
 fi
