@@ -116,7 +116,6 @@ in {
     python311
     qemu
     extra-certs
-    python27Full
     sqlite
     steam
     sudo
