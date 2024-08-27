@@ -39,7 +39,6 @@
     libreoffice-fresh
     lutris
     maim
-    mangohud
     mpc-cli
     mpd
     mpv
@@ -57,11 +56,9 @@
     obs-studio-plugins.obs-text-pthread
     obs-studio-plugins.obs-transition-table
     obs-studio-plugins.obs-vertical-canvas
-    opam
     page
     papirus-icon-theme
     pavucontrol
-    postgresql
     powershell
     protonmail-bridge
     rofi
@@ -87,7 +84,6 @@
     xorg.xmodmap
     xorg.xrandr
     zathura
-    zed-editor
     zsh-autosuggestions
   ];
   gtk.enable = true;
