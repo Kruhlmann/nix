@@ -20,6 +20,7 @@
     direnv
     discord
     dunst
+    dwarf-fortress
     entr
     fd
     feh

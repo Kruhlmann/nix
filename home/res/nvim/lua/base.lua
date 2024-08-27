@@ -24,6 +24,7 @@ map("v", "<leader>/", "gc", { noremap = false })
 map("n", "<leader>/", "gcc", { noremap = false })
 map('n', '<leader>,', '<cmd>vsplit<CR>', opts)
 map('n', '<leader>.', '<cmd>split<CR>', opts)
+map("v", "<leader>64", "c<c-r>=system('base64 --decode', @\")<cr><esc>", { noremap = true, silent = true })
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
     callback = function()
