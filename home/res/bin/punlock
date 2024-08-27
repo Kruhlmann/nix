@@ -44,7 +44,7 @@ test "$email" = "" && exit 0
 echo "$email" >"$punlock_home/bw-email"
 
 if [ "$DISPLAY" != "" ]; then
-    password=$(zenity --password --title="Enter Bitwarden password") 2>/dev/null
+    password=$(zenity --password --title="Enter Bitwarden password"2>/dev/null)
 else
     read -rsp "Enter Bitwarden password: " password
     echo

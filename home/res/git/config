@@ -44,3 +44,6 @@
 
 [includeIf "gitdir:~/doc/src/code.siemens.com/"]
     path = ~/.config/git/work
+
+[includeIf "gitdir:~/doc/src/mo-gitlab.prod.mobnet.dk/"]
+    path = ~/.config/git/work
