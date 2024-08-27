@@ -1,6 +1,5 @@
 { pkgs, ... }:
-let
-  extra-certs = import ../pkg/extra-certs/default.nix { inherit pkgs; };
+let extra-certs = import ../pkg/extra-certs/default.nix { inherit pkgs; };
 in {
   imports = [
     ./hardware-configuration.nix

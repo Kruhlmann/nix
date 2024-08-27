@@ -90,6 +90,11 @@
   gtk.enable = true;
   xdg.dataHome = ~/.;
   xdg.configHome = ~/.config;
+  xdg.desktopEntries.dwarf-fortress = {
+    name = "Dwarf Fortress";
+    exec = "${config.xdg.dataHome}/.nix-profile/bin/dwarf-fortress";
+    icon = "${config.xdg.dataHome}/img/lib/df-logo.png";
+  };
 
   home.file = {
     "${config.xdg.configHome}/nvim" = {
