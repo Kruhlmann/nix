@@ -10,7 +10,6 @@
   };
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
-  #networking.nameservers = [ "172.31.1.1" "1.1.1.1" ];
   services.resolved = {
     enable = true;
     fallbackDns = [ "1.1.1.1" ];
@@ -44,36 +43,13 @@
     netdevConfig.Name = "nat1";
     netdevConfig.Kind = "bridge";
   };
-  systemd.network.wait-online.enable = false;
-  #  systemd.services.systemd-networkd.serviceConfig.ExecStartPost =
-  #    "${pkgs.nftables}/bin/nft -f /etc/nftables-nat0.conf";
   networking.nftables.enable = true;
-  #  networking.nftables.ruleset = ''
-  #    flush ruleset
-  #
-  #    table inet filter {
-  #      chain input {
-  #        type filter hook input priority 0; policy drop;
-  #        ct state established,related accept
-  #        tcp dport {ssh} accept
-  #        iif lo accept
-  #        jump nat.input
-  #      }
-  #      chain nat.input {
-  #      }
-  #      chain forward {
-  #        type filter hook forward priority 0; policy drop;
-  #        ct state established,related accept
-  #        jump nat.forward
-  #      }
-  #      chain nat.forward {
-  #      }
-  #      chain output {
-  #        type filter hook output priority 0;
-  #      }
-  #    }
-  #  '';
-  environment.etc."nftables-nat0.conf".text = ''
+  systemd.network.wait-online.enable = false;
+  systemd.services.docker.serviceConfig.ExecStartPost =
+      "${pkgs.nftables}/bin/nft -f /etc/systemd/nftables.d/docker.conf";
+  systemd.services.systemd-networkd.serviceConfig.ExecStartPost =
+      "${pkgs.nftables}/bin/nft -f /etc/systemd/nftables.d/nat0.conf";
+  environment.etc."systemd/nftables.d/nat0.conf".text = ''
     #!/usr/sbin/nft -f
 
     flush chain inet filter nat.input
@@ -86,6 +62,66 @@
       }
       chain nat.forward {
         iif nat0 accept
+      }
+    }
+  '';
+  environment.etc."systemd/nftables.d/docker.conf".text = ''
+    #!/usr/sbin/nft -f
+
+    flush chain inet filter docker.input
+    flush chain inet filter docker.forward
+
+    table inet filter {
+      chain docker.input {
+        iif docker0 accept
+      }
+      chain docker.forward {
+        iif docker0 accept
+      }
+    }
+    '';
+  networking.nftables.ruleset = ''
+    #!/usr/sbin/nft -f
+    # vim:set ts=2 sw=2 et:
+
+    flush ruleset
+
+    table inet filter {
+      chain input {
+        type filter hook input priority filter
+        policy drop
+        
+        ct state invalid drop comment "early drop of invalid connections"
+        ct state {established, related} accept comment "allow tracked connections"
+        
+        iif lo accept comment "allow from loopback"
+        jump docker.input comment "jump to docker managed input chain"
+        jump nat.input comment "jump to systemd-networkd managed input chain"
+        
+        ip protocol icmp accept comment "allow icmp"
+        meta l4proto ipv6-icmp accept comment "allow icmp v6"
+        tcp dport ssh accept comment "allow sshd"
+        pkttype host limit rate 5/second counter reject with icmpx type admin-prohibited
+        counter
+      }
+      chain docker.input{
+      }
+      chain nat.input{
+      }
+      chain forward {
+        type filter hook forward priority filter
+        policy drop
+        
+        ct state {established, related} accept
+        jump docker.forward
+        jump nat.forward
+      }
+      chain docker.forward{
+      }
+      chain nat.forward{
+      }
+      chain output {
+        type filter hook output priority filter
       }
     }
   '';

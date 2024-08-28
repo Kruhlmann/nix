@@ -13,9 +13,11 @@
     brightnessctl
     btop
     cabextract
+    capitaine-cursors
     ckb-next
     conky
     dart-sass
+    davinci-resolve
     dialog
     direnv
     discord

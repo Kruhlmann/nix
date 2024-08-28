@@ -1,8 +1,13 @@
-{ ... }: {
+{ pkgs, ... }: {
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+        intel-compute-runtime
+    ];
+  };
   hardware.bluetooth.enable = true;
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;
   hardware.ckb-next.enable = true;
