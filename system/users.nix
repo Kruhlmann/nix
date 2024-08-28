@@ -11,6 +11,8 @@
       "qemu-libvirtd"
       "networkmanager"
       "wireshark"
+      "kvm"
+      "flatpak"
     ];
     shell = pkgs.zsh;
   };

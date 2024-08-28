@@ -72,6 +72,7 @@ in {
     dig
     docker
     evtest
+    extra-certs
     file
     fprintd
     gcc
@@ -86,6 +87,8 @@ in {
     jq
     killall
     less
+    libGL
+    libGLU
     libfprint
     libgcrypt
     libgpgerror
@@ -96,9 +99,8 @@ in {
     libxslt
     lm_sensors
     lxappearance
+    man-pages
     mesa
-    libGL
-    libGLU
     modem-manager-gui
     modemmanager
     mpg123
@@ -114,7 +116,6 @@ in {
     pinentry-curses
     python311
     qemu
-    extra-certs
     sqlite
     steam
     sudo
