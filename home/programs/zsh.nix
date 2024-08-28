@@ -17,6 +17,7 @@
       "e" = "nvim";
       "gg" = "lazygit";
       "cat" = "bat --paging=never";
+      "ls" = "eza";
     };
     oh-my-zsh = {
       enable = true;

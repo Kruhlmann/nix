@@ -44,7 +44,10 @@
       source = res/bin;
       recursive = true;
     };
-    "${config.xdg.dataHome}/.ssh/config" = { source = res/ssh/config; };
+    "${config.xdg.dataHome}/.ssh" = {
+      source = res/ssh;
+      recursive = true;
+    };
     "${config.xdg.dataHome}/img/lib" = {
       source = res/img;
       recursive = true;

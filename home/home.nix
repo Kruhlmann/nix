@@ -30,6 +30,7 @@
     dwarf-fortress-packages.legends-browser
     dwarf-fortress-packages.themes.gemset
     entr
+    eza
     fd
     feh
     firefox
