@@ -46,9 +46,9 @@
   networking.nftables.enable = true;
   systemd.network.wait-online.enable = false;
   systemd.services.docker.serviceConfig.ExecStartPost =
-      "${pkgs.nftables}/bin/nft -f /etc/systemd/nftables.d/docker.conf";
+    "${pkgs.nftables}/bin/nft -f /etc/systemd/nftables.d/docker.conf";
   systemd.services.systemd-networkd.serviceConfig.ExecStartPost =
-      "${pkgs.nftables}/bin/nft -f /etc/systemd/nftables.d/nat0.conf";
+    "${pkgs.nftables}/bin/nft -f /etc/systemd/nftables.d/nat0.conf";
   environment.etc."systemd/nftables.d/nat0.conf".text = ''
     #!/usr/sbin/nft -f
 
@@ -79,7 +79,7 @@
         iif docker0 accept
       }
     }
-    '';
+  '';
   networking.nftables.ruleset = ''
     #!/usr/sbin/nft -f
     # vim:set ts=2 sw=2 et:

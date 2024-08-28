@@ -3,9 +3,7 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = with pkgs; [
-        intel-compute-runtime
-    ];
+    extraPackages = with pkgs; [ intel-compute-runtime ];
   };
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = true;

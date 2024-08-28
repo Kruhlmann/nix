@@ -1,9 +1,12 @@
-{ config, pkgs, ... }: {
-  imports = [ ./programs ./services ];
+{ pkgs, ... }: {
+  imports =
+    [ ./programs ./services ./files.nix ./gtk.nix ./session.nix ./xdg.nix ];
+  nixpkgs.config.allowUnfree = true;
   home.stateVersion = "23.11";
   home.username = "ges";
   home.homeDirectory = "/home/ges";
-  nixpkgs.config.allowUnfree = true;
+  programs.home-manager.enable = true;
+
   home.packages = with pkgs; [
     alacritty
     arandr
@@ -13,7 +16,6 @@
     brightnessctl
     btop
     cabextract
-    capitaine-cursors
     ckb-next
     conky
     dart-sass
@@ -23,6 +25,9 @@
     discord
     dunst
     dwarf-fortress
+    dwarf-fortress-packages.dwarf-therapist
+    dwarf-fortress-packages.legends-browser
+    dwarf-fortress-packages.themes.gemset
     entr
     fd
     feh
@@ -89,86 +94,4 @@
     zathura
     zsh-autosuggestions
   ];
-  gtk.enable = true;
-  xdg.dataHome = ~/.;
-  xdg.configHome = ~/.config;
-  xdg.desktopEntries.dwarf-fortress = {
-    name = "Dwarf Fortress";
-    exec = "${config.xdg.dataHome}/.nix-profile/bin/dwarf-fortress";
-    icon = "${config.xdg.dataHome}/img/lib/df-logo.png";
-  };
-
-  home.file = {
-    "${config.xdg.configHome}/nvim" = {
-      source = res/nvim;
-      recursive = true;
-    };
-    "${config.xdg.configHome}/git" = {
-      source = res/git;
-      recursive = true;
-    };
-    "${config.xdg.configHome}/rofi" = {
-      source = res/rofi;
-      recursive = true;
-    };
-    "${config.xdg.configHome}/stickers" = {
-      source = res/stickers;
-      recursive = true;
-    };
-    "${config.xdg.configHome}/stack" = {
-      source = res/stack;
-      recursive = true;
-    };
-    "${config.xdg.configHome}/conky" = {
-      source = res/conky;
-      recursive = true;
-    };
-    "${config.xdg.configHome}/dunst" = {
-      source = res/dunst;
-      recursive = true;
-    };
-    "${config.xdg.configHome}/zsh" = {
-      source = res/zsh;
-      recursive = true;
-    };
-    "${config.xdg.configHome}/libvirt" = {
-      source = res/libvirt;
-      recursive = true;
-    };
-    "${config.xdg.configHome}/gtk-3.0" = {
-      source = res/gtk-3.0;
-      recursive = true;
-    };
-    "${config.xdg.configHome}/etc" = {
-      source = res/etc;
-      recursive = true;
-    };
-    "${config.xdg.dataHome}/.local/bin" = {
-      source = res/bin;
-      recursive = true;
-    };
-    "${config.xdg.dataHome}/.ssh/config" = { source = res/ssh/config; };
-    "img/lib" = {
-      source = res/img;
-      recursive = true;
-    };
-  };
-  home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    PAGER = "page";
-    MANPAGER = "page -t man";
-    SHELL = "/run/current-system/sw/bin/zsh";
-  };
-  xsession = {
-    enable = true;
-    windowManager.xmonad = {
-      enable = true;
-      enableContribAndExtras = true;
-      config = ./res/xmonad/xmonad.hs;
-      extraPackages = hp: [ hp.dbus hp.monad-logger ];
-    };
-  };
-
-  programs.home-manager.enable = true;
 }
