@@ -19,6 +19,5 @@
       name = "Gruvbox-Dark";
       package = pkgs.gruvbox-gtk-theme;
     };
-    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   };
 }

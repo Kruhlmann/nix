@@ -16,6 +16,7 @@
     shellAliases = {
       "e" = "nvim";
       "gg" = "lazygit";
+      "cat" = "bat --paging=never";
     };
     oh-my-zsh = {
       enable = true;

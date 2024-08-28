@@ -11,6 +11,7 @@
     alacritty
     arandr
     autorandr
+    bat
     batsignal
     bitwarden-cli
     brightnessctl
