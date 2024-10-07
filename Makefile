@@ -45,3 +45,6 @@ lint:
 	ormolu --mode check $(HASKELL_FILES)
 	shellharden $(SHELL_FILES)
 	checkmake Makefile
+
+.PHONY: test
+.PHONY: clean
