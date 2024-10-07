@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   virtualisation.docker.enable = true;
+  virtualisation.waydroid.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.onBoot = "start";
   virtualisation.libvirtd.onShutdown = "shutdown";

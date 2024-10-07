@@ -69,6 +69,10 @@ function add_banner_comment()
     if vim.api.nvim_buf_get_option(0, 'modifiable') == false then
         return
     end
+    if vim.bo.filetype == 'xml' then
+        return
+    end
+
     local filepath = vim.fn.expand('%:p')
     if not filepath:match('^' .. vim.fn.expand('~/doc/src/code.siemens.com')) then
         return

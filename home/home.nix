@@ -74,6 +74,7 @@
     rofi
     ruff-lsp
     rustup
+    rustc
     sc-im
     sccache
     steam

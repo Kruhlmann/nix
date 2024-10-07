@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+virt-viewer "$(virsh list --name --all \
+    | grep -v '^$' \
+    | while read -r name; do printf "%s\x00icon\x1f/etc/share/icons/hicolor/256x256/apps/virt-manager.png\n" "$name"; done \
+    | rofi -dmenu -i -theme launchers/type-2/style-4 -p "Open virtual machine")"

@@ -44,6 +44,8 @@ in {
   '';
   environment.etc."lib/onepin.so".source =
     "${pkgs.opensc}/lib/opensc-pkcs11.so";
+  environment.etc."share/icons/hicolor/256x256/apps/virt-manager.png".source =
+    "${pkgs.virt-manager}/share/icons/hicolor/256x256/apps/virt-manager.png";
   environment.sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
   fonts.packages = with pkgs; [
     terminus-nerdfont
@@ -124,6 +126,7 @@ in {
     unzip
     v4l-utils
     virt-manager
+    virt-viewer
     vulkan-loader
     vulkan-tools
     vulkan-validation-layers

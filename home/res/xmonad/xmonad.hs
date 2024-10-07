@@ -135,16 +135,9 @@ myNormalBorderColor = "#dddddd"
 
 myFocusedBorderColor = "#009999"
 
--- layout string
 curLayout :: X String
 curLayout = gets windowset >>= return . description . W.layout . W.workspace . W.current
 
--- spawn vars
-spawnRofi = "rofi -theme launchers/type-3/style-1 -show drun -display-drun 'Run'"
-
-spawnMaim = "maim -u -s | xclip -selection clipboard -t image/png"
-
--- sizes
 size_gap = 0
 
 size_topbar = 0
@@ -159,46 +152,41 @@ instance UrgencyHook LibNotifyUrgencyHook where
   urgencyHook LibNotifyUrgencyHook w = do
     name <- getName w
     Just idx <- fmap (W.findTag w) $ gets windowset
-
     safeSpawn "notify-send" [show name, "workspace " ++ idx]
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) =
   M.fromList $
-    [ -- General
-      ((modm, xK_q), kill),
-      ((modm, xK_r), refresh),
+    [
+      ((modm,               xK_q), kill),
+      ((modm,               xK_r), refresh),
       ((modm .|. shiftMask, xK_q), confirmPrompt hotPromptTheme "Quit XMonad" $ io (exitWith ExitSuccess)),
-      -- Spawn
-      ((modm, xK_Return), spawn $ "alacritty"),
-      ((modm, xK_d), spawn spawnRofi),
-      ((modm, xK_s), spawn "nitro"),
-      ((modm, xK_b), spawn "notify-battery"),
-      ((modm .|. shiftMask, xK_s), spawn spawnMaim),
+      ((modm,               xK_Return), spawn $ "alacritty"),
+      ((modm,               xK_d), spawn "rofi -theme launchers/type-3/style-1 -show drun -display-drun 'Run'"), 
+      ((modm,               xK_v), spawn "virt-machine-menu"),
+      ((modm,               xK_s), spawn "nitro"),
+      ((modm,               xK_b), spawn "notify-battery"),
+      ((modm .|. shiftMask, xK_s), spawn "maim -u -s | xclip -selection clipboard -t image/png"),
       ((modm .|. shiftMask, xK_l), spawn "portable-lock"),
       ((modm .|. shiftMask, xK_p), spawn "selectpass"),
-      ((modm, xK_c), spawn "notify-send \"Now\" \"$(date \"+%A, %B %d %R\")\" --expire-time=1000"),
-      ((modm, xK_t), spawn "toggle_tray"),
-      -- Navigation
-      ((modm, xK_j), windows W.focusDown),
-      ((modm, xK_k), windows W.focusUp),
+      ((modm,               xK_c), spawn "notify-send \"Now\" \"$(date \"+%A, %B %d %R\")\" --expire-time=1000"),
+      ((modm,               xK_t), spawn "toggle_tray"),
+      ((modm,               xK_j), windows W.focusDown),
+      ((modm,               xK_k), windows W.focusUp),
       ((modm .|. shiftMask, xK_j), windows W.swapDown),
       ((modm .|. shiftMask, xK_k), windows W.swapUp),
-      -- Windows and layouts
-      ((modm, xK_i), sendMessage (IncMasterN 1)),
-      ((modm, xK_o), sendMessage (IncMasterN (-1))),
-      ((modm, xK_h), sendMessage Shrink),
-      ((modm, xK_l), sendMessage Expand),
+      ((modm,               xK_i), sendMessage (IncMasterN 1)),
+      ((modm,               xK_o), sendMessage (IncMasterN (-1))),
+      ((modm,               xK_h), sendMessage Shrink),
+      ((modm,               xK_l), sendMessage Expand),
       ((modm .|. shiftMask, xK_space), withFocused $ windows . W.sink),
-      ((modm, xK_Tab), sendMessage NextLayout),
-      ((modm, xK_f), sendMessage ToggleLayout),
-      ((modm .|. shiftMask, xK_o), setLayout $ XMonad.layoutHook conf),
-      ((modm, xK_Down), nextWS),
-      ((modm, xK_Up), prevWS),
+      ((modm,               xK_Tab), sendMessage NextLayout),
+      ((modm,               xK_f), sendMessage ToggleLayout),
+      ((modm,               xK_Down), nextWS),
+      ((modm,               xK_Up), prevWS),
       ((modm .|. shiftMask, xK_Right), shiftNextScreen),
       ((modm .|. shiftMask, xK_Left), shiftPrevScreen),
       ((modm, xK_F2), spawn "xmonad --recompile; xmonad --restart")
-    ]
-      ++ [ ((m .|. modm, k), windows $ f i)
+    ] ++ [ ((m .|. modm, k), windows $ f i)
            | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9],
              (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
          ]
