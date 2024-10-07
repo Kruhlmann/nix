@@ -10,15 +10,15 @@
   networking.firewall.allowedUDPPorts = [ 61820 ];
   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
   networking.wireguard.interfaces.wg0 = {
-      ips = [ "10.13.13.2/24" ];
-      listenPort = 61820;
-      privateKeyFile = "/home/ges/.cache/punlock/tmp/pass/wg0.key";
-      peers = [{
-        publicKey = "gm0ndVBukhLM2lCBKtUwLnGCC/xoEJjGKbDpZOV0DXA=";
-        allowedIPs = [ "0.0.0.0/0" ];
-        endpoint = "188.177.19.193:61820";
-        persistentKeepalive = 25;
-      }];
+    ips = [ "10.13.13.2/24" ];
+    listenPort = 61820;
+    privateKeyFile = "/home/ges/.cache/punlock/tmp/pass/wg0.key";
+    peers = [{
+      publicKey = "gm0ndVBukhLM2lCBKtUwLnGCC/xoEJjGKbDpZOV0DXA=";
+      allowedIPs = [ "0.0.0.0/0" ];
+      endpoint = "188.177.19.193:61820";
+      persistentKeepalive = 25;
+    }];
   };
   services.resolved = {
     enable = true;
