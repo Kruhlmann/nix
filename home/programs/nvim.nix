@@ -14,6 +14,7 @@
       delve
       fd
       gitlint
+      jdt-language-server
       lua-language-server
       nil
       nixpkgs-fmt
@@ -21,27 +22,25 @@
       nodePackages.dockerfile-language-server-nodejs
       nodePackages.eslint
       nodePackages.markdownlint-cli
-      nodePackages.neovim
       nodePackages.npm
       nodePackages.prettier
-      nodePackages.pyright
-      nodePackages.svelte-language-server
       nodePackages.svelte-check
+      nodePackages.svelte-language-server
       nodePackages.typescript
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
       nodePackages.yaml-language-server
-      jdt-language-server
+      pyright
       ripgrep
       selene
       shellcheck
       shellharden
       shfmt
-      vscode-extensions.vscjava.vscode-java-test
-      vscode-extensions.vscjava.vscode-java-debug
       statix
       taplo-cli
       terraform-ls
+      vscode-extensions.vscjava.vscode-java-debug
+      vscode-extensions.vscjava.vscode-java-test
       (python3.withPackages (ps:
         with ps; [
           black

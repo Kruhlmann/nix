@@ -1,5 +1,5 @@
 import qualified Codec.Binary.UTF8.String as UTF8
-import Control.Monad (forM_, join)
+import Control.Monad (forM_, join, when)
 import Data.Function (on)
 import Data.List (sortBy)
 import qualified Data.Map as M
@@ -127,6 +127,19 @@ myModMask = mod4Mask
 myWorkspaces :: [String]
 myWorkspaces = ["Firefox", "Programming", "Instant Messaging", "Email", "Bitwarden", "Virtual Machines", "WINE Games", "Steam Games", "Settings"]
 
+workspaceWallpapers :: M.Map String FilePath
+workspaceWallpapers = M.fromList
+    [ ("Firefox", "~/img/lib/wallpaper/workspaces/1.png")
+    , ("Programming", "~/img/lib/wallpaper/workspaces/2.png")
+    , ("Instant Messaging", "~/img/lib/wallpaper/workspaces/3.png")
+    , ("Email", "~/img/lib/wallpaper/workspaces/4.png")
+    , ("Bitwarden", "~/img/lib/wallpaper/workspaces/5.png")
+    , ("Virtual Machines", "~/img/lib/wallpaper/workspaces/6.png")
+    , ("WINE Games", "~/img/lib/wallpaper/workspaces/7.png")
+    , ("Steam Games", "~/img/lib/wallpaper/workspaces/8.png")
+    , ("Settings", "~/img/lib/wallpaper/workspaces/9.png")
+    ]
+
 myFont = "-*-dejavu-*-*-*-*-16-*-*-*-*-*-*"
 
 myBigFont = "-*-dejavu-*-*-*-*-24-*-*-*-*-*-*"
@@ -190,6 +203,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
            | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9],
              (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
          ]
+updateWallpapers :: X ()
+updateWallpapers = do
+    ws <- gets windowset
+    let currentScreens = W.current ws : W.visible ws
+    let currentWorkspaces = map (W.tag . W.workspace) currentScreens
+    -- Retrieve wallpaper paths for current workspaces
+    let wallpapers = map (\wsName -> M.findWithDefault "" wsName workspaceWallpapers) currentWorkspaces
+    -- Set wallpapers using feh; ensure the number of wallpapers matches the number of monitors
+    when (not (null wallpapers)) $
+        safeSpawn "feh" ("--bg-scale" : wallpapers)
 
 myMouseBindings (XConfig {XMonad.modMask = modMask}) =
   M.fromList $
@@ -255,7 +278,7 @@ myManageHook =
 
 myEventHook = mempty
 
-myLogHook = return ()
+myLogHook = updateWallpapers
 
 myStartupHook = do
   spawnOnce "nm-applet"
@@ -267,7 +290,7 @@ myStartupHook = do
   spawnOnce "conky"
   spawnOnce "xss-lock -- portable-lock"
   spawnOnce "autorandr --change"
-  spawnOnce "feh --bg-scale ~/img/lib/lock.jpg"
+  -- spawnOnce "feh --bg-scale ~/img/lib/lock.jpg"
   spawnOnce "xmodmap -e 'remove lock = Caps_Lock'"
 
 main =

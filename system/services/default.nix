@@ -11,8 +11,9 @@ in {
   services.pcscd.enable = true;
   services.fprintd.enable = true;
   services.acpid.enable = true;
-  xdg.portal.enable = true;
   services.flatpak.enable = true;
+  services.geoclue2.enable = true;
+  xdg.portal.enable = true;
 
   services.dbus.packages = [ dnsmasq-dbus-config ];
   services.udev.extraRules = ''

@@ -37,9 +37,6 @@
     fzf
     gamemode
     gimp
-    gnome.nautilus
-    gnome.sushi
-    gnome.zenity
     gnupg
     graphviz
     htop
@@ -52,6 +49,7 @@
     mpc-cli
     mpd
     mpv
+    nautilus
     nautilus-open-any-terminal
     networkmanagerapplet
     obs-cli
@@ -73,13 +71,14 @@
     protonmail-bridge
     rofi
     ruff-lsp
-    rustup
     rustc
+    rustup
     sc-im
     sccache
     steam
     steam-run
-    steamPackages.steamcmd
+    steamcmd
+    sushi
     teams-for-linux
     texliveFull
     thefuck
@@ -95,6 +94,7 @@
     xorg.xmodmap
     xorg.xrandr
     zathura
+    zenity
     zsh-autosuggestions
   ];
 }

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+xclip -selection clipboard -t image/png -o >/tmp/clipboard.png
+feh /tmp/clipboard.png

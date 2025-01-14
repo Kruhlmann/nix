@@ -1,4 +1,4 @@
-NIX_VERSION=24.05
+NIX_VERSION=24.11
 SUPPORTED_SHELLS=bash|dash|zsh|sh
 SHELL_FILES=$(shell git ls-files | grep -El '#!/.*(bash|dash|zsh|sh)' | grep -v Makefile)
 HASKELL_FILES=$(shell git ls-files '*.hs')
@@ -16,7 +16,7 @@ install:
 
 .PHONY: install-system
 install-system:
-	nix-channel --add https://nixos.org/channels/nixos-"$(NIX_VERSION)" nixos
+	nix-channel --add "https://nixos.org/channels/nixos-$(NIX_VERSION)" nixos
 	mkdir -p /etc/pkg
 	cp -rf ./system/* /etc/nixos/
 	cp -rf ./pkg/* /etc/pkg/
