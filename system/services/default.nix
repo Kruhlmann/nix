@@ -3,7 +3,7 @@ let
   dnsmasq-dbus-config =
     import ../../pkg/dnsmasq-dbus/default.nix { inherit pkgs; };
 in {
-  imports = [ ./ssh.nix ./xorg.nix ./dnsmasq.nix ./fail2ban.nix ];
+  imports = [ ./ssh.nix ./xorg.nix ./dnsmasq.nix ./fail2ban.nix ./pipewire.nix ];
   services.ntp.enable = true;
   services.blueman.enable = true;
   services.gnome.gnome-keyring.enable = true;

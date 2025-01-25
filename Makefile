@@ -21,17 +21,16 @@ install-system:
 	cp -rf ./system/* /etc/nixos/
 	cp -rf ./pkg/* /etc/pkg/
 	nix-channel --update
-	nixos-rebuild switch -j 7 --upgrade-all --show-trace
+	nixos-rebuild switch -j $(shell nproc) --upgrade-all --show-trace
 
 .PHONY: install-user
 install-user:
-	sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-$(NIX_VERSION).tar.gz home-manager
-	sudo nix-channel --update
+	nix-channel --add "https://github.com/nix-community/home-manager/archive/release-$(NIX_VERSION).tar.gz" home-manager
 	nix-channel --update
 	mkdir -p $$HOME/.config
 	ln -sfT $(shell pwd)/home $$HOME/.config/home-manager
 	ln -sfT $(shell pwd)/pkg $$HOME/.config/pkg
-	home-manager switch -j 7 --show-trace
+	home-manager switch -j $(shell nproc) --show-trace
 
 .PHONY: fix
 fix:

@@ -1,9 +1,7 @@
 { pkgs, ... }: {
   services.dnsmasq = {
     enable = true;
-    extraConfig = ''
-      conf-dir=/etc/dnsmasq.d/,*.conf
-    '';
+    # settings = { conf-file = "/etc/dnsmasq.d/*"; };
   };
 
   environment.etc."dnsmasq.d/lo.conf".text = ''

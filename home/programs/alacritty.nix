@@ -2,7 +2,7 @@
   programs.alacritty.enable = true;
   programs.alacritty.settings = {
     font = {
-      size = 11.0;
+      size = 10.0;
       normal = {
         family = "FiraCode Nerd Font Mono";
         style = "Regular";

@@ -62,7 +62,9 @@ cmp.setup({
     -- Pictograms
     formatting = {
         format = function(_, vim_item)
-            vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
+            local kind = vim_item.kind or ""
+            local icon = lspkind.presets.default[kind] or ""
+            vim_item.kind = icon .. " " .. kind
             return vim_item
         end,
     },

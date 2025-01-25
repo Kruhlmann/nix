@@ -25,7 +25,6 @@ in {
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales =
     [ "en_US.UTF-8/UTF-8" "da_DK.UTF-8/UTF-8" "en_DK.UTF-8/UTF-8" ];
-  sound.enable = true;
   security.rtkit.enable = true;
   security.pki.certificateFiles = [ "${extra-certs}/etc/ssl/certs/extra.pem" ];
   security.sudo.extraConfig = ''
@@ -53,8 +52,8 @@ in {
     jetbrains-mono
   ];
   environment.systemPackages = with pkgs; [
-    (pkgsi686Linux.alsaLib)
-    (pkgsi686Linux.alsaPlugins)
+    (pkgsi686Linux.alsa-lib)
+    (pkgsi686Linux.alsa-plugins)
     (pkgsi686Linux.gnutls)
     (pkgsi686Linux.libgcrypt)
     (pkgsi686Linux.libjpeg)
@@ -66,8 +65,8 @@ in {
     (pkgsi686Linux.sqlite)
     (pkgsi686Linux.vulkan-loader)
     acpid
-    alsaLib
-    alsaPlugins
+    alsa-lib
+    alsa-plugins
     ccid
     curl
     dash
@@ -93,7 +92,7 @@ in {
     libGLU
     libfprint
     libgcrypt
-    libgpgerror
+    libgpg-error
     libjpeg
     libnotify
     libpng

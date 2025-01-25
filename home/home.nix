@@ -54,16 +54,6 @@
     networkmanagerapplet
     obs-cli
     obs-studio
-    obs-studio-plugins.advanced-scene-switcher
-    obs-studio-plugins.input-overlay
-    obs-studio-plugins.obs-backgroundremoval
-    obs-studio-plugins.obs-command-source
-    obs-studio-plugins.obs-mute-filter
-    obs-studio-plugins.obs-source-clone
-    obs-studio-plugins.obs-source-switcher
-    obs-studio-plugins.obs-text-pthread
-    obs-studio-plugins.obs-transition-table
-    obs-studio-plugins.obs-vertical-canvas
     page
     papirus-icon-theme
     pavucontrol
