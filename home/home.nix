@@ -16,19 +16,12 @@
     bitwarden-cli
     brightnessctl
     btop
-    cabextract
     ckb-next
     conky
-    dart-sass
-    davinci-resolve
     dialog
     direnv
     discord
     dunst
-    dwarf-fortress
-    dwarf-fortress-packages.dwarf-therapist
-    dwarf-fortress-packages.legends-browser
-    dwarf-fortress-packages.themes.gemset
     entr
     eza
     fd
@@ -46,8 +39,6 @@
     libreoffice-fresh
     lutris
     maim
-    mpc-cli
-    mpd
     mpv
     nautilus
     nautilus-open-any-terminal
@@ -57,7 +48,6 @@
     page
     papirus-icon-theme
     pavucontrol
-    powershell
     protonmail-bridge
     rofi
     ruff-lsp
@@ -66,8 +56,6 @@
     sc-im
     sccache
     steam
-    steam-run
-    steamcmd
     sushi
     teams-for-linux
     texliveFull

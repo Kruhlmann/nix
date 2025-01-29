@@ -3,8 +3,8 @@
   networking.networkmanager.enable = true;
   networking.networkmanager.unmanaged = [ "nat0" "nat1" ];
   networking.networkmanager.settings.main = {
-    dns = "none";
-    systemd-resolved = "false";
+    dns = "8.8.8.8";
+    systemd-resolved = "true";
   };
   networking.firewall.enable = true;
   networking.firewall.allowedUDPPorts = [ 61820 ];
@@ -28,6 +28,7 @@
     extraConfig = ''
       Cache=no-negative
       DNS=172.31.0.2
+      FallbackDns=8.8.8.8
     '';
   };
   systemd.network.enable = true;

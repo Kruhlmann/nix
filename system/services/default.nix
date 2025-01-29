@@ -1,9 +1,5 @@
-{ pkgs, ... }:
-let
-  dnsmasq-dbus-config =
-    import ../../pkg/dnsmasq-dbus/default.nix { inherit pkgs; };
-in {
-  imports = [ ./ssh.nix ./xorg.nix ./dnsmasq.nix ./fail2ban.nix ./pipewire.nix ];
+{ ... }: {
+  imports = [ ./ssh.nix ./xorg.nix ./fail2ban.nix ./pipewire.nix ];
   services.ntp.enable = true;
   services.blueman.enable = true;
   services.gnome.gnome-keyring.enable = true;
@@ -15,7 +11,6 @@ in {
   services.geoclue2.enable = true;
   xdg.portal.enable = true;
 
-  services.dbus.packages = [ dnsmasq-dbus-config ];
   services.udev.extraRules = ''
     SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
   '';
