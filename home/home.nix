@@ -47,8 +47,10 @@
     obs-studio
     page
     papirus-icon-theme
+    pass
     pavucontrol
-    protonmail-bridge
+    pciutils
+    protonmail-desktop
     rofi
     ruff-lsp
     rustc
