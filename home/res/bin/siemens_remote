@@ -7,37 +7,42 @@ DNS=172.31.1.1
 GW=${DNS}
 
 wait_for_zgw() {
-    printf 'Waiting for DNS:'
+    printf 'waiting for dns: ...'
     while ! nslookup "$HOST" "$DNS" >/dev/null 2>&1; do
         printf '.'
         sleep 3s
     done
-    printf 'DNS Resolution completed'
-    echo 'OK'
+    printf 'ok\n'
+}
+
+route() {
+    case "$1" in
+    add)
+        printf 'adding route for %s\n' "$2"
+        ip r | grep "$2" >/dev/null 2>/dev/null || ip r add "$2" via "$GW"
+        return
+        ;;
+    del)
+        printf 'deleting route for %s\n' "$2"
+        ip r | grep "$2" >/dev/null 2>/dev/null && ip r del "$2" via "$GW"
+        return
+        ;;
+    esac
+    printf 'unknown route method "%s"\n' "$1"
 }
 
 routing() {
-    set -x
     [ "$DGW" = '10.165.16.1' ] && ip route "$1" 10.165.0.0/16 via "$DGW"
-    ip route "$1" 10.0.0.0/8 via "$GW"
-    ip route "$1" 100.64.0.0/10 via "$GW"
-    ip route "$1" 149.212.0.0/16 via "$GW"
-    ip route "$1" 143.204.0.0/16 via "$GW"
-    ip route "$1" 3.0.0.0/9 via "$GW"
-    ip route "$1" 52.0.0.0/10 via "$GW"
-    ip route "$1" 52.64.0.0/12 via "$GW"
-    ip route "$1" 10.80.2.11 via 217.74.214.251
-    ip route "$1" 52.59.56.222 via "$DGW"
-    ip route "$1" 212.98.116.57 via "$GW"
-    ip route "$1" 129.103.0.0/16 via "$GW"
-    set +x
-}
-
-resolv_conf() {
-    cat <<EOF
-nameserver 127.0.0.1
-nameserver 8.8.8.8
-EOF
+    route "$1" 10.0.0.0/8
+    route "$1" 100.64.0.0/10
+    route "$1" 149.212.0.0/16
+    route "$1" 143.204.0.0/16
+    route "$1" 3.0.0.0/9
+    route "$1" 52.0.0.0/10
+    route "$1" 52.64.0.0/12
+    route "$1" 52.59.56.222
+    route "$1" 212.98.116.57
+    route "$1" 129.103.0.0/16
 }
 
 case $1 in
@@ -54,7 +59,7 @@ up | down)
     esac
     ;;
 *)
-    echo 'Argument [up|down] required!'
+    printf 'argument [up|down] required\n'
     exit 1
     ;;
 esac

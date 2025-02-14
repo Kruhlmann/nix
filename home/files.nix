@@ -36,6 +36,10 @@
       source = res/libvirt;
       recursive = true;
     };
+    "${config.xdg.configHome}/nix-templates" = {
+      source = res/nix-templates;
+      recursive = true;
+    };
     "${config.xdg.configHome}/etc" = {
       source = res/etc;
       recursive = true;

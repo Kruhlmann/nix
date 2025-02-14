@@ -1,0 +1,64 @@
+#!/usr/bin/env sh
+
+print_subshell_commands() {
+    while read -r line; do
+        printf ' \e[32m+\e[0m %s\n' "${line}"
+    done
+}
+
+templates_directory="${HOME}/.config/nix-templates"
+template_name=""
+while true; do
+    printf 'Please select a template:\n'
+    printf '  1) \e[34mNodeJS\e[0m\n'
+    printf '  2) \e[34mRust\e[0m\n'
+
+    printf 'Your selection: '
+    read -r template_id
+
+    case ${template_id} in
+    1)
+        template_name="nodejs"
+        break
+        ;;
+    2)
+        template_name="rust"
+        break
+        ;;
+    *)
+        printf '\e[31mInvalid selection "%s"\e[0m\n' "${template_id}"
+        ;;
+
+    esac
+done
+
+template_path="${templates_directory}/${template_name}.nix"
+if ! test -f "${template_path}"; then
+    printf 'File not found: \e[34m%s\e[0m\n' "${template_path}"
+    exit 0
+fi
+
+printf 'Using template \e[34m%s\e[0m\n' "${template_path}"
+if test -f ./shell.nix; then
+    printf 'File \e[34mshell.nix\e[0m is already found in the current directory.\nDo you want to overwrite it? [yN]: '
+    read -r overwrite_shell_nix
+    case ${overwrite_shell_nix} in
+    y | Y)
+        printf 'Overwriting \e[34mshell.nix\e[0m\n'
+        cp "${template_path}" ./shell.nix
+        ;;
+    *)
+        printf 'Kept original \e[34mshell.nix\e[0m\n'
+        ;;
+    esac
+else
+    printf 'Creating \e[34mshell.nix\e[0m\n'
+    cp "${template_path}" ./shell.nix
+fi
+
+printf 'Creating \e[34m.envrc\e[0m\n'
+printf 'use nix\nmkdir -p $TMPDIR\n' >.envrc
+if command -v direnv 2>/dev/null | print_subshell_commands; then
+    printf 'Found \e[34mdirenv\e[0m installation; activating environment\n'
+    direnv allow 2>&1 | print_subshell_commands
+fi
