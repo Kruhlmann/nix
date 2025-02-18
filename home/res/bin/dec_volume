@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+if command -v pactl >/dev/null 2>&1; then
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+elif command -v amixer >/dev/null 2>&1; then
+    amixer set Master 5%- unmute
+else
+    notify-send "Missing pactl or amixer"
+    exit 1
+fi

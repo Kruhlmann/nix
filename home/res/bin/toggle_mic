@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+if command -v pactl >/dev/null 2>&1; then
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+elif command -v amixer >/dev/null 2>&1; then
+    amixer set Capture toggle
+else
+    notify-send "Missing pactl or amixer"
+    exit 1
+fi

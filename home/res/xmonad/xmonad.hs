@@ -189,6 +189,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_t), spawn "toggle_tray"),
       ((modm, xK_u), spawn "pavucontrol"),
       ((modm, xK_v), spawn "virt-machine-menu"),
+      ((modm, xK_m), spawn "toggle_primary_sink"),
       ((modm .|. shiftMask, xK_q), confirmPrompt hotPromptTheme "Quit XMonad" $ io (exitWith ExitSuccess)),
       ((modm .|. shiftMask, xK_s), spawn "maim -u -s | xclip -selection clipboard -t image/png"),
       ((modm .|. shiftMask, xK_l), spawn "portable-lock"),
@@ -197,7 +198,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. shiftMask, xK_k), windows W.swapUp),
       ((modm .|. shiftMask, xK_space), withFocused $ windows . W.sink),
       ((modm .|. shiftMask, xK_Right), shiftNextScreen),
-      ((modm .|. shiftMask, xK_Left), shiftPrevScreen)
+      ((modm .|. shiftMask, xK_Left), shiftPrevScreen),
+      ((0, xF86XK_AudioMute), spawn "toggle_primary_sink"),
+      ((0, xF86XK_AudioLowerVolume), spawn "dec_volume"),
+      ((0, xF86XK_AudioRaiseVolume), spawn "inc_volume"),
+      ((0, xF86XK_AudioMicMute), spawn "toggle_mic"),
+      ((0, xF86XK_MonBrightnessUp), spawn "brightnessctl set +10%"),
+      ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl set 10%-")
     ]
       ++ [ ((m .|. modm, k), windows $ f i)
            | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9],

@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+send_notification() {
+    notify-send "Audio Status" "$1"
+}
+
+if command -v pactl >/dev/null 2>&1; then
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+elif command -v amixer >/dev/null 2>&1; then
+    amixer set Master toggle >/dev/null 2>&1
+else
+    notify-send "Missing pactl or amixer"
+    exit 1
+fi
