@@ -9,6 +9,7 @@
     windowManager.xmonad.enable = true;
     #videoDrivers = [ "amdgpu" ];
     deviceSection = ''
+      Option "DRI" "2"
       Option "TearFree" "true"
     '';
     xkb.layout = "us";
