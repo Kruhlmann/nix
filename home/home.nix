@@ -69,6 +69,7 @@
     wireshark
     xcape
     xclip
+    xcolor
     xdotool
     xorg.xkbcomp
     xorg.xmodmap
