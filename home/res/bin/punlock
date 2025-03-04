@@ -71,6 +71,8 @@ store_item 58b855db-1c48-47d3-8183-b0b600c119f1 '.login.password' "$punlock_temp
 store_item 58b855db-1c48-47d3-8183-b0b600c119f1 '.login.username' "$punlock_temp/user/l3-vpn" &
 store_item 58b855db-1c48-47d3-8183-b0b600c119f1 '.login.uris[0].uri' "$punlock_temp/etc/l3-vpn-host" &
 store_item fc0a4cc2-8975-4b54-8057-b17000d12ae2 '.login.password' "$punlock_temp/pass/l3-pdi" &
+store_item 7ec4d402-d663-408f-b92d-b29600e1bd55 '.login.username' "$punlock_temp/user/wert" &
+store_item 7ec4d402-d663-408f-b92d-b29600e1bd55 '.login.password' "$punlock_temp/pass/wert" &
 store_item 1aff8bcc-9d1e-452a-a4a3-ab5d00ac9589 '.notes' "$punlock_temp/ssh/personal" &
 store_item 1aff8bcc-9d1e-452a-a4a3-ab5d00ac9589 '.fields[0].value' "$punlock_temp/ssh/personal.pub" &
 store_item d7fdba66-36a2-4d9e-997e-ab5d00ac183f '.notes' "$punlock_temp/ssh/work" &
@@ -87,13 +89,13 @@ wait
 
 printf 'Importing gpg keys\n' >&2
 work_gpg_id=D752B5D684A1C913370C084575A1E330BA85B4B3
-if ! gpg --list-keys "$work_gpg_id" > /dev/null 2>&1; then
+if ! gpg --list-keys "$work_gpg_id" >/dev/null 2>&1; then
     gpg --import "$punlock_temp/gpg/work.pub.asc"
     gpg --import "$punlock_temp/gpg/work.prv.asc"
 fi
 
 personal_gpg_id=E5DEAEA22E16B918D00D6644CC5B8872AE9C85DE
-if ! gpg --list-keys "$personal_gpg_id" > /dev/null 2>&1; then
+if ! gpg --list-keys "$personal_gpg_id" >/dev/null 2>&1; then
     gpg --import "$punlock_temp/gpg/personal.pub.asc"
     gpg --import "$punlock_temp/gpg/personal.prv.asc"
 fi
