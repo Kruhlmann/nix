@@ -190,6 +190,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_u), spawn "pavucontrol"),
       ((modm, xK_v), spawn "virt-machine-menu"),
       ((modm, xK_m), spawn "toggle_primary_sink"),
+      ((modm, xK_p), spawn "xcolor | xclip -selection clipboard"),
       ((modm .|. shiftMask, xK_q), confirmPrompt hotPromptTheme "Quit XMonad" $ io (exitWith ExitSuccess)),
       ((modm .|. shiftMask, xK_s), spawn "maim -u -s | xclip -selection clipboard -t image/png"),
       ((modm .|. shiftMask, xK_l), spawn "portable-lock"),
