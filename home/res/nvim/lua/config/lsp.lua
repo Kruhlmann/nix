@@ -26,7 +26,14 @@ local servers = {
     jdtls = {},
     ruff = {},
     taplo = {},
-    eslint = { cmd = { "eslint", "--stdio" } },
+    eslint = {
+        on_attach = function(_, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                buffer = bufnr,
+                command = "EslintFixAll",
+            })
+        end,
+    },
     jsonls = { cmd = { "vscode-json-languageserver", "--stdio" } },
     lua_ls = {
         cmd = { "lua-language-server" },
