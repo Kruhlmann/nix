@@ -9,6 +9,7 @@
   services.acpid.enable = true;
   services.flatpak.enable = true;
   services.geoclue2.enable = true;
+  services.picom.enable = true;
   xdg.portal.enable = true;
 
   services.udev.extraRules = ''
