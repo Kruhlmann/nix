@@ -11,10 +11,6 @@
         family = "FiraCode Nerd Font Mono";
         style = "Bold";
       };
-      italic = {
-        family = "FiraCode Nerd Font Mono";
-        style = "Italic";
-      };
     };
   };
 

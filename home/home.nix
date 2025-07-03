@@ -1,7 +1,13 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: 
+let
+  punlock = pkgs.callPackage ../pkg/punlock/package.nix {};
+in {
   imports =
     [ ./programs ./services ./files.nix ./gtk.nix ./session.nix ./xdg.nix ];
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    (self: super: { punlock = punlock; })
+  ];
   home.stateVersion = "23.11";
   home.username = "ges";
   home.homeDirectory = "/home/ges";
@@ -16,9 +22,11 @@
     bitwarden-cli
     brightnessctl
     btop
+    chromium
     ckb-next
     conky
     dialog
+    punlock
     direnv
     discord
     dunst
@@ -51,8 +59,10 @@
     pavucontrol
     pciutils
     protonmail-desktop
+    gh
+    luarocks
+    jdt-language-server
     rofi
-    ruff-lsp
     rustc
     rustup
     sc-im

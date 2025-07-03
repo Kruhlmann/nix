@@ -48,9 +48,17 @@ in {
   environment.sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
   fonts.packages = with pkgs; [
     terminus-nerdfont
-    fira-code-nerdfont
+    nerd-fonts.fira-code
     jetbrains-mono
   ];
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      monospace = ["FiraCode Nerd Font Mono"];
+      serif = ["FiraCode Nerd Font Mono"];
+      sansSerif = ["FiraCode Nerd Font Mono"];
+    };
+  };
   environment.systemPackages = with pkgs; [
     (pkgsi686Linux.alsa-lib)
     (pkgsi686Linux.alsa-plugins)

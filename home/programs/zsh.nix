@@ -10,7 +10,7 @@
     initExtraFirst = ''
       source /etc/zshrc
     '';
-    initExtra = ''
+    initContent = ''
       source ~/.config/zsh/opam.zsh
     '';
     shellAliases = {

@@ -8,6 +8,7 @@ for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) d
     end
 end
 
+-- require('java').setup()
 local lsp_config = require("lspconfig")
 local lsp_signature = require("lsp_signature")
 local navic = require("nvim-navic")
@@ -23,7 +24,6 @@ local servers = {
     svelte = {},
     ts_ls = {},
     rust_analyzer = {},
-    jdtls = {},
     ruff = {},
     taplo = {},
     eslint = {

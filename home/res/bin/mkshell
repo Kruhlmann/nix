@@ -12,6 +12,7 @@ while true; do
     printf 'Please select a template:\n'
     printf '  1) \e[34mNodeJS\e[0m\n'
     printf '  2) \e[34mRust\e[0m\n'
+    printf '  3) \e[34mC#\e[0m\n'
 
     printf 'Your selection: '
     read -r template_id
@@ -23,6 +24,10 @@ while true; do
         ;;
     2)
         template_name="rust"
+        break
+        ;;
+    3)
+        template_name="dotnet"
         break
         ;;
     *)

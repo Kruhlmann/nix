@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+
+JSON_FILE="${HOME}/.config/emojis.json"
+
+if [ ! -r "$JSON_FILE" ]; then
+    printf '%s\n' "Error: Cannot read JSON file at $JSON_FILE" >&2
+    exit 1
+fi
+
+if command -v wl-copy >/dev/null 2>&1; then
+    CLIP_CMD="wl-copy"
+elif command -v xclip >/dev/null 2>&1; then
+    CLIP_CMD="xclip -selection clipboard"
+else
+    printf '%s\n' "Error: neither 'wl-copy' nor 'xclip' is installed." >&2
+    exit 1
+fi
+
+EMOJI_LIST=$(jq -r '.emojis[] | "\(.emoji) \(.name)"' "$JSON_FILE")
+if [ -z "$EMOJI_LIST" ]; then
+    printf '%s\n' "Error: No emojis found or jq failed." >&2
+    exit 1
+fi
+
+CHOICE=$(printf '%s\n' "$EMOJI_LIST" |
+    rofi -dmenu -i -no-custom -markup-rows -p "Emoji:")
+
+if [ -n "$CHOICE" ]; then
+    EMOJI_ONLY=$(printf '%s' "$CHOICE" | awk '{ print $1 }')
+    printf '%s' "$EMOJI_ONLY" | $CLIP_CMD
+    if command -v notify-send >/dev/null 2>&1; then
+        notify-send "Emoji Picker" "Copied: $EMOJI_ONLY"
+    fi
+fi

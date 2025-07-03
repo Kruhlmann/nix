@@ -64,14 +64,11 @@
       lspkind-nvim
       lualine-nvim
       luasnip
-      mason-lspconfig-nvim
-      mason-nvim
-      mason-tool-installer-nvim
       nui-nvim
-      null-ls-nvim
       nvim-autopairs
       nvim-cmp
       nvim-colorizer-lua
+      nvim-java
       nvim-lsputils
       nvim-navic
       nvim-treesitter.withAllGrammars
@@ -81,6 +78,17 @@
       vim-commentary
       vim-svelte
       which-key-nvim
+      {
+        plugin = none-ls-nvim;
+        type = "lua";
+        config = ''
+          	  local null_ls = require("null-ls")
+          	  null_ls.setup({
+                      null_ls.builtins.formatting.stylua,
+                      null_ls.builtins.completion.spell,
+          	  })
+        '';
+      }
       {
         plugin = gruvbox;
         type = "lua";
@@ -170,18 +178,18 @@
           vim.api.nvim_set_keymap("v", "<leader>rr", [[<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], { noremap = true, silent = true })
         '';
       }
-      {
-        plugin = nvim-jdtls;
-        type = "lua";
-        config = ''
-          vim.api.nvim_create_autocmd("FileType", {
-            pattern = "java",
-            callback = function()
-              require("jdtls").setup()
-            end
-          })
-        '';
-      }
+      # {
+      #   plugin = nvim-jdtls;
+      #   type = "lua";
+      #   config = ''
+      #     vim.api.nvim_create_autocmd("FileType", {
+      #       pattern = "java",
+      #       callback = function()
+      #         require("jdtls").setup()
+      #       end
+      #     })
+      #   '';
+      # }
       {
         plugin = nvim-lspconfig;
         type = "lua";
