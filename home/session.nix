@@ -15,4 +15,24 @@
     MANPAGER = "page -t man";
     SHELL = "/run/current-system/sw/bin/zsh";
   };
+  home.file."${config.home.homeDirectory}/.local/share/xsessions/xfce.desktop".text = ''
+    [Desktop Entry]
+    Name=XFCE
+    Exec=startxfce4
+    Type=Application
+  '';
+
+  home.file."${config.home.homeDirectory}/.local/share/xsessions/xmonad.desktop".text = ''
+    [Desktop Entry]
+    Name=Xmonad
+    Exec=${config.home.homeDirectory}/.xsession
+    Type=Application
+  '';
+
+  home.file."${config.home.homeDirectory}/.local/share/xsessions/xfce-xmonad.desktop".text = ''
+    [Desktop Entry]
+    Name=XFCE+Xmonad
+    Exec=${config.home.homeDirectory}/.xsession
+    Type=Application
+  '';
 }
