@@ -130,7 +130,7 @@ myWorkspaces = ["Firefox", "Programming", "Instant Messaging", "Email", "Bitward
 workspaceWallpapers :: M.Map String FilePath
 workspaceWallpapers =
   M.fromList
-    [ ("Firefox", "~/img/lib/wallpaper/workspaces/1.png"),
+    [ ("Firefox", "~/img/lib/wallpaper/workspaces/1.jpg"),
       ("Programming", "~/img/lib/wallpaper/workspaces/2.png"),
       ("Instant Messaging", "~/img/lib/wallpaper/workspaces/3.png"),
       ("Email", "~/img/lib/wallpaper/workspaces/4.png"),

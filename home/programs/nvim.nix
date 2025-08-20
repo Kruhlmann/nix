@@ -178,18 +178,6 @@
           vim.api.nvim_set_keymap("v", "<leader>rr", [[<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], { noremap = true, silent = true })
         '';
       }
-      # {
-      #   plugin = nvim-jdtls;
-      #   type = "lua";
-      #   config = ''
-      #     vim.api.nvim_create_autocmd("FileType", {
-      #       pattern = "java",
-      #       callback = function()
-      #         require("jdtls").setup()
-      #       end
-      #     })
-      #   '';
-      # }
       {
         plugin = nvim-lspconfig;
         type = "lua";
@@ -204,9 +192,6 @@
       {
         plugin = actions-preview-nvim;
         type = "lua";
-        #config = ''
-        #  vim.keymap.set({ "v", "n" }, "gf", require("actions-preview").code_actions)
-        #'';
       }
       {
         plugin = nvim-tree-lua;
@@ -215,6 +200,63 @@
           require("nvim-web-devicons").setup()
           require("nvim-tree").setup()
           vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", {noremap = true})
+        '';
+      }
+      {
+        plugin = copilot-lua;
+        type = "lua";
+        config = ''
+          local cmp = require 'cmp'
+          local copilot = require 'copilot.suggestion'
+          local luasnip = require 'luasnip'
+
+          require('copilot').setup({
+              panel = { enabled = false },
+              suggestion = {
+                  auto_trigger = true,
+                  -- Use alt to interact with Copilot.
+                  keymap = {
+                      accept = '<C-F>',
+                      --accept_word = '<M-w>',
+                      --accept_line = '<M-l>',
+                      --next = '<M-]>',
+                      --prev = '<M-[>',
+                      --dismiss = '/',
+                  },
+              },
+              filetypes = {
+                markdown = true,
+                sh = function ()
+                  if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), '^%.env.*') then
+                    return false
+                  end
+                  return true
+                end,
+              },
+          })
+
+          local function set_trigger(trigger)
+              vim.b.copilot_suggestion_auto_trigger = trigger
+              vim.b.copilot_suggestion_hidden = not trigger
+          end
+
+          cmp.event:on('menu_opened', function()
+              if copilot.is_visible() then
+                  copilot.dismiss()
+              end
+              set_trigger(false)
+          end)
+
+          cmp.event:on('menu_closed', function()
+              set_trigger(not luasnip.expand_or_locally_jumpable())
+          end)
+
+          vim.api.nvim_create_autocmd('User', {
+              pattern = { 'LuasnipInsertNodeEnter', 'LuasnipInsertNodeLeave' },
+              callback = function()
+                  set_trigger(not luasnip.expand_or_locally_jumpable())
+              end,
+          })
         '';
       }
     ];

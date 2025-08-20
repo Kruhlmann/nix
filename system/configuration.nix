@@ -21,7 +21,9 @@ in {
   system.stateVersion = "23.11";
   nixpkgs.config.allowUnfree = true;
   console.keyMap = "us";
-  time.timeZone = "Europe/Copenhagen";
+  #time.timeZone = "Europe/Copenhagen";
+  services.automatic-timezoned.enable = true;
+  services.geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales =
     [ "en_US.UTF-8/UTF-8" "da_DK.UTF-8/UTF-8" "en_DK.UTF-8/UTF-8" ];
@@ -47,7 +49,7 @@ in {
     "${pkgs.virt-manager}/share/icons/hicolor/256x256/apps/virt-manager.png";
   environment.sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
   fonts.packages = with pkgs; [
-    terminus-nerdfont
+    nerd-fonts.terminess-ttf
     nerd-fonts.fira-code
     jetbrains-mono
   ];

@@ -1,5 +1,7 @@
 { pkgs, ... }: {
   virtualisation.docker.enable = true;
+  virtualisation.docker.liveRestore = false;
+  virtualisation.docker.autoPrune.enable = true;
   virtualisation.waydroid.enable = true;
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.onBoot = "start";

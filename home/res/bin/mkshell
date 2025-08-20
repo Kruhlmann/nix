@@ -62,7 +62,7 @@ else
 fi
 
 printf 'Creating \e[34m.envrc\e[0m\n'
-printf 'use nix\nmkdir -p $TMPDIR\n' >.envrc
+printf 'use nix\ntest -n "$TMPDIR" && mkdir -p "$TMPDIR"\n' >.envrc
 if command -v direnv 2>/dev/null | print_subshell_commands; then
     printf 'Found \e[34mdirenv\e[0m installation; activating environment\n'
     direnv allow 2>&1 | print_subshell_commands

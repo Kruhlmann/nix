@@ -6,4 +6,5 @@
   boot.loader.systemd-boot.consoleMode = "auto";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelParams = [ "splash" "i915.enable_psr=0" ];
+  boot.supportedFilesystems = [ "ntfs" ];
 }
