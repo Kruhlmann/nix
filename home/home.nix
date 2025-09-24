@@ -29,6 +29,7 @@ in {
     punlock
     direnv
     discord
+    distrobox
     dunst
     entr
     eza
@@ -40,6 +41,7 @@ in {
     gimp
     gnupg
     graphviz
+    gruvbox-dark-gtk
     htop
     i3lock-color
     imagemagickBig
@@ -61,6 +63,7 @@ in {
     protonmail-desktop
     gh
     luarocks
+    mullvad-vpn
     jdt-language-server
     rofi
     rustc
@@ -73,6 +76,7 @@ in {
     texliveFull
     thefuck
     thunderbird
+    tigervnc
     tldr
     trayer
     tree

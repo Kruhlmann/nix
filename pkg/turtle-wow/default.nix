@@ -1,4 +1,4 @@
-{ pkgs, ver ? "1171", addons ? [ ]
+{ pkgs, ver ? "1180", addons ? [ ]
 , winePrefix ? "~/.cache/turtle-wow/.wine-prefix", gameConfig ? { }
 , accountConfigs ? { }, bindings ? { }, macros ? { } }:
 
@@ -32,7 +32,7 @@ in pkgs.stdenv.mkDerivation rec {
   pname = "turtle-wow";
   version = "${ver}";
   src = pkgs.fetchurl {
-    url = "https://turtle-eu.b-cdn.net/twmoa_${version}.zip";
+    url = "https://eudl.turtle-wow.org/twmoa_${version}.zip";
     sha256 = "sha256-fJNiSRln7xsyv3P4B6NTudvF7wAVFSJdu2LEpPdqu3w=";
   };
   nativeBuildInputs = [ pkgs.unzip pkgs.copyDesktopItems ];

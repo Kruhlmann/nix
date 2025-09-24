@@ -4,4 +4,8 @@
   programs.dconf.enable = true;
   programs.ssh.startAgent = true;
   programs.wireshark.enable = true;
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 }

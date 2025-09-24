@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -7,10 +7,7 @@
     history.save = 10000;
     history.path = "/home/ges/.zsh_history";
     history.share = true;
-    initExtraFirst = ''
-      source /etc/zshrc
-    '';
-    initContent = ''
+    initContent = lib.mkBefore ''
       source ~/.config/zsh/opam.zsh
     '';
     shellAliases = {

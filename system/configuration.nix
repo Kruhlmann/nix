@@ -1,5 +1,7 @@
 { pkgs, ... }:
-let extra-certs = import ../pkg/extra-certs/default.nix { inherit pkgs; };
+let
+  extra-certs = import ../pkg/extra-certs/default.nix { inherit pkgs; };
+  #turtle-wow = import ../pkg/turtle-wow/default.nix { inherit pkgs; };
 in {
   imports = [
     ./hardware-configuration.nix
@@ -93,6 +95,9 @@ in {
     git-lfs
     gnumake
     gnutls
+    dotnetCorePackages.runtime_8_0-bin
+    dotnetCorePackages.runtime_9_0-bin
+    dotnetCorePackages.runtime_10_0-bin
     home-manager
     inetutils
     jq

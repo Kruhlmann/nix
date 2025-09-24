@@ -12,7 +12,7 @@ in {
     MusicVolume = "0.4";
     MasterVolume = "0.1";
     gxResolution = "2560x1440";
-    realmName = servers.turtleWow.realms.RP.Nordanaar;
+    realmName = servers.turtleWow.realms.RP_PVE.Ambershire;
     realmList = servers.turtleWow.realmList;
     patchlist = servers.turtleWow.patchlist;
     accountName = "ges";
@@ -30,7 +30,6 @@ in {
   macros = {
     ges = {
       global = [
-        macros_orangeges.general.print.rested-xp
         macros_orangeges.general.print.shape-shift-info
         macros_orangeges.general.set-max-camera-distance
       ];

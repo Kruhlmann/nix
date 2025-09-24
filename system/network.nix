@@ -3,21 +3,18 @@
   networking.networkmanager.enable = true;
   networking.networkmanager.unmanaged = [ "nat0" "nat1" ];
   networking.networkmanager.settings.main = {
-    dns = "8.8.8.8";
     systemd-resolved = "true";
   };
+  networking.nameservers = [ "172.31.1.1" ];
   networking.firewall.enable = true;
   networking.firewall.allowedUDPPorts = [ 61820 ];
   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
   services.resolved = {
     enable = true;
-    fallbackDns = [ "8.8.8.8" ];
-    dnsovertls = "false";
+    fallbackDns = [ "1.1.1.1" ];
+    dnssec = "allow-downgrade";
+    dnsovertls = "opportunistic";
     llmnr = "false";
-    extraConfig = ''
-      Cache=no-negative
-      DNS=172.31.1.1
-    '';
   };
   systemd.network.enable = true;
   systemd.network.networks.nat0 = {
