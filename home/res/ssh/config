@@ -13,7 +13,7 @@ Host wert.dk
   User ask
 
 Host kruhlmann.dev
-  HostName 188.177.19.193
+  HostName kruhlmann.dev
   User ges
   LocalForward 7031 192.168.1.1:80 # Router
 
