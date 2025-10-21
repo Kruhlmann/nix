@@ -18,7 +18,7 @@
     };
     oh-my-zsh = {
       enable = true;
-      theme = "mortalscumbag";
+      theme = "minimal";
       plugins = [ "git" "thefuck" "last-working-dir" ];
     };
   };
