@@ -43,7 +43,6 @@ in {
     graphviz
     gruvbox-dark-gtk
     htop
-    i3lock-color
     imagemagickBig
     lazygit
     libreoffice-fresh
@@ -74,7 +73,6 @@ in {
     sushi
     teams-for-linux
     texliveFull
-    thefuck
     thunderbird
     tigervnc
     tldr

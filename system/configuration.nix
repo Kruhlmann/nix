@@ -29,6 +29,7 @@ in {
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales =
     [ "en_US.UTF-8/UTF-8" "da_DK.UTF-8/UTF-8" "en_DK.UTF-8/UTF-8" ];
+  security.pam.services.xscreensaver.enable = true;
   security.rtkit.enable = true;
   security.pki.certificateFiles = [ "${extra-certs}/etc/ssl/certs/extra.pem" ];
   security.sudo.extraConfig = ''
@@ -146,6 +147,7 @@ in {
     vulkan-validation-layers
     wget
     wine-staging
+    xscreensaver
     xorg.xauth
     xorg.xev
     xorg.xinit

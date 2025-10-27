@@ -11,6 +11,7 @@
   services.geoclue2.enable = true;
   services.picom.enable = true;
   services.teamviewer.enable = true;
+  services.xscreensaver.enable = true;
   xdg.portal.enable = true;
 
   services.udev.extraRules = ''
