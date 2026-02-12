@@ -13,6 +13,7 @@ while true; do
     printf '  1) \e[34mNodeJS\e[0m\n'
     printf '  2) \e[34mRust\e[0m\n'
     printf '  3) \e[34mC#\e[0m\n'
+    printf '  4) \e[34mPython\e[0m\n'
 
     printf 'Your selection: '
     read -r template_id
@@ -28,6 +29,10 @@ while true; do
         ;;
     3)
         template_name="dotnet"
+        break
+        ;;
+    4)
+        template_name="python"
         break
         ;;
     *)

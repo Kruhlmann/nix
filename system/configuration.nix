@@ -13,7 +13,23 @@ in {
     ./services/default.nix
     ./programs/default.nix
   ];
+  nixpkgs.overlays = [
+    (final: prev: {
+      ckb-next = prev.ckb-next.overrideAttrs (old: {
+        cmakeFlags = (old.cmakeFlags or []) ++ [
+          "-DUSE_DBUS_MENU=0"
+        ];
+      });
+    })
+  ];
 
+  programs.kdeconnect.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; 
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
   nix.optimise.automatic = true;
   nix.gc = {
     automatic = true;
@@ -128,13 +144,12 @@ in {
     openldap
     opensc
     openssl
-    pcsctools
-    pinentry
+    pcsc-tools
+    pinentry-gnome3
     pinentry-curses
     python311
     qemu
     sqlite
-    steam
     sudo
     tmux
     unrar

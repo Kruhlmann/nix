@@ -156,7 +156,7 @@ size_gap = 0
 
 size_topbar = 0
 
-size_border = 1
+size_border = 3
 
 size_prompt = 0
 

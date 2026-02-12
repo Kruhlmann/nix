@@ -5,7 +5,9 @@
     desktopManager.xfce.enable = true;
     desktopManager.xfce.noDesktop = true;
     desktopManager.xfce.enableXfwm = false;
-    displayManager.sessionCommands = "xset r rate 300 50";
+    displayManager.sessionCommands = "xset r rate 250 30";
+    autoRepeatDelay = 250;
+    autoRepeatInterval = 30;
     windowManager.xmonad.enable = true;
     #videoDrivers = [ "amdgpu" ];
     deviceSection = ''

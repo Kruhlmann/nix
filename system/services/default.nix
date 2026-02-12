@@ -1,5 +1,11 @@
-{ ... }: {
-  imports = [ ./ssh.nix ./xorg.nix ./fail2ban.nix ./pipewire.nix ];
+{ ... }:
+{
+  imports = [
+    ./ssh.nix
+    ./xorg.nix
+    ./fail2ban.nix
+    ./pipewire.nix
+  ];
   services.ntp.enable = true;
   services.blueman.enable = true;
   services.gnome.gnome-keyring.enable = true;
@@ -9,7 +15,6 @@
   services.acpid.enable = true;
   services.flatpak.enable = true;
   services.geoclue2.enable = true;
-  services.picom.enable = true;
   services.teamviewer.enable = true;
   services.xscreensaver.enable = true;
   xdg.portal.enable = true;

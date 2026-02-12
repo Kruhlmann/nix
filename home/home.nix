@@ -1,9 +1,16 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 let
-  punlock = pkgs.callPackage ../pkg/punlock/package.nix {};
-in {
-  imports =
-    [ ./programs ./services ./files.nix ./gtk.nix ./session.nix ./xdg.nix ];
+  punlock = pkgs.callPackage ../pkg/punlock/package.nix { };
+in
+{
+  imports = [
+    ./programs
+    ./services
+    ./files.nix
+    ./gtk.nix
+    ./session.nix
+    ./xdg.nix
+  ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     (self: super: { punlock = punlock; })
@@ -23,10 +30,8 @@ in {
     brightnessctl
     btop
     chromium
-    ckb-next
     conky
     dialog
-    punlock
     direnv
     discord
     distrobox
@@ -38,17 +43,22 @@ in {
     firefox
     fzf
     gamemode
+    gh
     gimp
     gnupg
     graphviz
     gruvbox-dark-gtk
     htop
     imagemagickBig
+    jdt-language-server
+    jetbrains.idea-oss
     lazygit
     libreoffice-fresh
+    luarocks
     lutris
     maim
     mpv
+    mullvad-vpn
     nautilus
     nautilus-open-any-terminal
     networkmanagerapplet
@@ -60,20 +70,17 @@ in {
     pavucontrol
     pciutils
     protonmail-desktop
-    gh
-    luarocks
-    mullvad-vpn
-    jdt-language-server
+    punlock
     rofi
     rustc
     rustup
     sc-im
     sccache
-    steam
     sushi
     teams-for-linux
     texliveFull
     thunderbird
+    perf
     tigervnc
     tldr
     trayer

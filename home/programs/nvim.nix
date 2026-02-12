@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -19,7 +20,7 @@
       nil
       nixpkgs-fmt
       nodePackages.bash-language-server
-      nodePackages.dockerfile-language-server-nodejs
+      dockerfile-language-server
       nodePackages.eslint
       nodePackages.markdownlint-cli
       nodePackages.npm
@@ -37,12 +38,12 @@
       shellharden
       shfmt
       statix
-      taplo-cli
+      taplo
       terraform-ls
       vscode-extensions.vscjava.vscode-java-debug
       vscode-extensions.vscjava.vscode-java-test
-      (python3.withPackages (ps:
-        with ps; [
+      (python3.withPackages (
+        ps: with ps; [
           black
           debugpy
           flake8
@@ -51,7 +52,8 @@
           pylint
           setuptools
           yamllint
-        ]))
+        ]
+      ))
     ];
     plugins = with pkgs.vimPlugins; [
       cmp-buffer
@@ -71,13 +73,34 @@
       nvim-java
       nvim-lsputils
       nvim-navic
-      nvim-treesitter.withAllGrammars
       nvim-web-devicons
       packer-nvim
       plenary-nvim
       vim-commentary
       vim-svelte
       which-key-nvim
+      {
+        plugin = git-blame-nvim;
+        type = "lua";
+        config = ''
+          require('gitblame').setup {
+            enabled = false,
+          }
+        '';
+      }
+      {
+        plugin = nvim-treesitter.withAllGrammars;
+        type = "lua";
+        config = ''
+          require("nvim-treesitter.configs").setup({
+            highlight = { enable = true },
+            indent = { enable = true },
+            ensure_installed = {},
+            auto_install = false,
+            sync_install = false,
+          })
+        '';
+      }
       {
         plugin = none-ls-nvim;
         type = "lua";
@@ -211,7 +234,6 @@
           local luasnip = require 'luasnip'
 
           require('copilot').setup({
-              panel = { enabled = false },
               suggestion = {
                   auto_trigger = true,
                   -- Use alt to interact with Copilot.
@@ -223,6 +245,8 @@
                       --prev = '<M-[>',
                       --dismiss = '/',
                   },
+                  panel = { enabled = false },
+                  copilot_model = "gpt-5-mini-copilot"
               },
               filetypes = {
                 markdown = true,

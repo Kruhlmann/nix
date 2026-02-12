@@ -1,126 +1,51 @@
-{ pkgs, ... }: {
+{ ... }:
+{
   networking.hostName = "gesnix";
   networking.networkmanager.enable = true;
-  networking.networkmanager.unmanaged = [ "nat0" "nat1" ];
   networking.networkmanager.settings.main = {
     systemd-resolved = "true";
   };
-  networking.nameservers = [ "172.31.1.1" ];
+  networking.extraHosts = ''
+    127.0.0.1 redis
+  '';
+  networking.nameservers = [ "1.1.1.1" ];
   networking.firewall.enable = true;
+  networking.firewall.trustedInterfaces = [
+    "virbr0"
+    "virbr80"
+  ];
+  networking.firewall.checkReversePath = "loose";
   networking.firewall.allowedUDPPorts = [ 61820 ];
-  networking.firewall.allowedTCPPorts = [ 22 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    22
+    80
+    443
+  ];
+  networking.firewall.allowedTCPPortRanges = [
+    {
+      from = 1714;
+      to = 1764;
+    }
+  ];
+  networking.firewall.allowedUDPPortRanges = [
+    {
+      from = 1714;
+      to = 1764;
+    }
+  ];
   services.resolved = {
     enable = true;
     fallbackDns = [ "1.1.1.1" ];
     dnssec = "allow-downgrade";
     dnsovertls = "opportunistic";
     llmnr = "false";
+    extraConfig = ''
+      [Resolve]
+      DNS=1.1.1.1
+      FallbackDNS=8.8.8.8
+    '';
   };
   systemd.network.enable = true;
-  systemd.network.networks.nat0 = {
-    enable = true;
-    matchConfig.Name = "nat0";
-    networkConfig.Address = [ "172.31.0.1/24" "172.31.0.2/24" ];
-    networkConfig.IPMasquerade = true;
-    networkConfig.ConfigureWithoutCarrier = true;
-  };
-  systemd.network.netdevs.nat0 = {
-    enable = true;
-    netdevConfig.Name = "nat0";
-    netdevConfig.Kind = "bridge";
-  };
-  systemd.network.networks.nat1 = {
-    enable = true;
-    matchConfig.Name = "nat1";
-    networkConfig.Address = [ "172.31.1.2/24" ];
-    networkConfig.ConfigureWithoutCarrier = true;
-  };
-  systemd.network.netdevs.nat1 = {
-    enable = true;
-    netdevConfig.Name = "nat1";
-    netdevConfig.Kind = "bridge";
-  };
   networking.nftables.enable = true;
   systemd.network.wait-online.enable = false;
-  systemd.services.docker.serviceConfig.PartOf = "nftables.service";
-  systemd.services.docker.serviceConfig.ExecStartPost =
-    "${pkgs.nftables}/bin/nft -f /etc/systemd/nftables.d/docker.conf";
-  systemd.services.systemd-networkd.serviceConfig.PartOf = "nftables.service";
-  systemd.services.systemd-networkd.serviceConfig.ExecStartPost =
-    "${pkgs.nftables}/bin/nft -f /etc/systemd/nftables.d/nat0.conf";
-  environment.etc."systemd/nftables.d/nat0.conf".text = ''
-    #!/usr/sbin/nft -f
-
-    flush chain inet filter nat.input
-    flush chain inet filter nat.forward
-
-    table inet filter {
-      chain nat.input {
-        iif nat0 accept
-        iif nat1 accept
-      }
-      chain nat.forward {
-        iif nat0 accept
-      }
-    }
-  '';
-  environment.etc."systemd/nftables.d/docker.conf".text = ''
-    #!/usr/sbin/nft -f
-
-    flush chain inet filter docker.input
-    flush chain inet filter docker.forward
-
-    table inet filter {
-      chain docker.input {
-        iif docker0 accept
-      }
-      chain docker.forward {
-        iif docker0 accept
-      }
-    }
-  '';
-  networking.nftables.ruleset = ''
-    #!/usr/sbin/nft -f
-
-    flush ruleset
-
-    table inet filter {
-      chain input {
-        type filter hook input priority filter
-        policy drop
-        
-        ct state invalid drop comment "early drop of invalid connections"
-        ct state {established, related} accept comment "allow tracked connections"
-        
-        iif lo accept comment "allow from loopback"
-        jump docker.input comment "jump to docker managed input chain"
-        jump nat.input comment "jump to systemd-networkd managed input chain"
-        
-        ip protocol icmp accept comment "allow icmp"
-        meta l4proto ipv6-icmp accept comment "allow icmp v6"
-        tcp dport ssh accept comment "allow sshd"
-        pkttype host limit rate 5/second counter reject with icmpx type admin-prohibited
-        counter
-      }
-      chain docker.input{
-      }
-      chain nat.input{
-      }
-      chain forward {
-        type filter hook forward priority filter
-        policy drop
-        
-        ct state {established, related} accept
-        jump docker.forward
-        jump nat.forward
-      }
-      chain docker.forward{
-      }
-      chain nat.forward{
-      }
-      chain output {
-        type filter hook output priority filter
-      }
-    }
-  '';
 }
