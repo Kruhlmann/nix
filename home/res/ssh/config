@@ -16,6 +16,7 @@ Host kruhlmann.dev
   HostName kruhlmann.dev
   User ges
   LocalForward 7031 192.168.1.1:80 # Router
+  Port 8491
 
 Host github.com
   User git
