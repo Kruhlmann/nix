@@ -23,7 +23,15 @@ local servers = {
     gopls = {},
     svelte = {},
     ts_ls = {},
-    rust_analyzer = {},
+    rust_analyzer = {
+        settings = {
+            ["rust-analyzer"] = {
+                cargo = {
+                    allFeatures = true,
+                },
+            },
+        },
+    },
     ruff = {},
     taplo = {},
     eslint = {
