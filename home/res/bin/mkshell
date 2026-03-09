@@ -14,6 +14,7 @@ while true; do
     printf '  2) \e[34mRust\e[0m\n'
     printf '  3) \e[34mC#\e[0m\n'
     printf '  4) \e[34mPython\e[0m\n'
+    printf '  5) \e[34mGolang\e[0m\n'
 
     printf 'Your selection: '
     read -r template_id
@@ -33,6 +34,10 @@ while true; do
         ;;
     4)
         template_name="python"
+        break
+        ;;
+    5)
+        template_name="golang"
         break
         ;;
     *)
