@@ -7,15 +7,10 @@ Host *
   IdentityFile ~/.ssh/personal
   PreferredAuthentications publickey
 
-Host wert.dk
-  HostName wert.dk
-  Port 23432
-  User ask
-
 Host kruhlmann.dev
   HostName kruhlmann.dev
   User ges
-  LocalForward 7031 192.168.1.1:80 # Router
+  LocalForward 7031 192.168.1.1:80
   Port 8491
 
 Host github.com
