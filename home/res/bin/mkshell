@@ -15,6 +15,7 @@ while true; do
     printf '  3) \e[34mC#\e[0m\n'
     printf '  4) \e[34mPython\e[0m\n'
     printf '  5) \e[34mGolang\e[0m\n'
+    printf '  6) \e[34mJava\e[0m\n'
 
     printf 'Your selection: '
     read -r template_id
@@ -38,6 +39,10 @@ while true; do
         ;;
     5)
         template_name="golang"
+        break
+        ;;
+    6)
+        template_name="java"
         break
         ;;
     *)
@@ -69,6 +74,7 @@ if test -f ./shell.nix; then
 else
     printf 'Creating \e[34mshell.nix\e[0m\n'
     cp "${template_path}" ./shell.nix
+    chmod u+w ./shell.nix
 fi
 
 printf 'Creating \e[34m.envrc\e[0m\n'
