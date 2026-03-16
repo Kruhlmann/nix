@@ -1,5 +1,9 @@
-{ ... }: {
-  imports = [ ./gpg-agent.nix ./autorandr.nix ./sconnect.nix ];
+{ ... }:
+{
+  imports = [
+    ./gpg-agent.nix
+    ./autorandr.nix
+  ];
   services.lorri.enable = true;
   systemd.user.startServices = "suggest";
 }
