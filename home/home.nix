@@ -40,7 +40,6 @@ in
     eza
     fd
     feh
-    firefox
     fzf
     gamemode
     gh
@@ -69,18 +68,19 @@ in
     pass
     pavucontrol
     pciutils
+    perf
     protonmail-desktop
     punlock
     rofi
     rustc
     rustup
+    rusty-path-of-building
     sc-im
     sccache
     sushi
     teams-for-linux
     texliveFull
     thunderbird
-    perf
     tigervnc
     tldr
     trayer
