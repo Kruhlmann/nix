@@ -16,9 +16,7 @@ in {
   nixpkgs.overlays = [
     (final: prev: {
       ckb-next = prev.ckb-next.overrideAttrs (old: {
-        cmakeFlags = (old.cmakeFlags or []) ++ [
-          "-DUSE_DBUS_MENU=0"
-        ];
+        cmakeFlags = (old.cmakeFlags or [ ]) ++ [ "-DUSE_DBUS_MENU=0" ];
       });
     })
   ];
@@ -26,7 +24,7 @@ in {
   programs.kdeconnect.enable = true;
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; 
+    remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
   };
@@ -75,9 +73,9 @@ in {
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      monospace = ["FiraCode Nerd Font Mono"];
-      serif = ["FiraCode Nerd Font Mono"];
-      sansSerif = ["FiraCode Nerd Font Mono"];
+      monospace = [ "FiraCode Nerd Font Mono" ];
+      serif = [ "FiraCode Nerd Font Mono" ];
+      sansSerif = [ "FiraCode Nerd Font Mono" ];
     };
   };
   environment.systemPackages = with pkgs; [

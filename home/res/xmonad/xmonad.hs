@@ -209,8 +209,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl set 10%-")
     ]
       ++ [ ((m .|. modm, k), windows $ f i)
-           | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9],
-             (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
+         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9],
+           (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
          ]
 
 updateWallpapers :: X ()

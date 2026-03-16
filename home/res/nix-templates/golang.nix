@@ -1,12 +1,3 @@
-{
-  pkgs ? import <nixpkgs> { },
-}:
+{ pkgs ? import <nixpkgs> { }, }:
 
-pkgs.mkShell {
-  buildInputs = with pkgs; [
-    go
-    gopls
-    delve
-    golangci-lint
-  ];
-}
+pkgs.mkShell { buildInputs = with pkgs; [ go gopls delve golangci-lint ]; }

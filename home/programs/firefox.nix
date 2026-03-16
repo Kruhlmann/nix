@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   programs.firefox = {
     enable = true;
     profiles.default = {
@@ -28,11 +27,8 @@
         "browser.search.suggest.enabled.private" = true;
         "browser.startup.homepage" = "about:blank";
         "browser.toolbars.bookmarks.visibility" = "never";
-        "browser.topsites.blockedSponsors" = [
-          "hotels.prf"
-          "temuaffiliateprogram.pxf"
-          "adidas"
-        ];
+        "browser.topsites.blockedSponsors" =
+          [ "hotels.prf" "temuaffiliateprogram.pxf" "adidas" ];
         "devtools.cache.disabled" = true;
         "devtools.command-button-measure.enabled" = true;
         "devtools.command-button-screenshot.enabled" = true;
