@@ -1,7 +1,5 @@
 { pkgs, ... }:
-let
-  extra-certs = import ../pkg/extra-certs/default.nix { inherit pkgs; };
-  #turtle-wow = import ../pkg/turtle-wow/default.nix { inherit pkgs; };
+let extra-certs = import ../pkg/extra-certs/default.nix { inherit pkgs; };
 in {
   imports = [
     ./hardware-configuration.nix
@@ -37,13 +35,12 @@ in {
   system.stateVersion = "23.11";
   nixpkgs.config.allowUnfree = true;
   console.keyMap = "us";
-  #time.timeZone = "Europe/Copenhagen";
   services.automatic-timezoned.enable = true;
   services.geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales =
     [ "en_US.UTF-8/UTF-8" "da_DK.UTF-8/UTF-8" "en_DK.UTF-8/UTF-8" ];
-  security.pam.services.xscreensaver.enable = true;
+  security.pam.services.xfce4-screensaver.enable.enable = true;
   security.rtkit.enable = true;
   security.pki.certificateFiles = [ "${extra-certs}/etc/ssl/certs/extra.pem" ];
   security.sudo.extraConfig = ''
@@ -160,7 +157,6 @@ in {
     vulkan-validation-layers
     wget
     wine-staging
-    xscreensaver
     xorg.xauth
     xorg.xev
     xorg.xinit

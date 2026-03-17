@@ -10,7 +10,6 @@
   services.flatpak.enable = true;
   services.geoclue2.enable = true;
   services.teamviewer.enable = true;
-  services.xscreensaver.enable = true;
   xdg.portal.enable = true;
 
   services.udev.extraRules = ''

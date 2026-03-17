@@ -194,7 +194,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_p), spawn "xcolor | xclip -selection clipboard"),
       ((modm .|. shiftMask, xK_q), confirmPrompt hotPromptTheme "Quit XMonad" $ io (exitWith ExitSuccess)),
       ((modm .|. shiftMask, xK_s), spawn "maim -u -s | xclip -selection clipboard -t image/png"),
-      ((modm .|. shiftMask, xK_l), spawn "xscreensaver-command -lock"),
+      ((modm .|. shiftMask, xK_l), spawn "xfce4-screensaver-command --lock"),
       ((modm .|. shiftMask, xK_p), spawn "selectpass"),
       ((modm .|. shiftMask, xK_j), windows W.swapDown),
       ((modm .|. shiftMask, xK_k), windows W.swapUp),

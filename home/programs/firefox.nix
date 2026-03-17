@@ -29,6 +29,7 @@
         "browser.toolbars.bookmarks.visibility" = "never";
         "browser.topsites.blockedSponsors" =
           [ "hotels.prf" "temuaffiliateprogram.pxf" "adidas" ];
+        "browser.translations.neverTranslateLanguages" = "da";
         "devtools.cache.disabled" = true;
         "devtools.command-button-measure.enabled" = true;
         "devtools.command-button-screenshot.enabled" = true;
