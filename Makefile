@@ -16,17 +16,15 @@ install:
 
 .PHONY: install-system
 install-system:
-	nix-channel --add "https://nixos.org/channels/nixos-$(NIX_VERSION)" nixos
+	nix-channel --add "https://nixos.org/channels/nixos-$(NIX_VERSION)" nixos && nix-channel --update
 	mkdir -p /etc/pkg
 	cp -rf ./system/* /etc/nixos/
 	cp -rf ./pkg/* /etc/pkg/
-	nix-channel --update
 	nixos-rebuild switch -j $(shell nproc) --upgrade-all --show-trace
 
 .PHONY: install-user
 install-user:
-	nix-channel --add "https://github.com/nix-community/home-manager/archive/release-$(NIX_VERSION).tar.gz" home-manager
-	nix-channel --update
+	nix-channel --add "https://github.com/nix-community/home-manager/archive/release-$(NIX_VERSION).tar.gz" home-manager && nix-channel --update
 	mkdir -p $$HOME/.config
 	ln -sfT $(shell pwd)/home $$HOME/.config/home-manager
 	ln -sfT $(shell pwd)/pkg $$HOME/.config/pkg
@@ -46,4 +44,9 @@ lint:
 	checkmake Makefile
 
 .PHONY: test
+test:
+	true
+
 .PHONY: clean
+clean:
+	true
