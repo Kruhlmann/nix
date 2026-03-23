@@ -7,7 +7,7 @@
   '';
   networking.nameservers = [ "1.1.1.1" ];
   networking.firewall.enable = true;
-  networking.firewall.trustedInterfaces = [ "virbr0" "virbr80" ];
+  networking.firewall.trustedInterfaces = [ "virbr0" "virbr80" "virbr81" ];
   networking.firewall.checkReversePath = "loose";
   networking.firewall.allowedUDPPorts = [ 61820 ];
   networking.firewall.allowedTCPPorts = [ 22 80 443 ];

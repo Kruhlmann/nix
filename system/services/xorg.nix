@@ -3,7 +3,6 @@
     enable = true;
     desktopManager.xterm.enable = false;
     desktopManager.xfce.enable = true;
-    desktopManager.xfce.enableScreensaver = true;
     desktopManager.xfce.noDesktop = true;
     desktopManager.xfce.enableXfwm = false;
     displayManager.sessionCommands = "xset r rate 250 30";
