@@ -9,8 +9,8 @@
       blackBag = "Interface\\Icons\\INV_Misc_Bag_10_Black";
     };
     potion = {
-      mana = "Interface\\Icons\\INV_Potion_76";
-      health = "Interface\\Icons\\INV_Potion_54";
+      greaterMana = "Interface\\Icons\\INV_Potion_76";
+      greaterHealth = "Interface\\Icons\\INV_Potion_54";
     };
     food = {
       drink = "Interface\\Icons\\INV_Drink_07";
