@@ -7,9 +7,7 @@ let
   macros_purpleges = import ../pkg/turtle-wow/macros/preset.nix {
     character-name = "Purpleges";
   };
-in
-{
-  ver = "1180";
+in {
   gameConfig = {
     MusicVolume = "0.4";
     MasterVolume = "0.1";
@@ -28,22 +26,11 @@ in
     cameraPitchC = "10.000000";
     cameraYawC = "0.000000";
   };
-  accountConfigs = {
-    ges = {
-      AUTO_QUEST_WATCH = wow.false;
-    };
-  };
+  accountConfigs = { ges = { AUTO_QUEST_WATCH = wow.false; }; };
   macros = {
     ges = {
-      global = [
-        macros.general.set-max-camera-distance
-      ];
-      servers = {
-        Ambershire = {
-          Purpleges = [
-          ];
-        };
-      };
+      global = [ macros.general.set-max-camera-distance ];
+      servers = { Ambershire = { Purpleges = [ ]; }; };
     };
   };
   addons = [

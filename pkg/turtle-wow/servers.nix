@@ -1,7 +1,7 @@
 { }: {
   turtleWow = {
-    patchlist = "logon.turtle-wow.org";
-    realmList = "logon.turtle-wow.org";
+    patchlist = "logon.turtlecraft.gg";
+    realmList = "logon.turtlecraft.gg";
     realms = {
       RP_PVE = {
         Nordanaar = "Nordanaar";

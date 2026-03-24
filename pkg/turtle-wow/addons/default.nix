@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   _0ldi.automessage = {
     name = "AutoMessage";
     owner = "0ldi";
@@ -314,13 +313,6 @@
     repo = "EngInventory";
     rev = "10b1471b51bc3472f4a05a9bb7553646d61b47fe";
     sha256 = "sha256-oZhJg6nlYJ3hQk8emgrRmtM2oO2usQkkmYfqusjZUgI=";
-  };
-  doorknob6.pfUI-turtle = {
-    name = "pfUI-turtle";
-    owner = "doorknob6";
-    repo = "pfUI-turtle";
-    rev = "4cba1b4e07a70b0c3a53122016c25cd9745bec7a";
-    sha256 = "sha256-8SXdOhZHUmllp6EwUwfGnYHnrC13KjnHxT1rh7348sY=";
   };
   brqje.spellalert = {
     name = "SpellAlert";

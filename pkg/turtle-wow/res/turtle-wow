@@ -1,26 +1,52 @@
 #!/usr/bin/env sh
+set -eu
+
 export WINEARCH=win32
 
 src="$0"
 while [ -h "$src" ]; do
     dir=$(dirname "$src")
     src=$(readlink "$src")
-    case $src in
-        /*) ;;
-        *) src="$dir/$src" ;;
+    case "$src" in
+    /*) ;;
+    *) src="$dir/$src" ;;
     esac
 done
 dir=$(cd -P "$(dirname "$src")" >/dev/null 2>&1 && pwd)
 
 . "$dir/turtle-wow.env"
 
-mkdir -p "$WINEPREFIX"
-if ! test -f "${HOME}/.cache/turtle-wow/WTF/Config.wtf"; then
-    mkdir -p "${HOME}/.cache/turtle-wow/WTF/"
-    cp -r "$TURTLE_WOW_STORE"/share/turtle-wow/WTF.original/* "${HOME}/.cache/turtle-wow/WTF/"
+XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+GAME_BASE="$XDG_DATA_HOME/turtle-wow"
+GAME_DIR="$GAME_BASE/game"
+PERSISTENT_WTF_DIR="$GAME_BASE/WTF"
+STAMP_FILE="$GAME_BASE/source-store-path"
+
+mkdir -p "$GAME_BASE" "$PERSISTENT_WTF_DIR" "$WINEPREFIX"
+
+need_sync=0
+if [ ! -d "$GAME_DIR" ]; then
+    need_sync=1
+elif [ ! -f "$STAMP_FILE" ]; then
+    need_sync=1
+elif [ "$(cat "$STAMP_FILE" 2>/dev/null || true)" != "$TURTLE_WOW_STORE" ]; then
+    need_sync=1
 fi
-rm -rf /tmp/turtle-wow
-ln -sf "${HOME}/.cache/turtle-wow/WTF" /tmp/turtle-wow
-find "${HOME}/.cache/turtle-wow/WTF/" -type d -exec chmod 700 {} \;
-find "${HOME}/.cache/turtle-wow/WTF/" -type f -exec chmod 600 {} \;
-WINEARCH=win32 "${WINE_STORE}/bin/wine" "${TURTLE_WOW_STORE}/share/turtle-wow/WoW.exe"
+
+if [ "$need_sync" -eq 1 ]; then
+    rm -rf "$GAME_DIR"
+    mkdir -p "$GAME_DIR"
+    cp -a "$TURTLE_WOW_STORE/share/turtle-wow/." "$GAME_DIR/"
+    chmod -R u+rwX "$GAME_DIR"
+    printf '%s\n' "$TURTLE_WOW_STORE" >"$STAMP_FILE"
+fi
+
+if [ ! -e "$PERSISTENT_WTF_DIR/Config.wtf" ] && [ -d "$GAME_DIR/WTF" ]; then
+    cp -a "$GAME_DIR/WTF/." "$PERSISTENT_WTF_DIR/"
+fi
+
+rm -rf "$GAME_DIR/WTF"
+ln -s "$PERSISTENT_WTF_DIR" "$GAME_DIR/WTF"
+
+cd "$GAME_DIR"
+exec "${WINE_STORE}/bin/wine" "./WoW.exe" "$@"
