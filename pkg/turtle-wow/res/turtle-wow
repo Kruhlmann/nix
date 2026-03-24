@@ -14,7 +14,7 @@ while [ -h "$src" ]; do
 done
 dir=$(cd -P "$(dirname "$src")" >/dev/null 2>&1 && pwd)
 
-. "$dir/turtle-wow.env"
+. "$dir/../share/turtle-wow/turtle-wow.env"
 
 XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 GAME_BASE="$XDG_DATA_HOME/turtle-wow"

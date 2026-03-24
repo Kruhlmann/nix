@@ -4,6 +4,7 @@ let
   servers = import ../pkg/turtle-wow/servers.nix { };
   addons = import ../pkg/turtle-wow/addons/default.nix { };
   macros = import ../pkg/turtle-wow/macros/preset.nix { character-name = ""; };
+  clientMods = import ../pkg/turtle-wow/client-mods/default.nix { };
   macros_purpleges = import ../pkg/turtle-wow/macros/preset.nix {
     character-name = "Purpleges";
   };
@@ -33,6 +34,7 @@ in {
       servers = { Ambershire = { Purpleges = [ ]; }; };
     };
   };
+  mods = [ clientMods.twdiscord clientMods.superwow ];
   addons = [
     addons.berranzan.modifiedpowerauras-continued
     addons.firenahzku.vgattackbar

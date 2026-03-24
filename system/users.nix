@@ -17,4 +17,5 @@
     shell = pkgs.zsh;
   };
   nix.settings.trusted-users = [ "ges" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
