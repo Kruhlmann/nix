@@ -1,12 +1,15 @@
-{ pkgs ? import <nixpkgs> { } }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
 pkgs.mkShell {
   buildInputs = [
-    pkgs.nixfmt-classic
-    pkgs.home-manager
-    pkgs.gnumake
-    pkgs.ormolu
-    pkgs.shellharden
     pkgs.checkmake
+    pkgs.gnumake
+    pkgs.home-manager
+    pkgs.nixfmt-classic
+    pkgs.ormolu
+    pkgs.ruby
+    pkgs.shellharden
   ];
 }

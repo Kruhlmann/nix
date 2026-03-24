@@ -3,11 +3,13 @@ let
   wow = import ../pkg/turtle-wow/wow-types.nix { };
   servers = import ../pkg/turtle-wow/servers.nix { };
   addons = import ../pkg/turtle-wow/addons/default.nix { };
-  macros_orangeges = import ../pkg/turtle-wow/macros/preset.nix {
-    character-name = "Orangeges";
+  macros = import ../pkg/turtle-wow/macros/preset.nix { character-name = ""; };
+  macros_purpleges = import ../pkg/turtle-wow/macros/preset.nix {
+    character-name = "Purpleges";
   };
-in {
-  ver = "1171";
+in
+{
+  ver = "1180";
   gameConfig = {
     MusicVolume = "0.4";
     MasterVolume = "0.1";
@@ -26,54 +28,38 @@ in {
     cameraPitchC = "10.000000";
     cameraYawC = "0.000000";
   };
-  accountConfigs = { ges = { AUTO_QUEST_WATCH = wow.false; }; };
+  accountConfigs = {
+    ges = {
+      AUTO_QUEST_WATCH = wow.false;
+    };
+  };
   macros = {
     ges = {
       global = [
-        macros_orangeges.general.print.shape-shift-info
-        macros_orangeges.general.set-max-camera-distance
+        macros.general.set-max-camera-distance
       ];
       servers = {
-        Nordanaar = {
-          Orangeges = [
-            macros_orangeges.race.night-elf.shadowmeld
-            macros_orangeges.class.druid.kill-totem
+        Ambershire = {
+          Purpleges = [
           ];
         };
       };
     };
   };
   addons = [
-    addons.balakethelock.twthreat
     addons.berranzan.modifiedpowerauras-continued
-    addons.doorknob6.pfui-turtle
     addons.firenahzku.vgattackbar
     addons.hosq.bigwigs
     addons.isitlove.outfitter
     addons.jsb.gatherer
     addons.kakysha.honorspy
     addons.kxseven.vanillaratingbuster
-    addons.lexiebean.atlasloot
-    addons.mrrosh.healcomm
-    addons.mrrosh.mcp
-    addons.road-block.classicsnowfall
     addons.shagu.pfquest
-    addons.shagu.pfquest-turtle
     addons.shagu.pfui
-    addons.shagu.shagudps
     addons.shirsig.aux-addon-vanilla
     addons.shirsig.aux_merchant_prices
     addons.shirsig.unitscan
     addons.shirsig.wim
-    addons.satan666.trinketmenu-fix
-    addons.opcow.buffreminder
-    addons.danieladolfsson.clevermacro
-    addons.tercioo.details-damage-meter
-    addons.wow-vanilla-addons.accountant
-    addons.wow-vanilla-addons.postal
-    addons.yogo1212.healbot-classic
-    addons.fiskehatt.saysapped
-    addons.proxicide.macroextender
   ];
   bindings = {
     ges = {

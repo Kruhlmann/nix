@@ -1,90 +1,231 @@
-#!/usr/bin/env sh
+#!/usr/bin/env ruby
+# frozen_string_literal: true
 
-# This script generates a Nix expression file from a list of GitHub URLs pointing to vanilla WoW addons.
-# The program outputs the Nix expression to stdout, so it should be redirected to a file.
-#
-# Example usage:
-# $ cat addons.json
-# [
-#    "https://github.com/Fiurs-Hearth/WIIIUI",
-#    "https://github.com/xorann/Abraxas",
-#    "https://github.com/firenahzku/ActionBarProfiles"
-# ]
-# $ ./gen_addons.sh addons.json > addons.nix
-#
-# Output (addons.nix):
-# { ... }:
-# {
-#   firenahzku.actionbarprofiles = { name = "ActionBarProfiles"; owner = "firenahzku"; repo = "ActionBarProfiles"; rev = "511a4651ffe1388004b92faed1604d4ec8284ca5"; sha256 = "sha256-A2J3mTbuJ55oEEzA9nP35nvX9j3wabl3QDuy3ckd76U=" };
-#   fiurs-hearth.wiiiui = { name = "WIIIUI"; owner = "Fiurs-Hearth"; repo = "WIIIUI"; rev = "c6a6d1dfa68ed80aea8343ad9ec4fcba39588600"; sha256 = "sha256-PweWEWq6WpuqEL7KVi0CvMZDPUrj0RddCxzwb6eZL2o=" };
-#   xorann.abraxas = { name = "Abraxas"; owner = "xorann"; repo = "Abraxas"; rev = "9eb1bc1b81f27943c605bb39d383f10fad4fe0b7"; sha256 = "sha256-rw2vS8Ov2WXWIsDx7WD9/zaqjP5k/RBDUEnSDOWo6Fk=" };
-# }
+# Usage
+# $ ./gen_addons addons.json > addons.nix
 
-set -eu
+require "json"
+require "tmpdir"
+require "fileutils"
+require "open3"
+require "etc"
+require "shellwords"
+require "tempfile"
+require "thread"
 
-if ! command -v git >/dev/null 2>&1; then
-    echo "Error: git is not installed." >&2
+def command_exists?(cmd)
+  system("command -v #{Shellwords.escape(cmd)} >/dev/null 2>&1")
+end
+
+def run_cmd(*cmd, allow_failure: false, chdir: nil, env: {})
+  opts = {}
+  opts[:chdir] = chdir if chdir
+
+  stdout, stderr, status = Open3.capture3(env, *cmd, **opts)
+
+  if !status.success? && !allow_failure
+    raise "Command failed: #{cmd.join(' ')}\n#{stderr}"
+  end
+
+  [stdout, stderr, status]
+end
+
+def usage!
+  warn "Usage: #{$PROGRAM_NAME} <addons.json>"
+  exit 1
+end
+
+def extract_repo(url)
+  match = url.match(%r{^https?://github\.com/([^/]+)/([^/]+)})
+  return nil unless match
+
+  owner = match[1]
+  repo = match[2].sub(/\.git$/, "")
+  "#{owner}/#{repo}"
+end
+
+def find_first_toc(dir)
+  Dir.glob(File.join(dir, "**", "*.toc"), File::FNM_CASEFOLD).sort.first
+end
+
+def common_name(repo)
+  repo.downcase.tr("/", ".")
+end
+
+def escape_nix_string(str)
+  str.gsub("\\", "\\\\\\").gsub('"', '\"')
+end
+
+def determine_sha(owner, repo_name, repo, rev, checkout_dir)
+  if command_exists?("nix")
+    FileUtils.rm_rf(File.join(checkout_dir, ".git"))
+    stdout, = run_cmd(
+      "nix",
+      "--extra-experimental-features", "nix-command",
+      "hash", "path", checkout_dir
+    )
+    stdout.strip
+  elsif command_exists?("nix-prefetch-github")
+    stdout, = run_cmd(
+      "nix-prefetch-github",
+      "--owner", owner,
+      "--repo", repo_name,
+      "--rev", rev,
+      "--quiet"
+    )
+    JSON.parse(stdout)["sha256"]
+  elsif command_exists?("nix-build")
+    nix_file = Tempfile.new(["prefetch", ".nix"])
+    begin
+      nix_file.write(<<~NIX)
+        with import <nixpkgs> {};
+        let
+          src = fetchgit {
+            url = "https://github.com/#{repo}.git";
+            rev = "#{rev}";
+            sha256 = lib.fakeSha256;
+          };
+        in src
+      NIX
+      nix_file.close
+
+      _stdout, stderr, = run_cmd("nix-build", nix_file.path, allow_failure: true)
+      got_line = stderr.lines.find { |line| line.include?("got:") }
+      got_line&.split&.at(1)&.strip
+    ensure
+      nix_file.close!
+    end
+  end
+end
+
+def process_repo(repo)
+  warn "Setting up #{repo}..."
+
+  owner, repo_name = repo.split("/", 2)
+
+  Dir.mktmpdir("addon_checkout") do |checkout_dir|
+    _stdout, _stderr, status = run_cmd(
+      "git", "clone", "--depth", "1", "https://github.com/#{repo}.git", checkout_dir,
+      allow_failure: true,
+      env: {
+        "GIT_TERMINAL_PROMPT" => "0",
+        "GIT_ASKPASS" => "/bin/true"
+      }
+    )
+
+    unless status.success?
+      warn "Unable to clone #{repo}. Skipping"
+      return nil
+    end
+
+    rev, = run_cmd("git", "-C", checkout_dir, "rev-parse", "HEAD")
+    rev = rev.strip
+
+    sha = determine_sha(owner, repo_name, repo, rev, checkout_dir)
+    if sha.nil? || sha.empty? || sha == "null"
+      warn "Unable to determine sha256 for #{repo}. Skipping"
+      return nil
+    end
+
+    tocname = find_first_toc(checkout_dir)
+    if tocname.nil? || tocname.empty?
+      warn "Unable to find .toc file in repository #{repo}. Skipping"
+      return nil
+    end
+
+    name = File.basename(tocname, ".toc")
+    attr_name = common_name(repo)
+
+    <<~NIX.chomp
+        #{attr_name} = { name = "#{escape_nix_string(name)}"; owner = "#{escape_nix_string(owner)}"; repo = "#{escape_nix_string(repo_name)}"; rev = "#{escape_nix_string(rev)}"; sha256 = "#{escape_nix_string(sha)}"; };
+    NIX
+  end
+rescue => e
+  warn "Error processing #{repo}: #{e.message}"
+  nil
+end
+
+unless command_exists?("git")
+  warn "Error: git is not installed."
+  exit 1
+end
+
+unless command_exists?("nix") || command_exists?("nix-prefetch-github") || command_exists?("nix-build")
+  warn "Error: nix, nix-prefetch-github, or nix-build is required."
+  exit 1
+end
+
+usage! unless ARGV.length == 1
+
+input_file = ARGV[0]
+unless File.file?(input_file)
+  warn "Error: File '#{input_file}' not found."
+  exit 1
+end
+
+repos =
+  begin
+    data = JSON.parse(File.read(input_file))
+    unless data.is_a?(Array)
+      warn "Error: JSON input must be an array of GitHub URLs."
+      exit 1
+    end
+
+    data.filter_map { |url| extract_repo(url.to_s) }.uniq.sort
+  rescue JSON::ParserError => e
+    warn "Error: Failed to parse JSON: #{e.message}"
     exit 1
-fi
+  end
 
-if ! command -v jq >/dev/null 2>&1; then
-    echo "Error: jq is not installed." >&2
-    exit 1
-fi
+max_threads = Integer(ENV.fetch("JOBS", "5"))
+clone_stagger = Float(ENV.fetch("CLONE_STAGGER", "1.5"))
 
-if ! command -v nix-build >/dev/null 2>&1; then
-    echo "Error: nix-build is not installed." >&2
-    exit 1
-fi
+queue = Queue.new
+repos.each { |repo| queue << repo }
 
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <addons.json>" >&2
-    exit 1
-fi
+results = []
+results_mutex = Mutex.new
+start_mutex = Mutex.new
+next_start_time = Time.now
 
-if [ ! -f "$1" ]; then
-    echo "Error: File '$1' not found." >&2
-    exit 1
-fi
+workers = Array.new(max_threads) do
+  Thread.new do
+    loop do
+      repo =
+        begin
+          queue.pop(true)
+        rescue ThreadError
+          nil
+        end
 
-printf '{ ... }:\n{\n'
-jq -r '.[]' < "$1" | sed -e 's|^.*://github.com/\([^/]*\)/\([^/]*\).*|\1/\2|' | uniq | while read -r repo; do
-    printf 'Settting up %s...\n' "$repo" >&2
-    c_dir=$(mktemp -d)
-    trap 'rm -rf "$c_dir"' EXIT
+      break if repo.nil?
 
-    if ! git clone "git@github.com:$repo.git" "$c_dir" 2>/dev/null; then
-        echo "Unable to clone $repo. Skipping" >&2
-        rm -rf "$c_dir"
-        continue
-    fi
-    rev=$(git -C "$c_dir" rev-parse HEAD)
-    nix_file=$(mktemp)
-    trap 'rm -f "$nix_file"' EXIT
-    cat >"$nix_file" <<EOF
-with import <nixpkgs> {};
-let
-  src = fetchgit {
-    url = "https://github.com/$repo.git";
-    rev = "$rev";
-    sha256 = lib.fakeSha256;
-  };
-in src
-EOF
-    sha=$(nix-build "$nix_file" 2>&1 | grep 'got:' | awk '{ print $2 }')
-    common_name=$(echo "$repo" | tr '[:upper:]/' '[:lower:].')
-    owner=$(echo "$repo" | cut -d'/' -f1)
-    repo_name=$(echo "$repo" | cut -d'/' -f2)
-    tocname=$(find "$c_dir" -name '*.toc' | head -n 1 | sed -e 's/\.toc$//')
-    if [ "$tocname" = "" ]; then
-        echo "Unable to find .toc file in repository $repo. Skipping" >&2
-        rm -rf "$c_dir" "$nix_file"
-        continue
-    fi
-    name=$(basename "$tocname")
-    printf '  %s = { name = "%s"; owner = "%s"; repo = "%s"; rev = "%s"; sha256 = "%s"; };\n' \
-        "$common_name" "$name" "$owner" "$repo_name" "$rev" "$sha"
-    rm -rf "$c_dir" "$nix_file"
-done | sort
+      start_mutex.synchronize do
+        now = Time.now
+        sleep_time = next_start_time - now
+        sleep(sleep_time) if sleep_time > 0
+        next_start_time = Time.now + clone_stagger
+      end
 
-printf '}\n'
+      nix_snippet = process_repo(repo)
+      next unless nix_snippet
+
+      results_mutex.synchronize do
+        results << nix_snippet
+      end
+    end
+  end
+end
+
+begin
+  workers.each(&:join)
+rescue Interrupt
+  warn "\nInterrupted, stopping..."
+  workers.each(&:kill)
+  exit 130
+end
+
+puts "{ ... }:"
+puts "{"
+results.sort.each { |line| puts line }
+puts "}"

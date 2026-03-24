@@ -1,4 +1,124 @@
-{ ... }: {
+{ ... }:
+{
+  _0ldi.automessage = {
+    name = "AutoMessage";
+    owner = "0ldi";
+    repo = "AutoMessage";
+    rev = "c367bb48ae07c4bb1aa7e1d53b11fb0555623d2b";
+    sha256 = "sha256-n33W10OHP9119AZwvttL9HOGcWh1elYMoyOU/+XVw/I=";
+  };
+  _0ldi.chatbar = {
+    name = "ChatBar";
+    owner = "0ldi";
+    repo = "ChatBar";
+    rev = "ab3106bdfbd33bb871ceac1848e70f2d71e73f32";
+    sha256 = "sha256-WW41pVdkVQyNfZSupEkUzqnmzpTa41U4Re079yEzuTs=";
+  };
+  _0ldi.chatfix = {
+    name = "ChatFix";
+    owner = "0ldi";
+    repo = "ChatFix";
+    rev = "d9722d760e21465c4bbe1f5511dd03ad69fd6500";
+    sha256 = "sha256-fCXwlHcDU6DO3tPm38mGD81ZJHpqFHTI/LoWyG4vW4A=";
+  };
+  _0ldi.chatlog = {
+    name = "ChatLog";
+    owner = "0ldi";
+    repo = "ChatLog";
+    rev = "6a0d97db6225e2fcae0444bf578b33efbc09c7bd";
+    sha256 = "sha256-fAFS8X9PqSwfxQU5wJ8WuBUciq01y5aPkl6x28+ehi0=";
+  };
+  _0ldi.cthunwarner = {
+    name = "CThunWarner";
+    owner = "0ldi";
+    repo = "CThunWarner";
+    rev = "75fc117ac2fa8ecf9f38279f2957bf0ef162c62d";
+    sha256 = "sha256-wlqIQ4SxVoerdAHM4KlW93HV1BADwdvWaOauyHe7+l8=";
+  };
+  _0ldi.exoraidsetup = {
+    name = "ExoRaidSetup";
+    owner = "0ldi";
+    repo = "ExoRaidSetup";
+    rev = "bb2447fad6623620bf575245f090d268e37f9307";
+    sha256 = "sha256-lOfRo7epYOns9NsqktHZnCc0pXQJNC0TkVDIvlzqitQ=";
+  };
+  _0ldi.felwoodgather = {
+    name = "FelwoodGather";
+    owner = "0ldi";
+    repo = "FelwoodGather";
+    rev = "e99c99109bcd300565d5917f0703893b5fcfc56d";
+    sha256 = "sha256-jekm+8a4Vy40f9iXWg8DKCP88BMdYrvQ1nrMVbTjipw=";
+  };
+  _0ldi.imba = {
+    name = "IMBA";
+    owner = "0ldi";
+    repo = "IMBA";
+    rev = "88c87ffd4e73e7542e9f46aa411264419d1b815b";
+    sha256 = "sha256-/i9QHJmdekKzajYPmB1qYcngkvh6c6JUUsXHg8BjKYo=";
+  };
+  _0ldi.imdead = {
+    name = "IMDead";
+    owner = "0ldi";
+    repo = "IMDead";
+    rev = "48ef045409f9e506fc50376fe022e45e3112b523";
+    sha256 = "sha256-Yy6SVbeA5e+cQLrOmeDLCQLzRkG9rJAgxdu7MpacNVc=";
+  };
+  _0ldi.losecontrol = {
+    name = "LoseControl";
+    owner = "0ldi";
+    repo = "LoseControl";
+    rev = "565703112d366450e1fa4dbef8e442e7c4612883";
+    sha256 = "sha256-EXKmJnWo0S629LYEmtZNxtNYgvyEDdXYbvs2K7rl8YE=";
+  };
+  _0ldi.mobresist = {
+    name = "MobResist";
+    owner = "0ldi";
+    repo = "MobResist";
+    rev = "68c3dc00dedf3a615416b111e81fbe0651b2f0e8";
+    sha256 = "sha256-1sVP37AEmctp6whRgu4Ip1cKGSsP9qfKKC1qEsdmra4=";
+  };
+  _0ldi.quickchat = {
+    name = "QuickChat";
+    owner = "0ldi";
+    repo = "QuickChat";
+    rev = "52aeb268a9cd1d7ba3cb8dc1b31fdfdf0002ea9e";
+    sha256 = "sha256-m6HzW7Q+h2l6vlSRudmRxsXm/X2QkJDOKUwYY0aYl08=";
+  };
+  _0ldi.rangecolor = {
+    name = "RangeColor";
+    owner = "0ldi";
+    repo = "RangeColor";
+    rev = "86e303f1d97b0355010ed3a010bb7c611eb90112";
+    sha256 = "sha256-cgugEjdcbFrfgjpXtux7D1dIGGVTR4OSCuR/Tj7yjw8=";
+  };
+  _0ldi.simpleactionsets = {
+    name = "SimpleActionSets";
+    owner = "0ldi";
+    repo = "SimpleActionSets";
+    rev = "d75f0eb6c21c96c9a56cd441844905de09d0473b";
+    sha256 = "sha256-eWfsatBIbrpZHtSE1Jpa6f3ku18AqQjwTL3pgBwBBF0=";
+  };
+  _0ldi.summonsmonitor = {
+    name = "SummonsMonitor";
+    owner = "0ldi";
+    repo = "SummonsMonitor";
+    rev = "06c8f377bab24fd59f094a01674f1aaa7376aea0";
+    sha256 = "sha256-wbQAPr4iTZK4rO8K4+pUOUSIN8mH+5HabZX80vnwlzg=";
+  };
+  _0ldi.targetassist = {
+    name = "TargetAssist";
+    owner = "0ldi";
+    repo = "TargetAssist";
+    rev = "8167f541f1ba2d2cf8bc28711dad7973042124f7";
+    sha256 = "sha256-2bezs7oLunWTvrMKAuGbEOgIlGHrmXoCWV7ihvkxNCs=";
+  };
+  _0ldi.timers = {
+    name = "Timers";
+    owner = "0ldi";
+    repo = "Timers";
+    rev = "8c5645ad517589600049aacfbb1748297e372629";
+    sha256 = "sha256-pb5qfezWreQcevvnxVRZ6y+3EtjEFc8K9ij/uDOzbmI=";
+  };
   aeroscripts.ct_buffmod_sorted = {
     name = "CT_BuffMod";
     owner = "AeroScripts";
@@ -17,8 +137,8 @@
     name = "HunterSwissKnife";
     owner = "anstellaire";
     repo = "HunterSwissKnife";
-    rev = "546d4557615f7a5b88f0a1ea03b397a3d0f8e63d";
-    sha256 = "sha256-2TSiZ7grZoPds3Trm3o4OFfnernDf03KK9DHmA4S7co=";
+    rev = "441cae66541d9031efeb29fb899b4021a56e35b2";
+    sha256 = "sha256-Eu9J6+gcb1ihJhKu4XMlA2tmnAwmpfdvHZLsKU3rKjQ=";
   };
   anzz1.freebagslots = {
     name = "FreeBagSlots";
@@ -66,8 +186,8 @@
     name = "MikScrollingBattleText";
     owner = "AtheneGenesis";
     repo = "Vanilla_MikScrollingBattleText";
-    rev = "0bf2944346488489d3bfcbee2cc68d26d03682ed";
-    sha256 = "sha256-BNJCOk0L0RaEFVypPhoVsGhmyMbuzqCdxBYBB8jTi8w=";
+    rev = "c9a0e19282230ab870ea6de4cd89b3f65adec0cb";
+    sha256 = "sha256-ebdLidJ8c5BP3fQ/PJHWcQymmBtrY4dNlZGNxoSn1zY=";
   };
   atreyyo.autodot = {
     name = "AutoDot";
@@ -117,13 +237,6 @@
     repo = "YaHT";
     rev = "d3726026edd3d7cba7c171a9d3b1143ac35d686f";
     sha256 = "sha256-Xf2c6DwRI8RErH82iQU6mlyiU1CbXn9tGdL2IVR3QJI=";
-  };
-  balakethelock.twthreat = {
-    name = "TWThreat";
-    owner = "balakethelock";
-    repo = "TWThreat";
-    rev = "baebd570da5c607076dee60d3dcc48c4e8a359a1";
-    sha256 = "sha256-SvAy3ZVlaHxe0XyLfG/13lI32cB9rtGwVOfnk0yyTJc=";
   };
   bergador.charactermap = {
     name = "CharacterMap";
@@ -202,6 +315,13 @@
     rev = "10b1471b51bc3472f4a05a9bb7553646d61b47fe";
     sha256 = "sha256-oZhJg6nlYJ3hQk8emgrRmtM2oO2usQkkmYfqusjZUgI=";
   };
+  doorknob6.pfUI-turtle = {
+    name = "pfUI-turtle";
+    owner = "doorknob6";
+    repo = "pfUI-turtle";
+    rev = "4cba1b4e07a70b0c3a53122016c25cd9745bec7a";
+    sha256 = "sha256-8SXdOhZHUmllp6EwUwfGnYHnrC13KjnHxT1rh7348sY=";
+  };
   brqje.spellalert = {
     name = "SpellAlert";
     owner = "Brqje";
@@ -227,8 +347,8 @@
     name = "AceAddon-2.0";
     owner = "cdmichaelb";
     repo = "SilverDragon";
-    rev = "405d31d17b3f30ba16bfcec6cbe9b44aaaebf8ad";
-    sha256 = "sha256-jxarPW21KxRQrKHuRxu4MuyJvZ37FKT0SAD2b9/+2tk=";
+    rev = "ab6a890bd91b2d946fae440a2f220062d51df606";
+    sha256 = "sha256-T0qtKYIVQiUZwV5gDk6QWZCH+4xjj3dost/ffph4BUA=";
   };
   cephel.dankscore = {
     name = "DankScore";
@@ -304,8 +424,8 @@
     name = "RosterFilter";
     owner = "coryo";
     repo = "RosterFilter";
-    rev = "f3621dac5096a708b560596604ebca8ae716732f";
-    sha256 = "sha256-Vt/Hyx2uMx5dSjq0CONgZ0q4cqxHlgV0ph0+FwnmQq8=";
+    rev = "a9ddd62e7ef70b890737d2d3583d1fb7db4052f0";
+    sha256 = "sha256-WcBIFBmy0mvh27khFkm8nKshsymbH9eMLNizPLJgqQY=";
   };
   cralor.tomtomvanilla = {
     name = "TomTom";
@@ -430,8 +550,8 @@
     name = "Roid-Macros";
     owner = "DennisWG";
     repo = "Roid-Macros";
-    rev = "ed7b41160ee561086a0cc67ba4b4a0b7db7bc996";
-    sha256 = "sha256-O4vbCqn1XdcyR2o8hNTz20uXyy/s1k9Gi1UjjXYccnM=";
+    rev = "10944442366618243d7d4f5ecf076580812483ef";
+    sha256 = "sha256-gJMDG0VHyXQy88z4weSS8DCLVtOLIXfeJfAkUmumJrE=";
   };
   denniswg.smallerrollframes = {
     name = "SmallerRollframes";
@@ -439,13 +559,6 @@
     repo = "SmallerRollFrames";
     rev = "27f8954f45eb15e671e350f4aa348366623eba23";
     sha256 = "sha256-BX8gAnuzGnbSOxHwYO1fYaWgiMpDln3G7MbYgsWak/I=";
-  };
-  diafragma.atlasloot = {
-    name = "AtlasLoot";
-    owner = "diaFRAGma";
-    repo = "AtlasLoot";
-    rev = "3411a80513381e19bece08fbf44b1dc082e30231";
-    sha256 = "sha256-XXddXF3gQ0FasNgmZCPOqlMFbR+0AL9WsMRiBg3vUuM=";
   };
   diafragma.xperl = {
     name = "XPerl";
@@ -465,15 +578,15 @@
     name = "ShardCap";
     owner = "dogmax";
     repo = "ShardCap";
-    rev = "206248bb688c5aa3c704229a321705497d5b885d";
-    sha256 = "sha256-BP+aRf6vTojBcJ86sFzgxLsxriwXPD/yS910mma7FDo=";
+    rev = "20dd94969c42f3baa4bd5133ca841e8cc58ed932";
+    sha256 = "sha256-8DL4WPMfYHEsjWz2ZxrG3Zk+lCBJWNpxzcl3sSOsLlU=";
   };
-  doorknob6.pfui-turtle = {
-    name = "pfUI-turtle";
-    owner = "doorknob6";
-    repo = "pfUI-turtle";
-    rev = "f43019aba2c7816d02a76265cfc827ddc566d064";
-    sha256 = "sha256-wpxlFUtnOKg75u9NpUWmdBuS/qEFeiK45hX4gzi1FiA=";
+  dogmax.toxictagger = {
+    name = "ToxicTagger";
+    owner = "dogmax";
+    repo = "ToxicTagger";
+    rev = "f2b751d9216b9a10b050aa529dd92fc4aad3376a";
+    sha256 = "sha256-fHCEsvTLQNWq22IxfC3uad4dQk5dtAAwo/Ptjv2iUcs=";
   };
   dudusandsten.hotbotpanel = {
     name = "HotBotPanel";
@@ -648,7 +761,7 @@
     owner = "EinBaum";
     repo = "SuperIgnore";
     rev = "3cb59f2ef8c7f5316977f81d66b7d09e9f77c0a2";
-    sha256 = "sha256-KVAFDEc7ebtJYxQV2tA2pIMhRP3C9JZdq6vY6RtP+HI=";
+    sha256 = "sha256-cXIWU4oHfZmcA7upVJ1n06teX8ErR71vS/GU7IgsGnM=";
   };
   einbaum.tinytip = {
     name = "TinyTip";
@@ -773,8 +886,8 @@
     name = "WIIIUI";
     owner = "Fiurs-Hearth";
     repo = "WIIIUI";
-    rev = "c6a6d1dfa68ed80aea8343ad9ec4fcba39588600";
-    sha256 = "sha256-PweWEWq6WpuqEL7KVi0CvMZDPUrj0RddCxzwb6eZL2o=";
+    rev = "e17c352d21585fbacfbc2a0b7b2a422595d4cf18";
+    sha256 = "sha256-fNsfh194fm6GJK7yVI7HUGU9HeLQZK+2KNh8N4gbaQI=";
   };
   frostshock.em_gatherer = {
     name = "Gatherer";
@@ -791,7 +904,7 @@
     sha256 = "sha256-rRRhLWxHPc3KZLg0Cda8sBznU3xgALU+lnczhRlcpEs=";
   };
   frostshock.shaguclock = {
-    name = "ShaguClock";
+    name = "ShaguClock-tbc";
     owner = "FrostShock";
     repo = "ShaguClock";
     rev = "09d2949d5ce6f284e81a0f4175ac2223f092d99a";
@@ -836,15 +949,15 @@
     name = "Aero";
     owner = "gashole";
     repo = "Aero";
-    rev = "d44d23a7f4e93aec983115c685686b59c62bd119";
-    sha256 = "sha256-/Gtuzb9T1Rnk65hLzde1VG7af+GcB8TZCTW1PBTJCUQ=";
+    rev = "f6304c8834f1c8a0289f5ce93e49b29aed0585dc";
+    sha256 = "sha256-+lvqfszedeG+kapZFLTUW/AJyYcQbYUqilBO9zOB66c=";
   };
   gashole.druidmanabar = {
     name = "DruidManaBar";
     owner = "gashole";
     repo = "DruidManaBar";
-    rev = "89847a79452683eb8e344ca84f27092d39221f45";
-    sha256 = "sha256-M3GGsfnT2oUxcexKRcDRVQcVSVYyNA8DXwktSHYg118=";
+    rev = "67985e29e704536d8a12731141dd34caa2c0610f";
+    sha256 = "sha256-Ni1b27sp2OUN3AEXGcQwGF/g/ql16O+TIoEjECVP2zE=";
   };
   gashole.modui-focusframe = {
     name = "modui-FocusFrame";
@@ -944,13 +1057,6 @@
     rev = "60e459860507d7c34377f85baa4c2473992ea15f";
     sha256 = "sha256-Am4vriALP7GIeT2mjOjBmy/4IbFtpX2GmrYNuzqQTRA=";
   };
-  gemt.gemtrotations = {
-    name = "NFX";
-    owner = "gemt";
-    repo = "GemtRotations";
-    rev = "0af8c646e91c65156f8707ae8c339e51a3ba891f";
-    sha256 = "sha256-40N1VlYhO9zXG/rcZ15Ai4+RTVAyYehBd6cai2L59kc=";
-  };
   gimerstedt.elkbuffbarhor = {
     name = "ElkBuffBar";
     owner = "gimerstedt";
@@ -962,8 +1068,8 @@
     name = "notgrid";
     owner = "gnwl";
     repo = "NotGrid";
-    rev = "c0a20f61c94e679bafe4e2ff9dab159e23232c54";
-    sha256 = "sha256-wIuoCsLmtmHnXX0oHcLqAIMv431AhuuAvoUJiFIlV2w=";
+    rev = "466d1040a5dd53c87fa2c3b268d2e3e0bb13d71f";
+    sha256 = "sha256-7oAt6OFCnfW8ibf5agKzcdOshPblrtLavEt6kjp8QUA=";
   };
   goffauxs.adf = {
     name = "aDF";
@@ -1186,29 +1292,29 @@
     name = "RingMenu";
     owner = "jsb";
     repo = "RingMenu";
-    rev = "cfb9ba7f84a85252599aca7d314d27ff35700c13";
-    sha256 = "sha256-NeptXpg8UGC5i4zCrlWwzloXZuNqC00UeRv4EBS70/I=";
+    rev = "23db580b0ddc04b8650afdf50179302fbb67128f";
+    sha256 = "sha256-UhBl1Nxf4W8y3pgNqMoXYTqc2WXlCI5ODQSeA1LCJH4=";
   };
   kakysha.honorspy = {
     name = "Ace3";
     owner = "kakysha";
     repo = "HonorSpy";
-    rev = "3925d8e2991c2bb1f464d135ba7f7e2a70bb9ac7";
-    sha256 = "sha256-XLXN1308XapmvOM8iINCEyF7xuEhKoyXZTW3ePaATQA=";
+    rev = "828d396d399c65965131b3270588c89ab11da0ac";
+    sha256 = "sha256-3bk1zGZS9L9wq0aYyQP4Lo6vKz4atLVVSq1D6wAQ/Es=";
   };
-  kasvital.addons-for-vanilla_1_12_1_cfm = {
-    name = "!BigWigs TW";
+  kasvital.addons-for-vanilla-1_12_1-cfm = {
+    name = "!Libs";
     owner = "KasVital";
     repo = "Addons-for-Vanilla-1.12.1-CFM";
-    rev = "89ab38bb263eea4393414be07ce3ab51bddf0d84";
-    sha256 = "sha256-hZutqqmA6nKgF2rXL1VLQ4roTDJgFSxO7fL1npfxdek=";
+    rev = "35cbf9f6d1693cf0edfdb1fd4fa097abae1aa37c";
+    sha256 = "sha256-uzvpVZNDdzjUQyU2+TRc7liGoPGkbmFDM6+uVBoNHFY=";
   };
   kc8pnd.dotimer = {
     name = "DoTimer";
     owner = "kc8pnd";
     repo = "DoTimer";
-    rev = "dbe24401057b74d50e75394fec5090e6ae7cdf36";
-    sha256 = "sha256-3sx6CMt5lfBNGaK4EY4zzyNBs6wlhf9E5b0LKxoAo2Q=";
+    rev = "90bad43fe9347cdeb5f2640f71f082255f6bb7a5";
+    sha256 = "sha256-eSoqsODDZ8z1xESsMVasFPAK48q/ahW1rorIvFuWjHw=";
   };
   kc8pnd.mobhealth = {
     name = "MobHealth";
@@ -1270,8 +1376,8 @@
     name = "zUI";
     owner = "Ko0z";
     repo = "zUI";
-    rev = "d984370471ab64ede453ea9549fa3d64099dfd09";
-    sha256 = "sha256-fSX5E+VmpTQKpc7I9YAacpEQbw3DMyWsKlL3wOU0qE0=";
+    rev = "acec4c0c585ac6b2782ab2705e110d649155bace";
+    sha256 = "sha256-uACggpzkh0p/nIyCmSrMx5D+6oF1+wdNX/FsQvslv8s=";
   };
   kulturnilpferd.beardleys-diabloorbsvanilla = {
     name = "BeardleysDiabloOrbsVanilla";
@@ -1284,8 +1390,8 @@
     name = "BonusScanner";
     owner = "kxseven";
     repo = "VanillaRatingBuster";
-    rev = "308961e2278971a5e05d6985574363304cc52ebf";
-    sha256 = "sha256-vJNmu62SaotYMqDayW9GhQUGFG/b7xhT1uSrVRiE6KQ=";
+    rev = "d1c4df6a3a2f59e5a0c794f600090bfe55078818";
+    sha256 = "sha256-FdHyUWnA2A+mIXkPYEZvuljch4C7dqxhTdRX+DzK5J4=";
   };
   ladabr.whisperfilter = {
     name = "WhisperFilter";
@@ -1326,15 +1432,15 @@
     name = "AdvancedTradeSkillWindow";
     owner = "laytya";
     repo = "AdvancedTradeSkillWindow-vanilla";
-    rev = "c7b61155dac1cbae8191c55e441dda3ad7787ca5";
-    sha256 = "sha256-fWbNcDIQV5l5qX67pejLakKqXr38UuaumY8s/ubrTdU=";
+    rev = "9f405f0de2f311ea5245585bb86e5c8eb0fcc54a";
+    sha256 = "sha256-HvV5/eE/6YFl6/O2NpPq9RCdfMXJC3xJYTmc7iCpNwk=";
   };
   laytya.callofelements = {
     name = "CallOfElements";
     owner = "laytya";
     repo = "CallOfElements";
-    rev = "b37978e174c52933298a3831f2f1b8d6dcc14bae";
-    sha256 = "sha256-Ubh0WAdailXS3sa4HpoRikSpzncBWMY4SuKw6pJYf2c=";
+    rev = "1fc6bffe3e6d6e31d1275990fe69aaa1f39ee04d";
+    sha256 = "sha256-2hKGj8VxNQBdHKf5+VOQeH1f2EcqMgfyJz4e3c6ZexU=";
   };
   laytya.censusplus = {
     name = "CensusPlus";
@@ -1375,22 +1481,22 @@
     name = "LazyDruid";
     owner = "laytya";
     repo = "LazyScript";
-    rev = "97e277bd060924da418becb945e321b54065ad4e";
-    sha256 = "sha256-KKAoHPxgFjNMEj1WCJwDmJ1dQwaXwYVTE2R9XjMcrDQ=";
+    rev = "cf3b7c7220cf2f0fa7062af8033e3e30f8e87a92";
+    sha256 = "sha256-S2W5wRQ5czGBxxqFaBwPjCULywokz5YD7gwxl19Sx0M=";
   };
   laytya.lazyspell = {
     name = "_LazySpell";
     owner = "laytya";
     repo = "Lazyspell";
-    rev = "cee2976c7e9bab136ad6e86e95a6f738992c87c1";
-    sha256 = "sha256-R4/hvs07iI3bw9i28QUitYCFWnThcIhTJY/E9yUKTTM=";
+    rev = "1af9fc538bf010116290b3399ca67b9b2b95043f";
+    sha256 = "sha256-fT+zWtuf8XTFAYhb+hh/GLryRuKlJDfc3BV1dqWh33U=";
   };
   laytya.lilsparkysworkshop-vanilla = {
     name = "LilSparkysWorkshop";
     owner = "laytya";
     repo = "LilSparkysWorkshop-vanilla";
-    rev = "f7ebe414d7f5599cae68712afda77d09a104ebec";
-    sha256 = "sha256-BWWAatuzFadWV8wits/u7hS4iJjZ5hf6DXex1ypw5t0=";
+    rev = "b20712697cd5ece1a4553f113d7ffcb4569a9055";
+    sha256 = "sha256-mbJ4u/xQ/QTio9sLvMgwy9lS28LqLqBvFlr2Xj+kMYw=";
   };
   laytya.metamap-vanilla = {
     name = "MetaMap";
@@ -1410,8 +1516,8 @@
     name = "MinimapButtonFrame";
     owner = "laytya";
     repo = "MinimapButtonFrame-vanilla";
-    rev = "642a206c27ed8e870c4b451f00bf84bfd1734865";
-    sha256 = "sha256-TA/ZGDQudu6RclGy6FSSxc1+yC1J/YpGuIyUXBLs9Ac=";
+    rev = "0923f9e4128c6fcdc97df448c7665ca71bca2a18";
+    sha256 = "sha256-F5rBQteb4gxoaYbgmKL3WDxu+TfGrQbOi0ra5PfTEC8=";
   };
   laytya.niagara = {
     name = "Niagara";
@@ -1452,15 +1558,8 @@
     name = "vQueue";
     owner = "laytya";
     repo = "vQueue";
-    rev = "60efe808e20a5193441870cc5a6ff9672c49cbc0";
-    sha256 = "sha256-QDjASGrhD5HD9Nie+vHj2znjtifKg7B9C8MuqNCtxdo=";
-  };
-  lexiebean.atlasloot = {
-    name = "AtlasLoot";
-    owner = "Lexiebean";
-    repo = "AtlasLoot";
-    rev = "7b2b96a0ef53db0417b19839c71d66e9f6e3da5a";
-    sha256 = "sha256-FKuTuVJ5156nkoUdGZ40Cf2TdFppwNCCUN1Qk3Npuzw=";
+    rev = "a17db54792fdc05072f448e2328e950518f94a7c";
+    sha256 = "sha256-9KQyIkU1L+vSE+XV5Anbc63NKrl6rBIF6x42qZIY+6w=";
   };
   linae-kronos.casterstats = {
     name = "CasterStats";
@@ -1539,13 +1638,6 @@
     rev = "63aee841b835e291a30c40b46c452a9aa47717b1";
     sha256 = "sha256-aAw/PUgkg+H8OQZazzlV7QwA6JX9Hh1F+PSzLlgVA54=";
   };
-  madscripting.ktm-kronos = {
-    name = "KLHThreatMeter";
-    owner = "madScripting";
-    repo = "KTM-Kronos";
-    rev = "fc5a33ac36483388d4a338c3c19c61287a9ca298";
-    sha256 = "sha256-0PuMlrvRngoprhYO+H1tBD3JclNSu0T+G662ktyaSUE=";
-  };
   marktiedemann.feralfire = {
     name = "FeralFire";
     owner = "MarkTiedemann";
@@ -1565,7 +1657,7 @@
     owner = "martinjlowm";
     repo = "OmniCC";
     rev = "5a1b50cd6b210ebc406c563774acb5abeada0235";
-    sha256 = "sha256-eKwCQAswY0WlEHAprl8rFAlTDF8Ejof+jPrRGQJZnrw=";
+    sha256 = "sha256-RXtv726/YLnZoejV9AEYfRFJ8XMYVXGzHFawdGAeaqA=";
   };
   martinjlowm.vanilla_ocb = {
     name = "oCB";
@@ -1606,8 +1698,8 @@
     name = "AddOnOrganizer";
     owner = "Monteo";
     repo = "AddOnOrganizer";
-    rev = "17305a189d87f6d18f585cc89134702fc683acf8";
-    sha256 = "sha256-6nv9JolcQAVqXBsEKJYmYTYidwSkx1mAaz/SIwctxZI=";
+    rev = "b11a9485d0060831af67171c26a5107f82f21cf6";
+    sha256 = "sha256-tufxN0UP2GLCuPvgO9KH5YQ+opiUNjLZ0THJi3qjiW0=";
   };
   monteo.gfw_feedomatic = {
     name = "GFW_FeedOMatic";
@@ -1671,76 +1763,6 @@
     repo = "WorkAroundSelfCast";
     rev = "8587d8bd37b00f5f69c969887812cf21749b2e1c";
     sha256 = "sha256-U3q8CHbg32V5ZJNTwIFgIgDwCO7hg2n7/2gK8tnzizg=";
-  };
-  mrrosh.bongos = {
-    name = "Bongos";
-    owner = "mrrosh";
-    repo = "Bongos";
-    rev = "cb3b7af12165c647885e7ee5052cb397b0773784";
-    sha256 = "sha256-6uTHKIvATDR79Wkm+AaUHR370Bw69VCIz5VuX00kp4E=";
-  };
-  mrrosh.colorpickerplus = {
-    name = "ColorPickerPlus";
-    owner = "mrrosh";
-    repo = "ColorPickerPlus";
-    rev = "93f8e8f9f9a390a9d1bfb7832f79d56cbf29b6ef";
-    sha256 = "sha256-F2I2BG1XFRF1PAqkQyuMq/xUl284+mI1Id8qQAtvoS0=";
-  };
-  mrrosh.diivskins = {
-    name = "DiivSkins";
-    owner = "mrrosh";
-    repo = "DiivSkins";
-    rev = "b0307249a849be7e158ce713dac10c465ea9af8c";
-    sha256 = "sha256-fYa7/Phb4y21ySXfEg+K5ctkAHnWtl0HjVujmArZByc=";
-  };
-  mrrosh.healcomm = {
-    name = "HealComm";
-    owner = "mrrosh";
-    repo = "HealComm";
-    rev = "685d6b58e2f4cd10abad7104344070c674f23aa4";
-    sha256 = "sha256-Q4nQBQl6WAWM6fNxoJYwQjB6Yc7r0QZC5FKGtuwajog=";
-  };
-  mrrosh.mcp = {
-    name = "MCP";
-    owner = "mrrosh";
-    repo = "MCP";
-    rev = "47d396ef95bd499a6425d72cf42694c6fd7e88ad";
-    sha256 = "sha256-bT8Rq7GpDSrU1rTXDVTi4GVrHWG9kzqX2ghkwjZsDU0=";
-  };
-  mrrosh.missingtradeskillslist_vanilla = {
-    name = "MissingTradeSkillsList";
-    owner = "mrrosh";
-    repo = "MissingTradeSkillsList_Vanilla";
-    rev = "e7756952a901524ee64049198946a5c6aee48b71";
-    sha256 = "sha256-G+OIVIMdcUEtVLOdteZmS7SrPMtBk+jUeVYe1oEy9+4=";
-  };
-  mrrosh.openclam = {
-    name = "OpenClam";
-    owner = "mrrosh";
-    repo = "OpenClam";
-    rev = "c4be429be59a81ee34076d93616d8393720da3c1";
-    sha256 = "sha256-sPMYpZ0EDRckit0HDaTUJe1noOwx15corYlUjkZyghY=";
-  };
-  mrrosh.pfui-custommedia = {
-    name = "pfUI-CustomMedia";
-    owner = "mrrosh";
-    repo = "pfUI-CustomMedia";
-    rev = "a909249507b41da1d5b3d14f58a7b3b3f23322da";
-    sha256 = "sha256-ipUAB5QHFDbpiNJv6ctkhJu78qxlbs6PncRHv86MamE=";
-  };
-  mrrosh.pfui-gryphons = {
-    name = "pfUI-Gryphons";
-    owner = "mrrosh";
-    repo = "pfUI-Gryphons";
-    rev = "0265ddf49aea1082e0c9d038098ef66c1f307d09";
-    sha256 = "sha256-OYzy443KJWVWYJzSPio2gVXjRg2e+rH5d9p5i2mIurU=";
-  };
-  mrrosh.vanillagraphicboost = {
-    name = "VanillaGraphicBoost";
-    owner = "mrrosh";
-    repo = "VanillaGraphicBoost";
-    rev = "b6ce2454619dba6646ebd300fe8e26ad4891e581";
-    sha256 = "sha256-KYJgaUcID5QesRN/3Pogqn4mVCBSSx70lYHo03q9MqQ=";
   };
   muehe.classicdb = {
     name = "ClassicDB";
@@ -1861,125 +1883,6 @@
     rev = "96cf79bc3a877405919914c52c0d9c777e8aac94";
     sha256 = "sha256-z3xNkoOgSJWgHcnb6FFWEI+nvFleOVYQDhFIObdvQ8Q=";
   };
-  oldi.automessage = {
-    name = "AutoMessage";
-    owner = "0ldi";
-    repo = "AutoMessage";
-    rev = "c367bb48ae07c4bb1aa7e1d53b11fb0555623d2b";
-    sha256 = "sha256-n33W10OHP9119AZwvttL9HOGcWh1elYMoyOU/+XVw/I=";
-  };
-  oldi.chatbar = {
-    name = "ChatBar";
-    owner = "0ldi";
-    repo = "ChatBar";
-    rev = "ab3106bdfbd33bb871ceac1848e70f2d71e73f32";
-    sha256 = "sha256-WW41pVdkVQyNfZSupEkUzqnmzpTa41U4Re079yEzuTs=";
-  };
-  oldi.chatfix = {
-    name = "ChatFix";
-    owner = "0ldi";
-    repo = "ChatFix";
-    rev = "d9722d760e21465c4bbe1f5511dd03ad69fd6500";
-    sha256 = "sha256-fCXwlHcDU6DO3tPm38mGD81ZJHpqFHTI/LoWyG4vW4A=";
-  };
-  oldi.chatlog = {
-    name = "ChatLog";
-    owner = "0ldi";
-    repo = "ChatLog";
-    rev = "6a0d97db6225e2fcae0444bf578b33efbc09c7bd";
-    sha256 = "sha256-fAFS8X9PqSwfxQU5wJ8WuBUciq01y5aPkl6x28+ehi0=";
-  };
-  oldi.cthunwarner = {
-    name = "CThunWarner";
-    owner = "0ldi";
-    repo = "CThunWarner";
-    rev = "75fc117ac2fa8ecf9f38279f2957bf0ef162c62d";
-    sha256 = "sha256-wlqIQ4SxVoerdAHM4KlW93HV1BADwdvWaOauyHe7+l8=";
-  };
-  oldi.exoraidsetup = {
-    name = "ExoRaidSetup";
-    owner = "0ldi";
-    repo = "ExoRaidSetup";
-    rev = "bb2447fad6623620bf575245f090d268e37f9307";
-    sha256 = "sha256-lOfRo7epYOns9NsqktHZnCc0pXQJNC0TkVDIvlzqitQ=";
-  };
-  oldi.felwoodgather = {
-    name = "FelwoodGather";
-    owner = "0ldi";
-    repo = "FelwoodGather";
-    rev = "e99c99109bcd300565d5917f0703893b5fcfc56d";
-    sha256 = "sha256-jekm+8a4Vy40f9iXWg8DKCP88BMdYrvQ1nrMVbTjipw=";
-  };
-  oldi.imba = {
-    name = "IMBA";
-    owner = "0ldi";
-    repo = "IMBA";
-    rev = "88c87ffd4e73e7542e9f46aa411264419d1b815b";
-    sha256 = "sha256-/i9QHJmdekKzajYPmB1qYcngkvh6c6JUUsXHg8BjKYo=";
-  };
-  oldi.imdead = {
-    name = "IMDead";
-    owner = "0ldi";
-    repo = "IMDead";
-    rev = "48ef045409f9e506fc50376fe022e45e3112b523";
-    sha256 = "sha256-Yy6SVbeA5e+cQLrOmeDLCQLzRkG9rJAgxdu7MpacNVc=";
-  };
-  oldi.losecontrol = {
-    name = "LoseControl";
-    owner = "0ldi";
-    repo = "LoseControl";
-    rev = "565703112d366450e1fa4dbef8e442e7c4612883";
-    sha256 = "sha256-EXKmJnWo0S629LYEmtZNxtNYgvyEDdXYbvs2K7rl8YE=";
-  };
-  oldi.mobresist = {
-    name = "MobResist";
-    owner = "0ldi";
-    repo = "MobResist";
-    rev = "68c3dc00dedf3a615416b111e81fbe0651b2f0e8";
-    sha256 = "sha256-1sVP37AEmctp6whRgu4Ip1cKGSsP9qfKKC1qEsdmra4=";
-  };
-  oldi.quickchat = {
-    name = "QuickChat";
-    owner = "0ldi";
-    repo = "QuickChat";
-    rev = "52aeb268a9cd1d7ba3cb8dc1b31fdfdf0002ea9e";
-    sha256 = "sha256-m6HzW7Q+h2l6vlSRudmRxsXm/X2QkJDOKUwYY0aYl08=";
-  };
-  oldi.rangecolor = {
-    name = "RangeColor";
-    owner = "0ldi";
-    repo = "RangeColor";
-    rev = "86e303f1d97b0355010ed3a010bb7c611eb90112";
-    sha256 = "sha256-cgugEjdcbFrfgjpXtux7D1dIGGVTR4OSCuR/Tj7yjw8=";
-  };
-  oldi.simpleactionsets = {
-    name = "SimpleActionSets";
-    owner = "0ldi";
-    repo = "SimpleActionSets";
-    rev = "d75f0eb6c21c96c9a56cd441844905de09d0473b";
-    sha256 = "sha256-eWfsatBIbrpZHtSE1Jpa6f3ku18AqQjwTL3pgBwBBF0=";
-  };
-  oldi.summonsmonitor = {
-    name = "SummonsMonitor";
-    owner = "0ldi";
-    repo = "SummonsMonitor";
-    rev = "06c8f377bab24fd59f094a01674f1aaa7376aea0";
-    sha256 = "sha256-wbQAPr4iTZK4rO8K4+pUOUSIN8mH+5HabZX80vnwlzg=";
-  };
-  oldi.targetassist = {
-    name = "TargetAssist";
-    owner = "0ldi";
-    repo = "TargetAssist";
-    rev = "8167f541f1ba2d2cf8bc28711dad7973042124f7";
-    sha256 = "sha256-2bezs7oLunWTvrMKAuGbEOgIlGHrmXoCWV7ihvkxNCs=";
-  };
-  oldi.timers = {
-    name = "Timers";
-    owner = "0ldi";
-    repo = "Timers";
-    rev = "8c5645ad517589600049aacfbb1748297e372629";
-    sha256 = "sha256-pb5qfezWreQcevvnxVRZ6y+3EtjEFc8K9ij/uDOzbmI=";
-  };
   opcow.buffreminder = {
     name = "BuffReminder";
     owner = "opcow";
@@ -1992,7 +1895,7 @@
     owner = "oppahansi";
     repo = "WoW-UIs";
     rev = "4ec7b97961438c2a011ae13b0736fd0f59b0448b";
-    sha256 = "";
+    sha256 = "sha256-Mpy6K0VitYzDDl+CAaCq2SrRFq8vINh57i8RZwDT42w=";
   };
   orukxu.spamthrottle = {
     name = "SpamThrottle";
@@ -2065,11 +1968,11 @@
     sha256 = "sha256-YIYmXzoCZ70MnD0IQ7FDyOWYPYe4F2doiweJCKm12as=";
   };
   questie.questie = {
-    name = "Ace3";
+    name = "HereBeDragons";
     owner = "Questie";
     repo = "Questie";
-    rev = "e772af3dce386fa0a30b55d499f8053c7cca358f";
-    sha256 = "sha256-Fj/oXnDnMYOdvPrXXpgIzCP7wny5iadIBuqOKkd2gDc=";
+    rev = "c271c2e97c1fa17b1528d4bdfc4f47ad50201555";
+    sha256 = "sha256-s46ydLXb7KFuruHP78S00KFBL0fJb9ahZr7sI/KFEJw=";
   };
   ragedunicorn.wow-gearmenu = {
     name = "GearMenu";
@@ -2239,13 +2142,6 @@
     rev = "4e33174b1fc403d395671eefcbbc70a57fb6e52a";
     sha256 = "sha256-4PjxsXJ0DCWTTrRxSxgpXkfx0rfU1kxr6upgIfawjKc=";
   };
-  road-block.itemsofpower = {
-    name = "ItemsOfPower";
-    owner = "Road-block";
-    repo = "ItemsOfPower";
-    rev = "265fe97786de235ded987d984d853acec8740087";
-    sha256 = "sha256-V5K79k+R3mtdvPD2xd6cNvpOWR1kXrXxvF1ZRPfrMJ0=";
-  };
   road-block.killlog = {
     name = "killlog";
     owner = "Road-block";
@@ -2327,15 +2223,15 @@
     name = "shootyepgp";
     owner = "Road-block";
     repo = "shootyepgp";
-    rev = "39948dcd6bb0bd54857b8567c32f34df6c6b9431";
-    sha256 = "sha256-9ZOoDW7zeHpXiqCijhOrH7WcbG3bTKrLadFd2pq4Aj4=";
+    rev = "402d96b72234ff3a3adbb6e1d56dc6d32e96ffb8";
+    sha256 = "sha256-FUUmvxD8X8rTcT+KRELanA0GIxXIT8yPKLh59od4r9k=";
   };
   road-block.simplecombatlog = {
     name = "SimpleCombatLog";
     owner = "Road-block";
     repo = "SimpleCombatLog";
-    rev = "027e1294983dfe4233d34e5e43656b04eb72b7c9";
-    sha256 = "sha256-JdZwQh/KcwDuBGMsGzGSDXlh1fZx/k6bBMjD0iq0pLM=";
+    rev = "2f4b6035c07d3e09fe15e33c2e9fe8e00fa739b3";
+    sha256 = "sha256-RCs29HcngDsIuTf68+82/+IYegljrU6+cpW8ycrRkek=";
   };
   road-block.simpleraidtargeticons = {
     name = "SimpleRaidTargetIcons";
@@ -2474,8 +2370,8 @@
     name = "Zorlen";
     owner = "satan666";
     repo = "sRaidFrames_Improved";
-    rev = "12c223c5780d178144c624b542df86f97137db8c";
-    sha256 = "sha256-2gLZ2q7b42tvwalpWLvqgDPKPNJX8vZ7Xf690sANlKg=";
+    rev = "4642e662aeb628b1df510666407ace422def6a16";
+    sha256 = "sha256-RRgsZLbbAok9BPnhGWIkMp2ytIEkRGC8b9eBRuUR8hM=";
   };
   satan666.trinketmenu-fix = {
     name = "TrinketMenu";
@@ -2544,8 +2440,8 @@
     name = "pfDebug";
     owner = "shagu";
     repo = "pfDebug";
-    rev = "0f9a2cb7e907dfd159b929261456f4e825c6c046";
-    sha256 = "sha256-07exFkZJRARpjrsBSUllBPpoQcBWgtlqHnF0ENsv9NY=";
+    rev = "6f305a9b141cead0d2d141e81dc4e860db3acbbc";
+    sha256 = "sha256-d8mLjWPYE7NziQJgxRLCdUwavNbUzvFafaST8Md4lg0=";
   };
   shagu.pfdesktop = {
     name = "pfDesktop";
@@ -2555,18 +2451,11 @@
     sha256 = "sha256-hbcAW/bmD8bDdLuwK7w0cViZnY5BQOC+azmcogoUoAE=";
   };
   shagu.pfquest = {
-    name = "pfQuest";
+    name = "pfQuest-tbc";
     owner = "shagu";
     repo = "pfQuest";
-    rev = "67625ca577324f3f1494f7fb041ce92cd7201ca6";
-    sha256 = "sha256-Xy6JmRZXPwfUTAooFcDyeN/ldqNkG5HMUOE5TAbJcV4=";
-  };
-  shagu.pfquest-turtle = {
-    name = "pfQuest-turtle";
-    owner = "shagu";
-    repo = "pfQuest-turtle";
-    rev = "fa3a115f011e4f43dc713f3573034b2d84444537";
-    sha256 = "sha256-CEzZPfROCWZpuihPEWEtSfCFOsSLfyHmUXE5ZOxDioU=";
+    rev = "104f35678ca39ab1fb78b655f815cc7016f5e0c8";
+    sha256 = "sha256-FOA8H2eCMLmc+iBPeKFLXnzh4f9qGKsyArT9BJgCoUI=";
   };
   shagu.pfsimpledamage = {
     name = "pfSimpleDamage";
@@ -2579,15 +2468,15 @@
     name = "pfStudio";
     owner = "shagu";
     repo = "pfStudio";
-    rev = "f771f01d74ae6531c3a13cbe0c533e81f1b6856d";
-    sha256 = "sha256-mIuJii6uf5v68AlBbFRi8Pm+XTwplSU0MS5MUm/udMY=";
+    rev = "01e1dacf6c63d7920dcbb22dc32c624f6bc36f78";
+    sha256 = "sha256-279jqGGZKMJSe5VqwTvDHy6h0GXjINsFbUXNSXo8XAM=";
   };
   shagu.pfui = {
-    name = "pfUI";
+    name = "pfUI-tbc";
     owner = "shagu";
     repo = "pfUI";
-    rev = "b7289a702c35d6b9c242c238cb9705bea26dd436";
-    sha256 = "sha256-FAEn7hYANsOJL+GPf1JCnUkLPqxlsRu/iPMt1xXxFR8=";
+    rev = "b2f6df84a93a4ce6adbe1fd8f0372454795151f1";
+    sha256 = "sha256-ZwkbVmer7R+FXyXsId9YrAhqWoA3qSIvrYnhK6I1ujE=";
   };
   shagu.shagubam = {
     name = "ShaguBam";
@@ -2604,21 +2493,21 @@
     sha256 = "sha256-FnWWNjdkgJP0xO/NRfjewPm4vqMjvp02AWsIIU3vr4o=";
   };
   shagu.shaguchat = {
-    name = "ShaguChat";
+    name = "ShaguChat-tbc";
     owner = "shagu";
     repo = "ShaguChat";
     rev = "01c37853c5e714b218837d24932c316f68b2728f";
     sha256 = "sha256-+x5+08XUsDpkExQfjaD2NtQwzEluv0S0JY7cv5c3gFc=";
   };
   shagu.shaguclock = {
-    name = "ShaguClock";
+    name = "ShaguClock-tbc";
     owner = "shagu";
     repo = "ShaguClock";
     rev = "3ca9d1d41c9e7327d4c638dd19a65df15e8dbc68";
     sha256 = "sha256-gWTbAr7WC2c5KDZ+EJ19/6T/5OlS77+w1Yi7ZBs7wxA=";
   };
   shagu.shagucolor = {
-    name = "ShaguColor";
+    name = "ShaguColor-tbc";
     owner = "shagu";
     repo = "ShaguColor";
     rev = "b4fd1b82b665c36ea6ef5879ec3707d34585bc62";
@@ -2635,8 +2524,8 @@
     name = "ShaguCopy";
     owner = "shagu";
     repo = "ShaguCopy";
-    rev = "b97aad14d13b993cfb7c90007391691b07291424";
-    sha256 = "sha256-6mce25M4A1+/a95/kbaYG/gcffeS0d/zah+7b8VuUQg=";
+    rev = "f6a7e741c7050478306b8eb13d00bbdd5cd0e182";
+    sha256 = "sha256-ztvoiekjL28ULN65Iy0l9bIrbh6GAtuhRKGjqpBy6QI=";
   };
   shagu.shagudelgado = {
     name = "ShaguDelgado";
@@ -2645,26 +2534,19 @@
     rev = "cbe2dd666f1c0f388d5133412e6b151cb6abb4e7";
     sha256 = "sha256-bXV2WHaz3WI77B4VvIxq//nq5IzqiNKwZd67dtrHHbI=";
   };
-  shagu.shagudps = {
-    name = "ShaguDPS";
-    owner = "shagu";
-    repo = "ShaguDPS";
-    rev = "6b50e53bb81508c32efb3d722b6b8ebc877099c6";
-    sha256 = "sha256-4SRHbJ2ugPuRqxESS0PyGwda4QO+3fVQRrZ5cwYuLkU=";
-  };
   shagu.shaguerror = {
-    name = "ShaguError";
+    name = "ShaguError-tbc";
     owner = "shagu";
     repo = "ShaguError";
     rev = "da847ea462dd6c3f8c009267ccf8eb9ef35b5916";
     sha256 = "sha256-6NYxf2DPyES901Q/MghO+tZwElKqSFenZl0+BeNy4Sk=";
   };
   shagu.shaguinventory = {
-    name = "ShaguInventory";
+    name = "ShaguInventory-tbc";
     owner = "shagu";
     repo = "ShaguInventory";
-    rev = "3aae7024e0ea44a51f6d00a973452c451ce902be";
-    sha256 = "sha256-5cq4HYB33C366H6pFHItn7JdWlNioN3Mfcwwft2uXU8=";
+    rev = "00eeeb2da84d33bb2f51f1a5bda97dc08978772c";
+    sha256 = "sha256-Nu9TSpmlmP8ebqmTADSWyBIRWwtlwuGfCc1hX1+LxoI=";
   };
   shagu.shagukill = {
     name = "ShaguKill";
@@ -2681,25 +2563,25 @@
     sha256 = "sha256-KSMdAy3yV5G+eiDu1r/LtTSKRC0EBfELn5X1WP3IaPc=";
   };
   shagu.shagunotify = {
-    name = "ShaguNotify";
+    name = "ShaguNotify-tbc";
     owner = "shagu";
     repo = "ShaguNotify";
-    rev = "eccd97f68cc7123b21f78c4fa747dd6296428498";
-    sha256 = "sha256-X/2nWeyoirXv3ditEfW4PusV9kCxsG5s7IZq3ayZgb8=";
+    rev = "2ecb31ec07b4e815c320c0e4f461adaabb7eca49";
+    sha256 = "sha256-7m7Qjhx0uY59ogWXZ1bGENxjQZmSn+nTzPXhirgtAZ8=";
   };
   shagu.shaguplates = {
-    name = "ShaguPlates";
+    name = "ShaguPlates-tbc";
     owner = "shagu";
     repo = "ShaguPlates";
-    rev = "d05666faa2e672ae9a4c7df8faab99a953c22f19";
-    sha256 = "sha256-pDnYraGPOAD0OQ1kH3yZZ3+MjFdQCs6VpaNhrnnSiis=";
+    rev = "9b2ebdf486864fea61a0bb8a5506cc88983ce37b";
+    sha256 = "sha256-Ijio/zc1F1UI9W/SjISIoQtWWp5gM0INBFP0yhlv9fo=";
   };
   shagu.shaguscore = {
     name = "ShaguScore";
     owner = "shagu";
     repo = "ShaguScore";
-    rev = "f7f9cc748faf7267cb767032c02cfd5da39deb6e";
-    sha256 = "sha256-MLbJgbwPXlWbcMpQiuc8U2XbtZi3lhMkdA3089WseEE=";
+    rev = "b07d25e6a1fa30391d9dca0dd728e33a762c6711";
+    sha256 = "sha256-mzdhaxw2HfgaRGU5hvnrPiHwNGx5wBDK4N+J/+50C7I=";
   };
   shagu.shagustance = {
     name = "ShaguStance";
@@ -2709,21 +2591,21 @@
     sha256 = "sha256-l5IQqmN63aQQdea9ciZMFZ7yL3aNdjFfHGnaVS2PBrE=";
   };
   shagu.shagutooltips = {
-    name = "ShaguTooltips";
+    name = "ShaguTooltips-tbc";
     owner = "shagu";
     repo = "ShaguTooltips";
     rev = "85abb17f4181b514ef6848e380aafd0616bad12e";
     sha256 = "sha256-oFsfpmHDS6FjSaUH4OpkiIQy/JGuvuBFwT9vZmm8NbA=";
   };
   shagu.shagutweaks = {
-    name = "ShaguTweaks";
+    name = "ShaguTweaks-tbc";
     owner = "shagu";
     repo = "ShaguTweaks";
-    rev = "b4dee8585fc342df8f7ee6317b918c4818826ed7";
-    sha256 = "sha256-HDcDDyf87G/qcyn3/aWkugEioU7DI3BERm0sTAUtoF8=";
+    rev = "7d670218a9b1e0a6a9a9062c0f458508398f2e48";
+    sha256 = "sha256-WUCyvDKlc2FTFykkoC5iQ/lrFiuHoxxHPX5mwhszGJM=";
   };
   shagu.shaguvalue = {
-    name = "ShaguValue";
+    name = "ShaguValue-tbc";
     owner = "shagu";
     repo = "ShaguValue";
     rev = "debbde88b68a941b13a614612a7aa867cadbe542";
@@ -2775,8 +2657,8 @@
     name = "Cleanup";
     owner = "shirsig";
     repo = "Cleanup";
-    rev = "98b86a2c98e901281551a4c50c891ab96ff6531d";
-    sha256 = "sha256-GnVRZ/Ekg+pG7o1wGLAcJUvRXuviJJDM78Pzzj3j8Ao=";
+    rev = "f647df0c73d36728c8fa160aa597cb1b2a99ff0a";
+    sha256 = "sha256-4SjcYaOW6Iz/ipQcMFnhGiXCTmTIVUBE5laqLZOO0jE=";
   };
   shirsig.cooline = {
     name = "cooline";
@@ -2803,8 +2685,8 @@
     name = "!!inspect";
     owner = "shirsig";
     repo = "inspect";
-    rev = "afddb2549a70e7b13d28800b5e7a7d87499ba538";
-    sha256 = "sha256-1/7Cba9pLfMc7/v2fGHPrHsvZKaRy4Nppkxn/N4dfog=";
+    rev = "a91c16ebfe09a0ef8bfb92e4b593c8da795346e9";
+    sha256 = "sha256-1+dw5jZwf23pvYDAZJ5NpXgqpXTUSiF2JP2E6MLFSEA=";
   };
   shirsig.linkmend = {
     name = "linkmend";
@@ -2880,8 +2762,8 @@
     name = "unitscan";
     owner = "shirsig";
     repo = "unitscan";
-    rev = "d767dea3e6aeeef3ed25fa921112c9aa91969d7b";
-    sha256 = "sha256-RY+NeUkfMkyvu4Q3CjBOcKG7FlAuGeb6/rDbyRev2rM=";
+    rev = "52e6a9ea1da48ffef95f8c8b8d31472586634da1";
+    sha256 = "sha256-fwPL6xNnmxlrhVv7rrNG3oxJgj4fTnKLVrmD17iI8pk=";
   };
   shirsig.wim = {
     name = "WIM";
@@ -2953,13 +2835,6 @@
     rev = "c20362378be481dc445aedddf9769eee197bba21";
     sha256 = "sha256-pjkAjYWsRp0Abi658DPu9iMOHpongoEFToBXQoMNuYI=";
   };
-  tercioo.details-damage-meter = {
-    name = "Details";
-    owner = "Tercioo";
-    repo = "Details-Damage-Meter";
-    rev = "bdf8901fa2273b60ab806a346f9c2f6de5160b45";
-    sha256 = "sha256-MV5wzj2/c5DkN98td04FkCxZAAHxb3HXxsD+4Qs+Hbk=";
-  };
   terrub.samuel = {
     name = "Samuel";
     owner = "Terrub";
@@ -2999,8 +2874,8 @@
     name = "VanillaStoryline";
     owner = "tubtubs";
     repo = "VanillaStoryline";
-    rev = "e55215228897888a1f28b47573319c48a1e1c2ad";
-    sha256 = "sha256-Ge1NbpOPqOZzKav1irQX567JRFpPOkc+GUr7bQ3KUAs=";
+    rev = "9385a08058bc58f4ad583b8f683cb7c21dc11084";
+    sha256 = "sha256-Hxp/iAW1LzH4nZk1s/CpEKfiRiGmRLNK7e8nGG/PK3A=";
   };
   turinpt.bossalert = {
     name = "BossAlert";
@@ -3237,8 +3112,8 @@
     name = "CleanPlayerFrame";
     owner = "wbb1977";
     repo = "CleanPlayerFrame";
-    rev = "fda23085cb2e23c223156e7bf0d0aa8baf5e56ce";
-    sha256 = "sha256-1yBgH4fgh3ywWCuZq3bZ9DxE1zcLR7X7Xu/gfi5i380=";
+    rev = "234eb6d89bb24adb956dcececa590d664cc6b558";
+    sha256 = "sha256-n0gx8F5YXGEmx8vXo1EpkyDwnrmQh1S4xrHFbfHL/jk=";
   };
   wbb1977.corpseinfo = {
     name = "CorpseInfo";
@@ -3251,8 +3126,8 @@
     name = "FishInfo2";
     owner = "wbb1977";
     repo = "FishInfo2";
-    rev = "a90ed9a961d356f561558376cabab87c0abd45bc";
-    sha256 = "sha256-mIcbyccbTHcU9ZVONmPmkEd5WfQD/lheVOgo2mxLIi8=";
+    rev = "acc91a08bbb7c13ce7b6c2d0b96ec05ed90c3f6f";
+    sha256 = "sha256-jDd+rkoHRqOnqfQUEIwJ9OzaH4XjX04fklnc23s3vvQ=";
   };
   wbb1977.perfectshot = {
     name = "PerfectShot";
@@ -3310,19 +3185,12 @@
     rev = "a9d99361f4d9be9f5f24fb4a934ca65be662fb5c";
     sha256 = "sha256-eiCzVrDsHcpvyTzJmdOsZ4NKFn/2POddF0O6QT0KsWM=";
   };
-  wow-vanilla-addons.postal = {
-    name = "Postal";
-    owner = "wow-vanilla-addons";
-    repo = "Postal";
-    rev = "f183b2f64581170d6436cbbad30f22964f3545f9";
-    sha256 = "sha256-I0SU2iNNWvsvv1+QarEMtSIWTIl3heUp8VN6EaS9zZ0=";
-  };
   wow-vanilla-addons.questitem = {
     name = "QuestItem";
     owner = "wow-vanilla-addons";
     repo = "QuestItem";
-    rev = "9f61259c098db12cd16c7c75abeed3ae0c8b9939";
-    sha256 = "sha256-L3sLs4kUcgB+BZUc4N2HmTfaLDulHjCNCZbanZFDdPw=";
+    rev = "ab56cb7d6994dab0ce8e591802fefa6849ca5808";
+    sha256 = "sha256-Sn0EEBYpL3JHolGB90ZKX54+Q7oXPFFDpWm9OZgnShE=";
   };
   xorann.abraxas = {
     name = "Abraxas";
@@ -3358,13 +3226,6 @@
     repo = "TankHeal";
     rev = "c5642faca9d7f81ddc98e927781445f3f32d1691";
     sha256 = "sha256-OsxmqRaycXfOBJQn/psT6M8fO/SQa3sL1dZYd0l18k4=";
-  };
-  yogo1212.healbot-classic = {
-    name = "HealBot";
-    owner = "yogo1212";
-    repo = "healbot-classic";
-    rev = "6c78b6801556e52be829548b1305b2f4a53141e2";
-    sha256 = "sha256-urMW4paWBQnGsywLUeCIPCLe2P/Zyw/8uWBS6WXEIGA=";
   };
   yutsuku.avbars = {
     name = "avbars";
