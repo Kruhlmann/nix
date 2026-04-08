@@ -8,7 +8,7 @@ in {
   # 3: 25 26 27 28 29 30 31 32 33 34 35 36
   # 4: 37 38 39 40 41 42 43 44 45 46 47 48
   # 5: 49 50 51 52 53 54 55 56 57 58 59 60
-  # 6: 61 62 63 64 65 66 67 68 69 70 71 72 
+  # 6: 61 62 63 64 65 66 67 68 69 70 71 72
   general = {
     print = {
       rested-xp = {
@@ -193,6 +193,23 @@ in {
       };
     };
   };
+  pet = {
+    attack = {
+      name = "Pet Attack";
+      icon = "";
+      body = ''
+        /script PetAttack();
+      '';
+    };
+    stop = {
+      name = "Pet Stop";
+      icon = "";
+      body = ''
+        /script PetPassiveMode();
+        /script PetFollow();
+      '';
+    };
+  };
   class = {
     druid = {
       kill-totem = {
@@ -260,7 +277,16 @@ in {
         name = "Pet Attack";
         icon = "";
         body = ''
-          /script if GetUnitName("target")==nil then TargetNearestEnemy() end; /script CastPetAction(2); /script CastPetAction(10); /script PetAttack(target); /cast Charge; /cast Dash;'';
+          /script PetAttack();
+        '';
+      };
+      pet-stop = {
+        name = "Pet Stop";
+        icon = "";
+        body = ''
+          /script PetPassiveMode();
+          /script PetFollow();
+        '';
       };
       pet-follow = {
         name = "Pet Follow";

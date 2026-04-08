@@ -1,4 +1,67 @@
 { ... }: {
+  otari98.atlasloot = {
+    name = "AtlasLoot";
+    owner = "Otari98";
+    repo = "AtlasLoot";
+    rev = "a6f2a73143e770686f490b5e1ff94d0669a13717";
+    sha256 = "sha256-kk61SeMYUoSiVUu1QUDFvZIX2DcaCkciuIZ8yLhw2cQ=";
+  };
+  marcelinevq.twthreat = {
+    name = "TWThreat";
+    owner = "MarcelineVQ";
+    repo = "TWThreat";
+    rev = "e1af6d03776233569a9d6dc75c3045e13f71e78f";
+    sha256 = "sha256-i18p72cy64ShyAiRUQiE4FGYNNPCKjiTUnjJI9nsXgs=";
+  };
+  marcelinevq.automarker = {
+    name = "AutoMarker";
+    owner = "MarcelineVQ";
+    repo = "AutoMarker";
+    rev = "44399290eca5f693426a3808ececc0bcd4c74198";
+    sha256 = "sha256-A16q8TkidBd/4aJaY5ggbGBBsfSrM7vJUsYD63472Ts=";
+  };
+  shagu.shagudps = {
+    name = "ShaguDPS";
+    owner = "shagu";
+    repo = "ShaguDPS";
+    rev = "79c25e60f9ab3f314d69bec3d3edcbf965b7c312";
+    sha256 = "sha256-8NyA8J30A3eadT4E5Kxxw2KQ7S21+8diOXhBEMBAKeQ=";
+  };
+  t321us.necrosis = {
+    name = "Necrosis";
+    owner = "T321us";
+    repo = "necrosis-twow";
+    rev = "7d6b20b4f5de41ed1cf21dc819eea1d54b7c7e01";
+    sha256 = "sha256-+tBu1DGcdyjiQUyzFv+IaMYteFrfHURRV+rPaWWdFJ4=";
+  };
+  seacrabsam.lockport = {
+    name = "LockPort";
+    owner = "seacrabsam";
+    repo = "LockPort";
+    rev = "24c61e42b683d3b422d5c8744feb195e0137e04a";
+    sha256 = "sha256-bDit5WghzYAoz4ingfpaeCVcj3y4SF240UQ7k6hUOn0=";
+  };
+  balakethelock.superapi = {
+    name = "SuperAPI";
+    owner = "balakethelock";
+    repo = "SuperAPI";
+    rev = "bf2fd24c1e7349217a6871b866dc2b7d4fdcc18e";
+    sha256 = "sha256-FXyA+QA++Ymwq3KZAcy93TuUzipfwcaoRA6CvJkSN08=";
+  };
+  sica42.rollfor = {
+    name = "RollFor";
+    owner = "sica42";
+    repo = "RollFor";
+    rev = "651177709e50b34686b633b7f689e17547d8ac19";
+    sha256 = "sha256-KH+Dgzvsl9G+d2cCwCkKSvWouE5vEErX01gB91WKb2A=";
+  };
+  pepopo978.cursive = {
+    name = "Cursive";
+    owner = "pepopo978";
+    repo = "Cursive";
+    rev = "29f9c3afd7fdba6df721f1bbabbaf554a7fa8c25";
+    sha256 = "sha256-KH+Dgzvsl9G+d2cCwCkKSvWouE5vEErX01gB91WKb2A=";
+  };
   _0ldi.automessage = {
     name = "AutoMessage";
     owner = "0ldi";

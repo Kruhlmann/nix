@@ -9,11 +9,11 @@
     autoRepeatDelay = 250;
     autoRepeatInterval = 30;
     windowManager.xmonad.enable = true;
-    #videoDrivers = [ "amdgpu" ];
-    deviceSection = ''
-      Option "DRI" "2"
-      Option "TearFree" "true"
-    '';
+    videoDrivers = [ "amdgpu" ];
+    #deviceSection = ''
+    # Option "DRI" "2"
+    # Option "TearFree" "true"
+    #'';
     xkb.layout = "us";
     xkb.variant = "altgr-intl";
     xkb.options = "caps:escape";

@@ -22,6 +22,7 @@ in {
     bitwarden-cli
     brightnessctl
     btop
+    cabextract
     chromium
     conky
     dialog
