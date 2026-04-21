@@ -20,29 +20,131 @@ XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 GAME_BASE="$XDG_DATA_HOME/turtle-wow"
 GAME_DIR="$GAME_BASE/game"
 PERSISTENT_WTF_DIR="$GAME_BASE/WTF"
-STAMP_FILE="$GAME_BASE/source-store-path"
+BASE_STAMP_FILE="$GAME_BASE/base-store-path"
+ADDONS_STAMP_FILE="$GAME_BASE/addons-store-path"
+MODS_STAMP_FILE="$GAME_BASE/mods-store-path"
+PATCHES_STAMP_FILE="$GAME_BASE/patches-store-path"
+ADDONS_LIST_FILE="$GAME_BASE/addons.list"
+MODS_LIST_FILE="$GAME_BASE/dlls.list"
+PATCHES_LIST_FILE="$GAME_BASE/patches.list"
+
+BASE_DIR="$TURTLE_WOW_BASE_STORE/share/turtle-wow-base"
+ADDONS_DIR="$TURTLE_WOW_ADDONS_STORE/share/turtle-wow-addons/Interface/AddOns"
+MODS_DIR="$TURTLE_WOW_MODS_STORE/share/turtle-wow-mods"
+PATCHES_DIR="$TURTLE_WOW_PATCHES_STORE/share/turtle-wow-patches/Data"
+CONFIG_DIR="$TURTLE_WOW_CONFIG_STORE/share/turtle-wow-config"
 
 mkdir -p "$GAME_BASE" "$PERSISTENT_WTF_DIR" "$WINEPREFIX"
 
-need_sync=0
+need_base_sync=0
 if [ ! -d "$GAME_DIR" ]; then
-    need_sync=1
-elif [ ! -f "$STAMP_FILE" ]; then
-    need_sync=1
-elif [ "$(cat "$STAMP_FILE" 2>/dev/null || true)" != "$TURTLE_WOW_STORE" ]; then
-    need_sync=1
+    need_base_sync=1
+elif [ ! -f "$BASE_STAMP_FILE" ]; then
+    need_base_sync=1
+elif [ "$(cat "$BASE_STAMP_FILE" 2>/dev/null || true)" != "$TURTLE_WOW_BASE_STORE" ]; then
+    need_base_sync=1
 fi
 
-if [ "$need_sync" -eq 1 ]; then
+if [ "$need_base_sync" -eq 1 ]; then
     rm -rf "$GAME_DIR"
     mkdir -p "$GAME_DIR"
-    cp -a "$TURTLE_WOW_STORE/share/turtle-wow/." "$GAME_DIR/"
+    cp -a "$BASE_DIR/." "$GAME_DIR/"
     chmod -R u+rwX "$GAME_DIR"
-    printf '%s\n' "$TURTLE_WOW_STORE" >"$STAMP_FILE"
+    printf '%s\n' "$TURTLE_WOW_BASE_STORE" >"$BASE_STAMP_FILE"
 fi
 
-if [ ! -e "$PERSISTENT_WTF_DIR/Config.wtf" ] && [ -d "$GAME_DIR/WTF" ]; then
-    cp -a "$GAME_DIR/WTF/." "$PERSISTENT_WTF_DIR/"
+need_addons_sync=0
+if [ ! -f "$ADDONS_STAMP_FILE" ]; then
+    need_addons_sync=1
+elif [ "$(cat "$ADDONS_STAMP_FILE" 2>/dev/null || true)" != "$TURTLE_WOW_ADDONS_STORE" ]; then
+    need_addons_sync=1
+fi
+
+if [ "$need_addons_sync" -eq 1 ]; then
+    mkdir -p "$GAME_DIR/Interface/AddOns"
+    if [ -f "$ADDONS_LIST_FILE" ]; then
+        while IFS= read -r addon_name; do
+            [ -n "$addon_name" ] || continue
+            rm -rf "$GAME_DIR/Interface/AddOns/$addon_name"
+        done <"$ADDONS_LIST_FILE"
+    fi
+    if [ -d "$ADDONS_DIR" ]; then
+        "$FINDUTILS/find" "$ADDONS_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' \
+            >"$ADDONS_LIST_FILE"
+        while IFS= read -r addon_name; do
+            [ -n "$addon_name" ] || continue
+            cp -a "$ADDONS_DIR/$addon_name" "$GAME_DIR/Interface/AddOns/"
+        done <"$ADDONS_LIST_FILE"
+    else
+        : >"$ADDONS_LIST_FILE"
+    fi
+    printf '%s\n' "$TURTLE_WOW_ADDONS_STORE" >"$ADDONS_STAMP_FILE"
+fi
+
+need_mods_sync=0
+if [ ! -f "$MODS_STAMP_FILE" ]; then
+    need_mods_sync=1
+elif [ "$(cat "$MODS_STAMP_FILE" 2>/dev/null || true)" != "$TURTLE_WOW_MODS_STORE" ]; then
+    need_mods_sync=1
+fi
+
+if [ "$need_mods_sync" -eq 1 ]; then
+    if [ -f "$MODS_LIST_FILE" ]; then
+        while IFS= read -r dll_name; do
+            [ -n "$dll_name" ] || continue
+            rm -f "$GAME_DIR/$dll_name"
+        done <"$MODS_LIST_FILE"
+    fi
+    if [ -f "$MODS_DIR/dlls.txt" ]; then
+        cp "$MODS_DIR/dlls.txt" "$MODS_LIST_FILE"
+        while IFS= read -r dll_name; do
+            [ -n "$dll_name" ] || continue
+            if [ -f "$MODS_DIR/$dll_name" ]; then
+                cp "$MODS_DIR/$dll_name" "$GAME_DIR/$dll_name"
+            fi
+        done <"$MODS_LIST_FILE"
+    else
+        : >"$MODS_LIST_FILE"
+    fi
+    printf '%s\n' "$TURTLE_WOW_MODS_STORE" >"$MODS_STAMP_FILE"
+fi
+
+need_patches_sync=0
+if [ ! -f "$PATCHES_STAMP_FILE" ]; then
+    need_patches_sync=1
+elif [ "$(cat "$PATCHES_STAMP_FILE" 2>/dev/null || true)" != "$TURTLE_WOW_PATCHES_STORE" ]; then
+    need_patches_sync=1
+fi
+
+if [ "$need_patches_sync" -eq 1 ]; then
+    mkdir -p "$GAME_DIR/Data"
+    if [ -f "$PATCHES_LIST_FILE" ]; then
+        while IFS= read -r patch_name; do
+            [ -n "$patch_name" ] || continue
+            rm -f "$GAME_DIR/Data/$patch_name"
+        done <"$PATCHES_LIST_FILE"
+    fi
+    if [ -d "$PATCHES_DIR" ]; then
+        "$FINDUTILS/find" "$PATCHES_DIR" -type f -iname '*.mpq' -printf '%f\n' \
+            >"$PATCHES_LIST_FILE"
+        while IFS= read -r patch_name; do
+            [ -n "$patch_name" ] || continue
+            if [ -f "$PATCHES_DIR/$patch_name" ]; then
+                cp "$PATCHES_DIR/$patch_name" "$GAME_DIR/Data/$patch_name"
+            fi
+        done <"$PATCHES_LIST_FILE"
+    else
+        : >"$PATCHES_LIST_FILE"
+    fi
+    printf '%s\n' "$TURTLE_WOW_PATCHES_STORE" >"$PATCHES_STAMP_FILE"
+fi
+
+if [ -f "$CONFIG_DIR/realmlist.wtf" ]; then
+    cp "$CONFIG_DIR/realmlist.wtf" "$GAME_DIR/realmlist.wtf"
+fi
+
+if [ ! -e "$PERSISTENT_WTF_DIR/Config.wtf" ] && [ -d "$CONFIG_DIR/WTF" ]; then
+    cp -a "$CONFIG_DIR/WTF/." "$PERSISTENT_WTF_DIR/"
 fi
 
 rm -rf "$GAME_DIR/WTF"

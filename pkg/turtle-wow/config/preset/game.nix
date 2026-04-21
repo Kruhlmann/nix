@@ -2,7 +2,7 @@
 let wow = import ../../wow-types.nix { };
 in {
   accountName = ""; # Default account name
-  gxWindow = wow.true; # Enables windowed mode
+  gxWindow = "1"; # Enables windowed mode
   gxMaximize = wow.true; # Maximizes the window
   scriptMemory = wow.false; # Amount of memory allocated for scripts
   gxCursor = wow.false; # Disables hardware cursor
@@ -41,8 +41,9 @@ in {
   SoundVolume = wow.true; # Volume level for sound effects
   MasterVolume = wow.true; # Master volume level
   gameTip = "0"; # Current tip
+  FoV = "3.14"; # Field of view
   AmbienceVolume = "0.60000002384186"; # Volume level for ambient sounds
-  uiScale = "1"; # Scale factor for the user interface
+  uiScale = "0.6"; # Scale factor for the user interface
   checkAddonVersion = wow.false;
   profanityFilter = wow.false;
   autoSelfCast =

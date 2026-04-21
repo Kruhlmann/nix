@@ -3,6 +3,7 @@ let
   wow = import ../pkg/turtle-wow/wow-types.nix { };
   servers = import ../pkg/turtle-wow/servers.nix { };
   addons = import ../pkg/turtle-wow/addons/default.nix { };
+  patches = import ../pkg/turtle-wow/patches/default.nix { };
   macros = import ../pkg/turtle-wow/macros/preset.nix { character-name = ""; };
   clientMods = import ../pkg/turtle-wow/client-mods/default.nix { };
   macros_purpleges = import ../pkg/turtle-wow/macros/preset.nix {
@@ -31,25 +32,34 @@ in {
   macros = {
     ges = {
       global = [ macros.general.set-max-camera-distance ];
-      servers = { Ambershire = { Purpleges = [ ]; }; };
+      servers = {
+        Ambershire = { Purpleges = [ macros.pet.attack macros.pet.stop ]; };
+      };
     };
   };
-  mods = [ clientMods.twdiscord clientMods.superwow ];
+  mods = [ clientMods.twdiscord clientMods.superwow clientMods.nampower ];
   addons = [
     addons.berranzan.modifiedpowerauras-continued
-    addons.firenahzku.vgattackbar
+    addons.balakethelock.superapi
+    addons.seacrabsam.lockport
     addons.hosq.bigwigs
     addons.isitlove.outfitter
-    addons.jsb.gatherer
+    addons.pepopo978.cursive
     addons.kakysha.honorspy
     addons.kxseven.vanillaratingbuster
+    addons.sica42.rollfor
+    addons.marcelinevq.automarker
     addons.shagu.pfquest
+    addons.shagu.shagudps
     addons.shagu.pfui
     addons.shirsig.aux-addon-vanilla
     addons.shirsig.aux_merchant_prices
     addons.shirsig.unitscan
     addons.shirsig.wim
+    addons.marcelinevq.twthreat
+    addons.otari98.atlasloot
   ];
+  patches = [ patches.marcelinevq.twow-raid-visuals ];
   bindings = {
     ges = {
       BUTTON3 = "MOVEANDSTEER";
@@ -207,6 +217,14 @@ in {
       CTRL-X = "MULTIACTIONBAR3BUTTON1";
       CTRL-C = "MULTIACTIONBAR3BUTTON2";
       CTRL-B = "MULTIACTIONBAR3BUTTON4";
+      ALT-Q = "RAIDTARGET8";
+      ALT-W = "RAIDTARGET7";
+      ALT-E = "RAIDTARGET6";
+      ALT-R = "RAIDTARGET5";
+      ALT-T = "RAIDTARGET4";
+      ALT-A = "RAIDTARGET3";
+      ALT-S = "RAIDTARGET2";
+      ALT-D = "RAIDTARGET1";
     };
   };
 }
