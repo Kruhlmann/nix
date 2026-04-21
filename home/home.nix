@@ -12,6 +12,10 @@ in {
   home.username = "ges";
   home.homeDirectory = "/home/ges";
   programs.home-manager.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   home.packages = with pkgs; [
     alacritty
@@ -25,7 +29,6 @@ in {
     chromium
     conky
     dialog
-    direnv
     discord
     distrobox
     dunst

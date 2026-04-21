@@ -283,6 +283,12 @@
       }
     ];
     extraConfig = ''
+      lua << EOF
+      local ok, _ = pcall(require, "theme")
+      if not ok then
+        vim.o.background = "dark"
+      end
+      EOF
       lua require('base')
     '';
   };

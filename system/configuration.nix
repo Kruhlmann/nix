@@ -1,5 +1,7 @@
 { pkgs, ... }:
-let extra-certs = import ../pkg/extra-certs/default.nix { inherit pkgs; };
+let
+  extra-certs = import ../pkg/extra-certs/default.nix { inherit pkgs; };
+  bedstead = pkgs.callPackage ../pkg/bedstead/default.nix { };
 in {
   imports = [
     ./hardware-configuration.nix
@@ -35,8 +37,6 @@ in {
   system.stateVersion = "23.11";
   nixpkgs.config.allowUnfree = true;
   console.keyMap = "us";
-  services.automatic-timezoned.enable = true;
-  services.geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales =
     [ "en_US.UTF-8/UTF-8" "da_DK.UTF-8/UTF-8" "en_DK.UTF-8/UTF-8" ];
@@ -61,8 +61,13 @@ in {
     "${pkgs.opensc}/lib/opensc-pkcs11.so";
   environment.etc."share/icons/hicolor/256x256/apps/virt-manager.png".source =
     "${pkgs.virt-manager}/share/icons/hicolor/256x256/apps/virt-manager.png";
-  environment.sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
+  environment.sessionVariables = {
+    LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
+    GSETTINGS_SCHEMA_DIR =
+      "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
+  };
   fonts.packages = with pkgs; [
+    bedstead
     nerd-fonts.terminess-ttf
     nerd-fonts.fira-code
     jetbrains-mono
@@ -70,9 +75,9 @@ in {
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      monospace = [ "FiraCode Nerd Font Mono" ];
-      serif = [ "FiraCode Nerd Font Mono" ];
-      sansSerif = [ "FiraCode Nerd Font Mono" ];
+      monospace = [ "JetBrainsMono" ];
+      serif = [ "JetBrainsMono" ];
+      sansSerif = [ "JetBrainsMono" ];
     };
   };
   environment.systemPackages = with pkgs; [
@@ -100,6 +105,8 @@ in {
     extra-certs
     file
     fprintd
+    glib
+    gsettings-desktop-schemas
     gcc
     gcr
     giflib

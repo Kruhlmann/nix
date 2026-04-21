@@ -124,7 +124,6 @@ vim.o.mouse = "a"
 vim.o.autoindent = true
 vim.o.clipboard = "unnamedplus"
 vim.o.history = 1000
-vim.o.background = "dark"
 vim.o.ruler = true
 vim.o.smarttab = true
 vim.o.expandtab = true
