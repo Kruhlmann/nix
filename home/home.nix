@@ -52,7 +52,6 @@ in
     htop
     imagemagickBig
     jdt-language-server
-    jetbrains.idea-oss
     lazygit
     libreoffice-fresh
     luarocks
