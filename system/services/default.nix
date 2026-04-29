@@ -1,5 +1,11 @@
-{ pkgs, ... }: {
-  imports = [ ./ssh.nix ./xorg.nix ./fail2ban.nix ./pipewire.nix ];
+{ pkgs, ... }:
+{
+  imports = [
+    ./ssh.nix
+    ./xorg.nix
+    ./fail2ban.nix
+    ./pipewire.nix
+  ];
   services.ntp.enable = true;
   services.blueman.enable = true;
   services.gnome.gnome-keyring.enable = true;
@@ -15,7 +21,9 @@
   services.geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
     config.common = {
       default = [ "gtk" ];
       "org.freedesktop.impl.portal.Settings" = [ "darkman" ];

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   gtk = {
     enable = true;
     cursorTheme = {
@@ -9,14 +10,14 @@
     font = {
       name = "FiraCode Nerd Font Mono";
       package = pkgs.nerd-fonts.fira-code;
-      size = 12;
+      size = 14;
     };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
     theme = {
-      name = "Gruvbox-Dark";
+      name = "Gruvbox-Light";
       package = pkgs.gruvbox-gtk-theme;
     };
   };

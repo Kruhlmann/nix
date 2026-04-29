@@ -26,6 +26,42 @@ map('n', '<leader>,', '<cmd>vsplit<CR>', opts)
 map('n', '<leader>.', '<cmd>split<CR>', opts)
 map("v", "<leader>64", "c<c-r>=system('base64 --decode', @\")<cr><esc>", { noremap = true, silent = true })
 
+local _theme_mtime = nil
+local _theme_path = vim.fn.stdpath("config") .. "/lua/theme.lua"
+vim.loop.new_timer():start(0, 2000, vim.schedule_wrap(function()
+    local stat = vim.loop.fs_stat(_theme_path)
+    if not stat then return end
+    local mtime = stat.mtime.sec
+    if _theme_mtime == nil then
+        _theme_mtime = mtime
+        return
+    end
+    if mtime ~= _theme_mtime then
+        _theme_mtime = mtime
+        local ok, err = pcall(dofile, _theme_path)
+        if not ok then
+            vim.notify("Error reloading theme.lua: " .. err, vim.log.levels.ERROR)
+        end
+    end
+end))
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = "*.lua",
+    callback = function(ev)
+        local config_dir = vim.fn.stdpath("config")
+        if not vim.startswith(ev.match, config_dir) then
+            return
+        end
+        local ok, err = pcall(dofile, ev.match)
+        if not ok then
+            vim.notify("Error reloading " .. ev.match .. ": " .. err, vim.log.levels.ERROR)
+        else
+            vim.notify("Reloaded " .. vim.fn.fnamemodify(ev.match, ":~"), vim.log.levels.INFO)
+        end
+    end,
+    desc = "Auto-reload lua config files on save",
+})
+
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
     callback = function()
         vim.cmd "hi link illuminatedWord LspReferenceText"

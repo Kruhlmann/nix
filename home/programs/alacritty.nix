@@ -1,12 +1,13 @@
 { config, pkgs, ... }:
-let alacrittyThemes = pkgs.alacritty-theme;
-in {
+let
+  alacrittyThemes = pkgs.alacritty-theme;
+in
+{
   programs.alacritty.enable = true;
   programs.alacritty.settings = {
-    general.import =
-      [ "${config.home.homeDirectory}/.config/alacritty/theme.toml" ];
+    general.import = [ "${config.home.homeDirectory}/.config/alacritty/theme.toml" ];
     font = {
-      size = 10.0;
+      size = 11.0;
       normal = {
         family = "JetBrainsMono";
         style = "Regular";
