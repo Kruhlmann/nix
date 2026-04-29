@@ -1,18 +1,8 @@
 { pkgs, ... }:
-let
-  punlock = pkgs.callPackage ../pkg/punlock/package.nix { };
-  # turtleWowConfig = import ./turtle-wow-config.nix { };
-  # turtleWow = pkgs.callPackage ../pkg/turtle-wow/default.nix turtleWowConfig;
-in
-{
-  imports = [
-    ./programs
-    ./services
-    ./files.nix
-    ./gtk.nix
-    ./session.nix
-    ./xdg.nix
-  ];
+let punlock = pkgs.callPackage ../pkg/punlock/package.nix { };
+in {
+  imports =
+    [ ./programs ./services ./files.nix ./gtk.nix ./session.nix ./xdg.nix ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ (self: super: { punlock = punlock; }) ];
   home.stateVersion = "23.11";
@@ -54,7 +44,6 @@ in
     htop
     imagemagickBig
     jdt-language-server
-    jetbrains.idea-oss
     lazygit
     libreoffice-fresh
     luarocks
