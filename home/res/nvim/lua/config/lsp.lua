@@ -10,6 +10,14 @@ end
 
 local lsp_signature = require("lsp_signature")
 local navic = require("nvim-navic")
+local actions_preview = require("actions-preview")
+
+actions_preview.setup({
+    telescope = {
+        sorting_strategy = "ascending",
+        layout_strategy = "vertical",
+    },
+})
 
 local common_on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
@@ -25,7 +33,8 @@ local common_on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>ld', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', '<leader>lD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', '<leader>la', "<cmd>lua require('actions-preview').code_actions()<CR>", opts)
+    buf_set_keymap('v', '<leader>la', "<cmd>lua require('actions-preview').code_actions()<CR>", opts)
     buf_set_keymap("n", "<leader>le", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
     buf_set_keymap('n', '<leader>lN', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', '<leader>ln', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
@@ -41,6 +50,21 @@ local common_on_attach = function(client, bufnr)
         end,
     })
 
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
+
+    if client.server_capabilities.documentHighlightProvider then
+        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+            buffer = bufnr,
+            callback = vim.lsp.buf.document_highlight,
+        })
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            buffer = bufnr,
+            callback = vim.lsp.buf.clear_references,
+        })
+    end
+
     lsp_signature.on_attach({
         floating_window_above_cur_line = true,
     })
@@ -54,6 +78,7 @@ local common_capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local servers = {
     clangd = {},
+    jdtls = {},
     nil_ls = {},
     pyright = {},
     dockerls = {},
@@ -95,6 +120,9 @@ local servers = {
             },
         },
     },
+    millet = {
+        cmd = { "millet-ls" },
+    },
     texlab = {
         settings = {
             texlab = {
@@ -115,18 +143,16 @@ local servers = {
 }
 
 for server, config in pairs(servers) do
-    if server ~= "jdtls" then
-        if server ~= "eslint" then
-            config = vim.tbl_deep_extend("force", {
-                on_attach = common_on_attach,
-                capabilities = common_capabilities,
-            }, config)
-        else
-            config = vim.tbl_deep_extend("force", {
-                capabilities = common_capabilities,
-            }, config)
-        end
-        vim.lsp.config(server, config)
-        vim.lsp.enable(server)
+    if server ~= "eslint" then
+        config = vim.tbl_deep_extend("force", {
+            on_attach = common_on_attach,
+            capabilities = common_capabilities,
+        }, config)
+    else
+        config = vim.tbl_deep_extend("force", {
+            capabilities = common_capabilities,
+        }, config)
     end
+    vim.lsp.config(server, config)
+    vim.lsp.enable(server)
 end

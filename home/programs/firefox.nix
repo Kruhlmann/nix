@@ -30,6 +30,7 @@
         "browser.topsites.blockedSponsors" =
           [ "hotels.prf" "temuaffiliateprogram.pxf" "adidas" ];
         "browser.translations.neverTranslateLanguages" = "da";
+        "browser.urlbar.scotchBonnet.enableOverride" = false;
         "devtools.cache.disabled" = true;
         "devtools.command-button-measure.enabled" = true;
         "devtools.command-button-screenshot.enabled" = true;

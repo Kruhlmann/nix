@@ -49,6 +49,7 @@ in {
     luarocks
     lutris
     maim
+    millet
     mpv
     mullvad-vpn
     nautilus
