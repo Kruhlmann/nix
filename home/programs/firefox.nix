@@ -27,8 +27,11 @@
         "browser.search.suggest.enabled.private" = true;
         "browser.startup.homepage" = "about:blank";
         "browser.toolbars.bookmarks.visibility" = "never";
-        "browser.topsites.blockedSponsors" =
-          [ "hotels.prf" "temuaffiliateprogram.pxf" "adidas" ];
+        "browser.topsites.blockedSponsors" = [
+          "hotels.prf"
+          "temuaffiliateprogram.pxf"
+          "adidas"
+        ];
         "browser.translations.neverTranslateLanguages" = "da";
         "browser.urlbar.scotchBonnet.enableOverride" = false;
         "devtools.cache.disabled" = true;
@@ -36,6 +39,7 @@
         "devtools.command-button-screenshot.enabled" = true;
         "devtools.everOpened" = true;
         "devtools.toolbox.splitconsole.open" = false;
+        "general.autoScroll" = true;
         "gfx.webrender.all" = true;
         "layout.css.has-selector.enabled" = true;
         "sidebar.visibility" = "hide-sidebar";

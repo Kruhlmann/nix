@@ -62,18 +62,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     desc = "Auto-reload lua config files on save",
 })
 
-local function set_lsp_hint_colors()
-    if vim.o.background == "light" then
-        vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#7c6f64", bg = "#ebdbb2", italic = true })
-    else
-        vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#a89984", bg = "#3c3836", italic = true })
-    end
-end
-
 vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
     callback = function()
         vim.cmd "hi link illuminatedWord LspReferenceText"
-        set_lsp_hint_colors()
     end,
 })
 

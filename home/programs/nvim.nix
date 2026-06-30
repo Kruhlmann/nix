@@ -68,13 +68,6 @@
       nvim-autopairs
       nvim-cmp
       nvim-colorizer-lua
-      {
-        plugin = nvim-java;
-        type = "lua";
-        config = ''
-          require("java").setup()
-        '';
-      }
       nvim-lsputils
       nvim-navic
       nvim-web-devicons
