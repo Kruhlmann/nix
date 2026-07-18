@@ -27,11 +27,8 @@
         "browser.search.suggest.enabled.private" = true;
         "browser.startup.homepage" = "about:blank";
         "browser.toolbars.bookmarks.visibility" = "never";
-        "browser.topsites.blockedSponsors" = [
-          "hotels.prf"
-          "temuaffiliateprogram.pxf"
-          "adidas"
-        ];
+        "browser.topsites.blockedSponsors" =
+          [ "hotels.prf" "temuaffiliateprogram.pxf" "adidas" ];
         "browser.translations.neverTranslateLanguages" = "da";
         "browser.urlbar.scotchBonnet.enableOverride" = false;
         "devtools.cache.disabled" = true;

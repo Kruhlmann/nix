@@ -14,7 +14,8 @@
     PAGER = "page";
     MANPAGER = "page -t man";
     SHELL = "/run/current-system/sw/bin/zsh";
-    XDG_DATA_DIRS = "${config.home.profileDirectory}/share:/run/current-system/sw/share:/nix/var/nix/profiles/default/share\${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}";
+    XDG_DATA_DIRS =
+      "${config.home.profileDirectory}/share:/run/current-system/sw/share:/nix/var/nix/profiles/default/share\${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}";
   };
   home.file."${config.home.homeDirectory}/.local/share/xsessions/xfce.desktop".text =
     ''

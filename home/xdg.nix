@@ -17,17 +17,26 @@
         "application/vnd.ms-excel" = [ "calc.desktop" ];
         "application/vnd.ms-excel.sheet.macroenabled.12" = [ "calc.desktop" ];
         "application/vnd.ms-powerpoint" = [ "impress.desktop" ];
-        "application/vnd.ms-powerpoint.presentation.macroenabled.12" = [ "impress.desktop" ];
-        "application/vnd.ms-word.document.macroenabled.12" = [ "writer.desktop" ];
-        "application/vnd.oasis.opendocument.presentation" = [ "impress.desktop" ];
-        "application/vnd.oasis.opendocument.presentation-template" = [ "impress.desktop" ];
+        "application/vnd.ms-powerpoint.presentation.macroenabled.12" =
+          [ "impress.desktop" ];
+        "application/vnd.ms-word.document.macroenabled.12" =
+          [ "writer.desktop" ];
+        "application/vnd.oasis.opendocument.presentation" =
+          [ "impress.desktop" ];
+        "application/vnd.oasis.opendocument.presentation-template" =
+          [ "impress.desktop" ];
         "application/vnd.oasis.opendocument.spreadsheet" = [ "calc.desktop" ];
-        "application/vnd.oasis.opendocument.spreadsheet-template" = [ "calc.desktop" ];
+        "application/vnd.oasis.opendocument.spreadsheet-template" =
+          [ "calc.desktop" ];
         "application/vnd.oasis.opendocument.text" = [ "writer.desktop" ];
-        "application/vnd.oasis.opendocument.text-template" = [ "writer.desktop" ];
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation" = [ "impress.desktop" ];
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = [ "calc.desktop" ];
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
+        "application/vnd.oasis.opendocument.text-template" =
+          [ "writer.desktop" ];
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation" =
+          [ "impress.desktop" ];
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" =
+          [ "calc.desktop" ];
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" =
+          [ "writer.desktop" ];
         "application/vnd.rar" = [ "org.gnome.FileRoller.desktop" ];
         "application/x-7z-compressed" = [ "org.gnome.FileRoller.desktop" ];
         "application/x-bzip2" = [ "org.gnome.FileRoller.desktop" ];
@@ -41,7 +50,8 @@
         "application/x-rar" = [ "org.gnome.FileRoller.desktop" ];
         "application/x-tar" = [ "org.gnome.FileRoller.desktop" ];
         "application/x-xz" = [ "org.gnome.FileRoller.desktop" ];
-        "application/x-zstd-compressed-tar" = [ "org.gnome.FileRoller.desktop" ];
+        "application/x-zstd-compressed-tar" =
+          [ "org.gnome.FileRoller.desktop" ];
         "application/xhtml+xml" = [ "firefox.desktop" ];
         "application/xml" = [ "nvim.desktop" ];
         "application/zip" = [ "org.gnome.FileRoller.desktop" ];
