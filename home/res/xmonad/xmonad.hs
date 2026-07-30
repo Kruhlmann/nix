@@ -192,6 +192,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_v), spawn "virt-machine-menu"),
       ((modm, xK_m), spawn "toggle_primary_sink"),
       ((modm, xK_p), spawn "xcolor | xclip -selection clipboard"),
+      ((modm .|. shiftMask, xK_c), spawn "copyq show"),
       ((modm .|. shiftMask, xK_q), confirmPrompt hotPromptTheme "Quit XMonad" $ io (exitWith ExitSuccess)),
       ((modm .|. shiftMask, xK_s), spawn "maim -u -s | xclip -selection clipboard -t image/png"),
       ((modm .|. shiftMask, xK_l), spawn "xfce4-screensaver-command --lock"),
@@ -297,6 +298,7 @@ myStartupHook = do
   spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
   spawnOnce "blueman-manager"
   spawnOnce "dunst"
+  spawnOnce "copyq"
   spawnOnce "conky"
   spawnOnce "xss-lock -- portable-lock"
   spawnOnce "autorandr --change"
