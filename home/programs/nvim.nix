@@ -6,6 +6,7 @@
     viAlias = true;
     withNodeJs = true;
     withRuby = true;
+    withPython3 = true;
     extraPackages = with pkgs; [
       actionlint
       clang-tools
@@ -18,18 +19,17 @@
       lua-language-server
       nil
       nixpkgs-fmt
-      nodePackages.bash-language-server
+      bash-language-server
       dockerfile-language-server
-      nodePackages.eslint
-      nodePackages.markdownlint-cli
-      nodePackages.npm
-      nodePackages.prettier
-      nodePackages.svelte-check
-      nodePackages.svelte-language-server
-      nodePackages.typescript
-      nodePackages.typescript-language-server
-      nodePackages.vscode-langservers-extracted
-      nodePackages.yaml-language-server
+      eslint
+      markdownlint-cli
+      prettier
+      svelte-check
+      svelte-language-server
+      typescript
+      typescript-language-server
+      vscode-langservers-extracted
+      yaml-language-server
       pyright
       ripgrep
       selene
@@ -41,8 +41,8 @@
       terraform-ls
       vscode-extensions.vscjava.vscode-java-debug
       vscode-extensions.vscjava.vscode-java-test
-      (python3.withPackages (ps:
-        with ps; [
+      (python3.withPackages (
+        ps: with ps; [
           black
           debugpy
           flake8
@@ -51,7 +51,8 @@
           pylint
           setuptools
           yamllint
-        ]))
+        ]
+      ))
     ];
     plugins = with pkgs.vimPlugins; [
       cmp-buffer
@@ -80,9 +81,7 @@
         plugin = git-blame-nvim;
         type = "lua";
         config = ''
-          require('gitblame').setup {
-            enabled = false,
-          }
+          require('gitblame').setup { enabled = false, }
         '';
       }
       {
@@ -119,49 +118,6 @@
           if not status_ok then
               vim.notify("Colorscheme " .. colorscheme .. " not found!")
           end
-        '';
-      }
-      {
-        plugin = refactoring-nvim;
-        type = "lua";
-        config = ''
-          require('refactoring').setup({
-            prompt_func_return_type = {
-              go = false,
-              java = false,
-              cpp = false,
-              c = false,
-              h = false,
-              hpp = false,
-              cxx = false,
-            },
-            prompt_func_param_type = {
-              go = false,
-              java = false,
-              cpp = false,
-              c = false,
-              h = false,
-              hpp = false,
-              cxx = false,
-            },
-            printf_statements = {},
-            print_var_statements = {},
-            show_success_message = true,
-          })
-          require("telescope").load_extension("refactoring")
-
-          vim.keymap.set(
-              {"n", "x"},
-              "<leader>rr",
-              function() require('telescope').extensions.refactoring.refactors() end
-          )
-        '';
-      }
-      {
-        plugin = trouble-nvim;
-        type = "lua";
-        config = ''
-          vim.api.nvim_set_keymap("n", "<leader>lf", "<cmd>Trouble qflist toggle<cr>", { noremap = true, silent = true })
         '';
       }
       {
@@ -226,64 +182,6 @@
           })
 
           vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { noremap = true })
-        '';
-      }
-      {
-        plugin = copilot-lua;
-        type = "lua";
-        config = ''
-          local cmp = require 'cmp'
-          local copilot = require 'copilot.suggestion'
-          local luasnip = require 'luasnip'
-
-          require('copilot').setup({
-              suggestion = {
-                  auto_trigger = true,
-                  -- Use alt to interact with Copilot.
-                  keymap = {
-                      accept = '<C-F>',
-                      --accept_word = '<M-w>',
-                      --accept_line = '<M-l>',
-                      --next = '<M-]>',
-                      --prev = '<M-[>',
-                      --dismiss = '/',
-                  },
-                  panel = { enabled = false },
-                  copilot_model = "gpt-5-mini-copilot"
-              },
-              filetypes = {
-                markdown = true,
-                sh = function ()
-                  if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), '^%.env.*') then
-                    return false
-                  end
-                  return true
-                end,
-              },
-          })
-
-          local function set_trigger(trigger)
-              vim.b.copilot_suggestion_auto_trigger = trigger
-              vim.b.copilot_suggestion_hidden = not trigger
-          end
-
-          cmp.event:on('menu_opened', function()
-              if copilot.is_visible() then
-                  copilot.dismiss()
-              end
-              set_trigger(false)
-          end)
-
-          cmp.event:on('menu_closed', function()
-              set_trigger(not luasnip.expand_or_locally_jumpable())
-          end)
-
-          vim.api.nvim_create_autocmd('User', {
-              pattern = { 'LuasnipInsertNodeEnter', 'LuasnipInsertNodeLeave' },
-              callback = function()
-                  set_trigger(not luasnip.expand_or_locally_jumpable())
-              end,
-          })
         '';
       }
     ];

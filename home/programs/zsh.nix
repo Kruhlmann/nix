@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, config, ... }: {
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
@@ -9,6 +9,7 @@
     enableCompletion = true;
     autocd = true;
     syntaxHighlighting.enable = true;
+    dotDir = "${config.xdg.configHome}/zsh";
 
     history.save = 10000;
     history.path = "/home/ges/.zsh_history";

@@ -19,5 +19,6 @@
       name = "Gruvbox-Light";
       package = pkgs.gruvbox-gtk-theme;
     };
+    gtk4.theme = null;
   };
 }

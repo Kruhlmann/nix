@@ -1,13 +1,16 @@
 { pkgs, ... }: {
-  systemd.user.services.xfce4-screensaver = {
+  systemd.user.services.caffeine-ng = {
     Unit = {
-      Description = "Xfce4 Screensaver";
+      Description = "Caffeine-ng tray icon";
       After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
     };
+
     Service = {
-      ExecStart = "${pkgs.xfce4-screensaver}/bin/xfce4-screensaver";
+      ExecStart = "${pkgs.caffeine-ng}/bin/caffeine";
       Restart = "on-failure";
     };
+
     Install = {
       WantedBy = [ "graphical-session.target" ];
     };

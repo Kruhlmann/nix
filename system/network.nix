@@ -21,15 +21,12 @@
   }];
   services.resolved = {
     enable = true;
-    fallbackDns = [ "1.1.1.1" ];
-    dnssec = "allow-downgrade";
-    dnsovertls = "opportunistic";
-    llmnr = "false";
-    extraConfig = ''
-      [Resolve]
-      DNS=1.1.1.1
-      FallbackDNS=8.8.8.8
-    '';
+    settings.Resolve = {
+      LLMNR = "false";
+      FallbackDNS = [ "1.1.1.1" ];
+      DNSSEC = "allow-downgrade";
+      DNSOverTLS = "opportunistic";
+    };
   };
   systemd.network.enable = true;
   networking.nftables.enable = true;

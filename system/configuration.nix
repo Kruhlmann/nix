@@ -1,8 +1,6 @@
 { pkgs, ... }:
-let
-  extra-certs = import ../pkg/extra-certs/default.nix { inherit pkgs; };
-in
-{
+let extra-certs = import ../pkg/extra-certs/default.nix { inherit pkgs; };
+in {
   imports = [
     ./hardware-configuration.nix
     ./boot.nix
@@ -41,11 +39,8 @@ in
   nixpkgs.config.allowUnfree = true;
   console.keyMap = "us";
   i18n.defaultLocale = "en_US.UTF-8";
-  i18n.supportedLocales = [
-    "en_US.UTF-8/UTF-8"
-    "da_DK.UTF-8/UTF-8"
-    "en_DK.UTF-8/UTF-8"
-  ];
+  i18n.supportedLocales =
+    [ "en_US.UTF-8/UTF-8" "da_DK.UTF-8/UTF-8" "en_DK.UTF-8/UTF-8" ];
   security.pam.services.xfce4-screensaver.enable = true;
   security.rtkit.enable = true;
   security.pki.certificateFiles = [ "${extra-certs}/etc/ssl/certs/extra.pem" ];
@@ -63,13 +58,15 @@ in
         }
     });
   '';
-  environment.etc."lib/onepin.so".source = "${pkgs.opensc}/lib/opensc-pkcs11.so";
+  environment.etc."lib/onepin.so".source =
+    "${pkgs.opensc}/lib/opensc-pkcs11.so";
   environment.etc."share/icons/hicolor/256x256/apps/virt-manager.png".source =
     "${pkgs.virt-manager}/share/icons/hicolor/256x256/apps/virt-manager.png";
   environment.sessionVariables = {
     MESA_SHADER_CACHE_MAX_SIZE = "10G";
     LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
-    GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
+    GSETTINGS_SCHEMA_DIR =
+      "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
   };
   fonts.packages = with pkgs; [
     inter
@@ -81,15 +78,9 @@ in
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
-      sansSerif = [
-        "Inter"
-        "Noto Sans"
-      ];
+      sansSerif = [ "Inter" "Noto Sans" ];
       serif = [ "Noto Serif" ];
-      monospace = [
-        "JetBrains Mono"
-        "FiraCode Nerd Font Mono"
-      ];
+      monospace = [ "JetBrains Mono" "FiraCode Nerd Font Mono" ];
       emoji = [ "Noto Color Emoji" ];
     };
   };
@@ -176,9 +167,9 @@ in
     vulkan-validation-layers
     wget
     wine-staging
-    xorg.xauth
-    xorg.xev
-    xorg.xinit
+    xauth
+    xev
+    xinit
     zip
   ];
 }

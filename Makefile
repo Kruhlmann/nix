@@ -1,4 +1,4 @@
-NIX_VERSION=25.11
+NIX_VERSION=26.05
 SUPPORTED_SHELLS=bash|dash|zsh|sh
 SHELL_FILES=$(shell git ls-files | grep -El '#!/.*(bash|dash|zsh|sh)' | grep -v Makefile)
 HASKELL_FILES=$(shell git ls-files '*.hs')
