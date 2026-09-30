@@ -41,8 +41,8 @@
       terraform-ls
       vscode-extensions.vscjava.vscode-java-debug
       vscode-extensions.vscjava.vscode-java-test
-      (python3.withPackages (ps:
-        with ps; [
+      (python3.withPackages (
+        ps: with ps; [
           black
           debugpy
           flake8
@@ -51,7 +51,8 @@
           pylint
           setuptools
           yamllint
-        ]))
+        ]
+      ))
     ];
     plugins = with pkgs.vimPlugins; [
       cmp-buffer

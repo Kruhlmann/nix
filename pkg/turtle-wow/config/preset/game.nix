@@ -1,6 +1,8 @@
 { }:
-let wow = import ../../wow-types.nix { };
-in {
+let
+  wow = import ../../wow-types.nix { };
+in
+{
   accountName = ""; # Default account name
   gxWindow = "1"; # Enables windowed mode
   gxMaximize = wow.true; # Maximizes the window
@@ -11,26 +13,22 @@ in {
   gxDepthBits = "24"; # Sets the depth buffer depth in bits
   gxResolution = "1920x1080"; # Sets the screen resolution
   gxRefresh = "60"; # Sets the screen refresh rate in Hz
-  gxMultisampleQuality =
-    "0.000000"; # Sets the multisampling quality for anti-aliasing
+  gxMultisampleQuality = "0.000000"; # Sets the multisampling quality for anti-aliasing
   gxFixLag = wow.false; # Fix cursor lag. Requires gxCursor "1"
   fullAlpha = wow.true; # Enables full alpha transparency
   lodDist = "100.000000"; # Level of detail distance
   SmallCull = "0.040000"; # Sets the distance at which small objects are culled
-  DistCull =
-    "500.000000"; # Sets the distance at which distant objects are culled
+  DistCull = "500.000000"; # Sets the distance at which distant objects are culled
   trilinear = wow.true; # Enables trilinear filtering
   frillDensity = "32"; # Density of environment frills like grass and bushes
   farclip = "477"; # Maximum view distance
   specular = wow.true; # Enables specular highlights
   pixelShaders = wow.true; # Enables pixel shaders
   particleDensity = "1.000000"; # Density of particle effects
-  unitDrawDist =
-    "300.000000"; # Distance at which units (NPCs, players) are drawn
+  unitDrawDist = "300.000000"; # Distance at which units (NPCs, players) are drawn
   movie = wow.false; # Disables intro movie
   readTOS = wow.true; # Indicates that the Terms of Service have been read
-  readEULA =
-    wow.true; # Indicates that the End User License Agreement has been read
+  readEULA = wow.true; # Indicates that the End User License Agreement has been read
   realmName = "";
   realmList = ""; # Sets the realm list server address
   patchlist = ""; # Sets the patch list server address
@@ -46,8 +44,7 @@ in {
   uiScale = "0.6"; # Scale factor for the user interface
   checkAddonVersion = wow.false;
   profanityFilter = wow.false;
-  autoSelfCast =
-    wow.true; # Automatically cast beneficial spells on yourself when you have no target
+  autoSelfCast = wow.true; # Automatically cast beneficial spells on yourself when you have no target
   mouseSpeed = "0.5";
   cameraYawMoveSpeed = "180";
   cameraYawSmoothSpeed = "180";

@@ -1,6 +1,15 @@
-{ pkgs, ver ? "1180", addons ? [ ], patches ? [ ]
-, winePrefix ? "~/.cache/turtle-wow/.wine-prefix", gameConfig ? { }
-, accountConfigs ? { }, bindings ? { }, macros ? { }, mods ? [ ], }:
+{
+  pkgs,
+  ver ? "1180",
+  addons ? [ ],
+  patches ? [ ],
+  winePrefix ? "~/.cache/turtle-wow/.wine-prefix",
+  gameConfig ? { },
+  accountConfigs ? { },
+  bindings ? { },
+  macros ? { },
+  mods ? [ ],
+}:
 let
   base = pkgs.callPackage ./base.nix { inherit ver; };
 
@@ -23,20 +32,27 @@ let
   };
 
   defaultAccountConfig = import ./config/preset/account.nix { };
-  mappedAccountConfigs = pkgs.lib.mapAttrs (accountName: accountConfig:
-    pkgs.lib.recursiveUpdate defaultAccountConfig accountConfig) accountConfigs;
+  mappedAccountConfigs = pkgs.lib.mapAttrs (
+    accountName: accountConfig: pkgs.lib.recursiveUpdate defaultAccountConfig accountConfig
+  ) accountConfigs;
 
-  generateAccountConfig = accountName: accountConfig:
-    pkgs.writeText "SavedVariables.lua" (import ./config/lua.nix {
-      inherit pkgs;
-      settings = accountConfig;
-    });
+  generateAccountConfig =
+    accountName: accountConfig:
+    pkgs.writeText "SavedVariables.lua" (
+      import ./config/lua.nix {
+        inherit pkgs;
+        settings = accountConfig;
+      }
+    );
 
-  generateBindingsFile = accountName: bindingConfig:
-    pkgs.writeText "bindings-cache.wtf" (import ./config/bindings.nix {
-      inherit pkgs;
-      bindings = bindingConfig;
-    });
+  generateBindingsFile =
+    accountName: bindingConfig:
+    pkgs.writeText "bindings-cache.wtf" (
+      import ./config/bindings.nix {
+        inherit pkgs;
+        bindings = bindingConfig;
+      }
+    );
 
   generateMacroCache = import ./macros/generate.nix { inherit pkgs; };
 
@@ -60,7 +76,8 @@ let
     dontBuild = true;
     installPhase = ''
       mkdir -p "$out/share/turtle-wow-mods"
-      ${pkgs.lib.concatMapStrings (mod:
+      ${pkgs.lib.concatMapStrings (
+        mod:
         if mod.kind == "builtin" || mod.outPath == null then
           ""
         else
@@ -71,7 +88,8 @@ let
             fi
             cp "${mod.outPath}/share/${mod.pname}/${dll}" \
               "$out/share/turtle-wow-mods/${dll}"
-          '') mod.dlls) builtMods}
+          '') mod.dlls
+      ) builtMods}
       printf '%s\n' ${pkgs.lib.escapeShellArgs dllList} \
         > "$out/share/turtle-wow-mods/dlls.txt"
     '';
@@ -108,63 +126,89 @@ let
       cp ${pkgs.writeText "Config.wtf" generatedWtfConfig} \
         "$out/share/turtle-wow-config/WTF/Config.wtf"
 
-      ${pkgs.lib.concatStrings (pkgs.lib.mapAttrsToList
-        (accountName: accountConfig:
-          let upperAccountName = pkgs.lib.toUpper accountName;
-          in ''
+      ${pkgs.lib.concatStrings (
+        pkgs.lib.mapAttrsToList (
+          accountName: accountConfig:
+          let
+            upperAccountName = pkgs.lib.toUpper accountName;
+          in
+          ''
             mkdir -p "$out/share/turtle-wow-config/WTF/Account/${upperAccountName}"
             cp ${generateAccountConfig accountName accountConfig} \
               "$out/share/turtle-wow-config/WTF/Account/${upperAccountName}/SavedVariables.lua"
-          '') mappedAccountConfigs)}
+          ''
+        ) mappedAccountConfigs
+      )}
 
-      ${pkgs.lib.concatStrings (pkgs.lib.mapAttrsToList
-        (accountName: bindingConfig:
-          let upperAccountName = pkgs.lib.toUpper accountName;
-          in ''
+      ${pkgs.lib.concatStrings (
+        pkgs.lib.mapAttrsToList (
+          accountName: bindingConfig:
+          let
+            upperAccountName = pkgs.lib.toUpper accountName;
+          in
+          ''
             mkdir -p "$out/share/turtle-wow-config/WTF/Account/${upperAccountName}"
             cp ${generateBindingsFile accountName bindingConfig} \
               "$out/share/turtle-wow-config/WTF/Account/${upperAccountName}/bindings-cache.wtf"
-          '') bindings)}
+          ''
+        ) bindings
+      )}
 
-      ${pkgs.lib.concatStrings (pkgs.lib.mapAttrsToList
-        (accountName: accountMacros:
+      ${pkgs.lib.concatStrings (
+        pkgs.lib.mapAttrsToList (
+          accountName: accountMacros:
           let
             upperAccountName = pkgs.lib.toUpper accountName;
-            globalMacroFile = pkgs.writeText "macros-cache.txt"
-              (generateMacroCache {
-                macros = accountMacros.global;
-                startId = 1;
-              });
-          in ''
+            globalMacroFile = pkgs.writeText "macros-cache.txt" (generateMacroCache {
+              macros = accountMacros.global;
+              startId = 1;
+            });
+          in
+          ''
             mkdir -p "$out/share/turtle-wow-config/WTF/Account/${upperAccountName}"
             cp ${globalMacroFile} \
               "$out/share/turtle-wow-config/WTF/Account/${upperAccountName}/macros-cache.txt"
 
-            ${pkgs.lib.concatStringsSep "\n" (pkgs.lib.mapAttrsToList
-              (serverName: serverMacros:
-                pkgs.lib.concatStringsSep "\n" (pkgs.lib.mapAttrsToList
-                  (characterName: characterMacros:
+            ${pkgs.lib.concatStringsSep "\n" (
+              pkgs.lib.mapAttrsToList (
+                serverName: serverMacros:
+                pkgs.lib.concatStringsSep "\n" (
+                  pkgs.lib.mapAttrsToList (
+                    characterName: characterMacros:
                     let
-                      charMacroFile = pkgs.writeText "macros-cache.txt"
-                        (generateMacroCache {
-                          macros = characterMacros;
-                          startId = 10000;
-                        });
-                    in ''
+                      charMacroFile = pkgs.writeText "macros-cache.txt" (generateMacroCache {
+                        macros = characterMacros;
+                        startId = 10000;
+                      });
+                    in
+                    ''
                       mkdir -p "$out/share/turtle-wow-config/WTF/Account/${upperAccountName}/${serverName}/${characterName}"
                       cp ${charMacroFile} \
                         "$out/share/turtle-wow-config/WTF/Account/${upperAccountName}/${serverName}/${characterName}/macros-cache.txt"
-                    '') serverMacros)) accountMacros.servers)}
-          '') macros)}
+                    ''
+                  ) serverMacros
+                )
+              ) accountMacros.servers
+            )}
+          ''
+        ) macros
+      )}
     '';
   };
-in pkgs.stdenvNoCC.mkDerivation rec {
+in
+pkgs.stdenvNoCC.mkDerivation rec {
   pname = "turtle-wow";
   version = ver;
 
-  nativeBuildInputs = [ pkgs.copyDesktopItems pkgs.makeWrapper ];
+  nativeBuildInputs = [
+    pkgs.copyDesktopItems
+    pkgs.makeWrapper
+  ];
 
-  buildInputs = [ pkgs.wineWowPackages.full pkgs.vulkan-loader ];
+  buildInputs = [
+    pkgs.wineWowPackages.full
+    pkgs.vulkan-loader
+  ];
 
   dontBuild = true;
 

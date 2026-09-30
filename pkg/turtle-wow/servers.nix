@@ -7,7 +7,9 @@
         Nordanaar = "Nordanaar";
         Ambershire = "Ambershire";
       };
-      PVP = { TelAbim = "Tel'Abim"; };
+      PVP = {
+        TelAbim = "Tel'Abim";
+      };
     };
   };
 }

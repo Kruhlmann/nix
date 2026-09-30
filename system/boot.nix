@@ -7,7 +7,8 @@ let
     sha256 = "sha256-yOvZ4F5ERPfnSlI/Scf9UwzvoRwGMqZlrHkBIB3Dm/w=";
   };
   mac-style-load = pkgs.callPackage mac-style-src { };
-in {
+in
+{
   boot.loader.grub.enable = false;
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.consoleMode = "auto";

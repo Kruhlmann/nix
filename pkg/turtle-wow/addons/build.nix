@@ -1,9 +1,22 @@
 { pkgs }:
-{ owner, repo, rev, sha256, name, }:
+{
+  owner,
+  repo,
+  rev,
+  sha256,
+  name,
+}:
 pkgs.stdenv.mkDerivation {
   pname = name;
   version = rev;
-  src = pkgs.fetchFromGitHub { inherit owner repo rev sha256; };
+  src = pkgs.fetchFromGitHub {
+    inherit
+      owner
+      repo
+      rev
+      sha256
+      ;
+  };
   dontBuild = true;
   installPhase = ''
     mkdir -p "$out/share/${name}"

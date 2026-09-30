@@ -1,12 +1,44 @@
-{ stdenv, lib, fetchFromGitHub, fetchpatch, cmake, ninja, writeScriptBin, perl
-, XMLLibXML, XMLLibXSLT, makeWrapper, zlib, enableStoneSense ? false, allegro5
-, libGLU, libGL, SDL, SDL2, coreutils, util-linux, ncurses, strace, binutils
-, gnused, dfVersion }:
+{
+  stdenv,
+  lib,
+  fetchFromGitHub,
+  fetchpatch,
+  cmake,
+  ninja,
+  writeScriptBin,
+  perl,
+  XMLLibXML,
+  XMLLibXSLT,
+  makeWrapper,
+  zlib,
+  enableStoneSense ? false,
+  allegro5,
+  libGLU,
+  libGL,
+  SDL,
+  SDL2,
+  coreutils,
+  util-linux,
+  ncurses,
+  strace,
+  binutils,
+  gnused,
+  dfVersion,
+}:
 
 let
   inherit (lib)
-    getAttr hasAttr isAttrs licenses maintainers optional optionals
-    optionalString versionOlder versionAtLeast;
+    getAttr
+    hasAttr
+    isAttrs
+    licenses
+    maintainers
+    optional
+    optionals
+    optionalString
+    versionOlder
+    versionAtLeast
+    ;
 
   dfhack-releases = {
     "0.44.10" = {
@@ -65,12 +97,13 @@ let
     };
   };
 
-  release = if isAttrs dfVersion then
-    dfVersion
-  else if hasAttr dfVersion dfhack-releases then
-    getAttr dfVersion dfhack-releases
-  else
-    throw "[DFHack] Unsupported Dwarf Fortress version: ${dfVersion}";
+  release =
+    if isAttrs dfVersion then
+      dfVersion
+    else if hasAttr dfVersion dfhack-releases then
+      getAttr dfVersion dfhack-releases
+    else
+      throw "[DFHack] Unsupported Dwarf Fortress version: ${dfVersion}";
 
   version = release.dfHackRelease;
   isAtLeast50 = versionAtLeast version "50.0";
@@ -79,12 +112,13 @@ let
   # revision of library/xml submodule
   xmlRev = release.xmlRev;
 
-  arch = if stdenv.hostPlatform.system == "x86_64-linux" then
-    "64"
-  else if stdenv.hostPlatform.system == "i686-linux" then
-    "32"
-  else
-    throw "Unsupported architecture";
+  arch =
+    if stdenv.hostPlatform.system == "x86_64-linux" then
+      "64"
+    else if stdenv.hostPlatform.system == "i686-linux" then
+      "32"
+    else
+      throw "Unsupported architecture";
 
   fakegit = writeScriptBin "git" ''
     #! ${stdenv.shell}
@@ -106,7 +140,8 @@ let
       exit 1
     fi
   '';
-in stdenv.mkDerivation {
+in
+stdenv.mkDerivation {
   pname = "dfhack";
   inherit version;
 
@@ -119,29 +154,29 @@ in stdenv.mkDerivation {
     fetchSubmodules = true;
   };
 
-  patches = optional (versionOlder version "0.44.12-r3") (fetchpatch {
-    name = "fix-stonesense.patch";
-    url =
-      "https://github.com/DFHack/stonesense/commit/f5be6fe5fb192f01ae4551ed9217e97fd7f6a0ae.patch";
-    extraPrefix = "plugins/stonesense/";
-    stripLen = 1;
-    hash = "sha256-wje6Mkct29eyMOcJnbdefwBOLJko/s4JcJe52ojuW+8=";
-  }) ++ optional (versionOlder version "0.47.04-r1") (fetchpatch {
-    name = "fix-protobuf.patch";
-    url =
-      "https://github.com/DFHack/dfhack/commit/7bdf958518d2892ee89a7173224a069c4a2190d8.patch";
-    hash = "sha256-p+mKhmYbnhWKNiGPMjbYO505Gcg634n0nudqH0NX3KY=";
-  }) ++ optional needs50Patches (fetchpatch {
-    name = "use-system-sdl2.patch";
-    url =
-      "https://github.com/DFHack/dfhack/commit/734fb730d72e53ebe67f4a041a24dd7c50307ee3.patch";
-    hash = "sha256-uLX0gdVSzKEVibyUc1UxcQzdYkRm6D8DF+1eSOxM+qU=";
-  }) ++ optional needs50Patches (fetchpatch {
-    name = "rename-lerp.patch";
-    url =
-      "https://github.com/DFHack/dfhack/commit/389dcf5cfcdb8bfb8deeb05fa5756c9f4f5709d1.patch";
-    hash = "sha256-QuDtGURhP+nM+x+8GIKO5LrMcmBkl9JSHHIeqzqGIPQ=";
-  });
+  patches =
+    optional (versionOlder version "0.44.12-r3") (fetchpatch {
+      name = "fix-stonesense.patch";
+      url = "https://github.com/DFHack/stonesense/commit/f5be6fe5fb192f01ae4551ed9217e97fd7f6a0ae.patch";
+      extraPrefix = "plugins/stonesense/";
+      stripLen = 1;
+      hash = "sha256-wje6Mkct29eyMOcJnbdefwBOLJko/s4JcJe52ojuW+8=";
+    })
+    ++ optional (versionOlder version "0.47.04-r1") (fetchpatch {
+      name = "fix-protobuf.patch";
+      url = "https://github.com/DFHack/dfhack/commit/7bdf958518d2892ee89a7173224a069c4a2190d8.patch";
+      hash = "sha256-p+mKhmYbnhWKNiGPMjbYO505Gcg634n0nudqH0NX3KY=";
+    })
+    ++ optional needs50Patches (fetchpatch {
+      name = "use-system-sdl2.patch";
+      url = "https://github.com/DFHack/dfhack/commit/734fb730d72e53ebe67f4a041a24dd7c50307ee3.patch";
+      hash = "sha256-uLX0gdVSzKEVibyUc1UxcQzdYkRm6D8DF+1eSOxM+qU=";
+    })
+    ++ optional needs50Patches (fetchpatch {
+      name = "rename-lerp.patch";
+      url = "https://github.com/DFHack/dfhack/commit/389dcf5cfcdb8bfb8deeb05fa5756c9f4f5709d1.patch";
+      hash = "sha256-QuDtGURhP+nM+x+8GIKO5LrMcmBkl9JSHHIeqzqGIPQ=";
+    });
 
   # gcc 11 fix
   CXXFLAGS = optionalString (versionOlder version "0.47.05-r3") "-fpermissive";
@@ -158,13 +193,27 @@ in stdenv.mkDerivation {
     sed -i 's@cached_path = path_string.*@cached_path = getenv("DF_DIR");@' library/Process-linux.cpp
   '';
 
-  nativeBuildInputs =
-    [ cmake ninja perl XMLLibXML XMLLibXSLT makeWrapper fakegit ];
+  nativeBuildInputs = [
+    cmake
+    ninja
+    perl
+    XMLLibXML
+    XMLLibXSLT
+    makeWrapper
+    fakegit
+  ];
 
   # We don't use system libraries because dfhack needs old C++ ABI.
-  buildInputs = [ zlib ] ++ optional isAtLeast50 SDL2
-    ++ optional (!isAtLeast50) SDL
-    ++ optionals enableStoneSense [ allegro5 libGLU libGL ];
+  buildInputs = [
+    zlib
+  ]
+  ++ optional isAtLeast50 SDL2
+  ++ optional (!isAtLeast50) SDL
+  ++ optionals enableStoneSense [
+    allegro5
+    libGLU
+    libGL
+  ];
 
   preConfigure = ''
     # Trick the build system into believing we have .git.
@@ -183,13 +232,16 @@ in stdenv.mkDerivation {
 
     # Ruby support with dfhack is very spotty and was removed in version 50.
     "-DBUILD_RUBY=OFF"
-  ] ++ optionals enableStoneSense [
+  ]
+  ++ optionals enableStoneSense [
     "-DBUILD_STONESENSE=ON"
     "-DSTONESENSE_INTERNAL_SO=OFF"
   ];
 
-  NIX_CFLAGS_COMPILE = [ "-Wno-error=deprecated-enum-enum-conversion" ]
-    ++ optionals (versionOlder version "0.47") [ "-fpermissive" ];
+  NIX_CFLAGS_COMPILE = [
+    "-Wno-error=deprecated-enum-enum-conversion"
+  ]
+  ++ optionals (versionOlder version "0.47") [ "-fpermissive" ];
 
   preFixup = ''
     # Wrap dfhack scripts.
@@ -231,11 +283,13 @@ in stdenv.mkDerivation {
   passthru = { inherit dfVersion; };
 
   meta = {
-    description =
-      "Memory hacking library for Dwarf Fortress and a set of tools that use it";
+    description = "Memory hacking library for Dwarf Fortress and a set of tools that use it";
     homepage = "https://github.com/DFHack/dfhack/";
     license = licenses.zlib;
-    platforms = [ "x86_64-linux" "i686-linux" ];
+    platforms = [
+      "x86_64-linux"
+      "i686-linux"
+    ];
     maintainers = with maintainers; [
       robbinch
       a1russell

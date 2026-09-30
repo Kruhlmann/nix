@@ -1,4 +1,7 @@
-{ pkgs, ver ? "1180" }:
+{
+  pkgs,
+  ver ? "1180",
+}:
 pkgs.stdenv.mkDerivation rec {
   pname = "turtle-wow-base";
   version = ver;

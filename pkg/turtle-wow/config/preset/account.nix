@@ -1,6 +1,8 @@
 { }:
-let wow = import ../../wow-types.nix { };
-in {
+let
+  wow = import ../../wow-types.nix { };
+in
+{
   TALENT_FRAME_WAS_SHOWN = wow.nil;
   SHOW_FULLSCREEN_STATUS = wow.true;
   SIMPLE_CHAT = wow.false;

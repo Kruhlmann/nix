@@ -1,3 +1,10 @@
-{ pkgs ? import <nixpkgs> { }, }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
-pkgs.mkShell { buildInputs = [ pkgs.pnpm pkgs.nodejs ]; }
+pkgs.mkShell {
+  buildInputs = [
+    pkgs.pnpm
+    pkgs.nodejs
+  ];
+}

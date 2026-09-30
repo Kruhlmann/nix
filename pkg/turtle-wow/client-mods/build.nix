@@ -1,21 +1,29 @@
 { pkgs }:
-mod@{ name, dlls, kind, ... }:
+mod@{
+  name,
+  dlls,
+  kind,
+  ...
+}:
 
-if kind == "builtin" then {
-  pname = name;
-  inherit dlls kind;
-  outPath = null;
-} else
+if kind == "builtin" then
+  {
+    pname = name;
+    inherit dlls kind;
+    outPath = null;
+  }
+else
   let
-    src = if kind == "zip" then
-      pkgs.fetchzip {
-        inherit (mod) url sha256;
-        stripRoot = false;
-      }
-    else if kind == "file" then
-      pkgs.fetchurl { inherit (mod) url sha256; }
-    else
-      throw "Unsupported client mod kind: ${kind}";
+    src =
+      if kind == "zip" then
+        pkgs.fetchzip {
+          inherit (mod) url sha256;
+          stripRoot = false;
+        }
+      else if kind == "file" then
+        pkgs.fetchurl { inherit (mod) url sha256; }
+      else
+        throw "Unsupported client mod kind: ${kind}";
 
     drv = pkgs.stdenvNoCC.mkDerivation {
       pname = name;
@@ -43,7 +51,8 @@ if kind == "builtin" then {
         platforms = platforms.linux;
       };
     };
-  in {
+  in
+  {
     pname = name;
     inherit dlls kind;
     outPath = drv;

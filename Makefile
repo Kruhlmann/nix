@@ -2,6 +2,7 @@ NIX_VERSION=26.05
 SUPPORTED_SHELLS=bash|dash|zsh|sh
 SHELL_FILES=$(shell git ls-files | grep -El '#!/.*(bash|dash|zsh|sh)' | grep -v Makefile)
 HASKELL_FILES=$(shell git ls-files '*.hs')
+NIX_FILES=$(shell git ls-files '*.nix')
 MAKE_FILES=$(shell find . -name 'Makefile' -o -name 'makefile' -o -name 'GNUmakefile' -o -name '*.mk' -o -name '*.make')
 
 .ONESHELL:
@@ -32,13 +33,13 @@ install-user:
 
 .PHONY: fix
 fix:
-	nixfmt .
+	nixfmt $(NIX_FILES)
 	ormolu --mode inplace $(HASKELL_FILES)
 	shellharden --replace $(SHELL_FILES)
 
 .PHONY: lint
 lint:
-	nixfmt --check .
+	nixfmt --check $(NIX_FILES)
 	ormolu --mode check $(HASKELL_FILES)
 	shellharden $(SHELL_FILES)
 	checkmake Makefile

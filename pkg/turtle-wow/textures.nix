@@ -28,6 +28,8 @@
     townWatch = "Interface\\Icons\\Ability_TownWatch";
   };
   spell = {
-    nature = { timeStop = "Interface\\Icons\\Spell_Nature_TimeStop"; };
+    nature = {
+      timeStop = "Interface\\Icons\\Spell_Nature_TimeStop";
+    };
   };
 }

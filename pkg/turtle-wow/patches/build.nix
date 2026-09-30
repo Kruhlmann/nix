@@ -2,16 +2,18 @@
 patch@{ name, kind, ... }:
 
 let
-  src = if kind == "zip" then
-    pkgs.fetchzip {
-      inherit (patch) url sha256;
-      stripRoot = false;
-    }
-  else if kind == "file" then
-    pkgs.fetchurl { inherit (patch) url sha256; }
-  else
-    throw "Unsupported patch kind: ${kind}";
-in pkgs.stdenvNoCC.mkDerivation {
+  src =
+    if kind == "zip" then
+      pkgs.fetchzip {
+        inherit (patch) url sha256;
+        stripRoot = false;
+      }
+    else if kind == "file" then
+      pkgs.fetchurl { inherit (patch) url sha256; }
+    else
+      throw "Unsupported patch kind: ${kind}";
+in
+pkgs.stdenvNoCC.mkDerivation {
   pname = name;
   version = "1";
 

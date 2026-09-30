@@ -1,4 +1,8 @@
-{ lib, fetchFromGitHub, rustPlatform, }:
+{
+  lib,
+  fetchFromGitHub,
+  rustPlatform,
+}:
 rustPlatform.buildRustPackage rec {
   pname = "punlock";
   version = "d11941f81f2488f918ec24d24d87341797fca6eb";

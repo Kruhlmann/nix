@@ -1,5 +1,8 @@
 { pkgs, ... }: {
-  boot.kernelParams = [ "splash" "i915.enable_psr=0" ];
+  boot.kernelParams = [
+    "splash"
+    "i915.enable_psr=0"
+  ];
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = true;
     "vm.dirty_background_ratio" = 2;
