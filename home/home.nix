@@ -34,6 +34,7 @@ in {
     eza
     fd
     feh
+    file-roller
     fzf
     gamemode
     gh
@@ -49,6 +50,7 @@ in {
     luarocks
     lutris
     maim
+    millet
     mpv
     mullvad-vpn
     nautilus

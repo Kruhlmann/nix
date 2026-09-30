@@ -68,7 +68,6 @@
       nvim-autopairs
       nvim-cmp
       nvim-colorizer-lua
-      nvim-java
       nvim-lsputils
       nvim-navic
       nvim-web-devicons
@@ -219,8 +218,14 @@
         type = "lua";
         config = ''
           require("nvim-web-devicons").setup()
-          require("nvim-tree").setup()
-          vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", {noremap = true})
+
+          require("nvim-tree").setup({
+            renderer = {
+              group_empty = true,
+            },
+          })
+
+          vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { noremap = true })
         '';
       }
       {

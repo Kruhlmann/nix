@@ -22,6 +22,8 @@ in
     })
   ];
 
+  nixpkgs.config.permittedInsecurePackages = [ "docker-28.5.2" ];
+
   programs.kdeconnect.enable = true;
   programs.steam = {
     enable = true;
@@ -111,7 +113,6 @@ in
     curl
     dash
     dig
-    docker
     evtest
     extra-certs
     file

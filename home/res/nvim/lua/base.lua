@@ -62,7 +62,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     desc = "Auto-reload lua config files on save",
 })
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
+vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
     callback = function()
         vim.cmd "hi link illuminatedWord LspReferenceText"
     end,

@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./batsignal.nix
     ./gpg-agent.nix
     ./autorandr.nix
     ./xfce4-screensaver.nix
