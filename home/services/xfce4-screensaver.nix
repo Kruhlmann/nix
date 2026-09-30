@@ -8,8 +8,6 @@
       ExecStart = "${pkgs.xfce4-screensaver}/bin/xfce4-screensaver";
       Restart = "on-failure";
     };
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
+    Install = { WantedBy = [ "graphical-session.target" ]; };
   };
 }
