@@ -41,8 +41,8 @@
       terraform-ls
       vscode-extensions.vscjava.vscode-java-debug
       vscode-extensions.vscjava.vscode-java-test
-      (python3.withPackages (
-        ps: with ps; [
+      (python3.withPackages (ps:
+        with ps; [
           black
           debugpy
           flake8
@@ -51,8 +51,7 @@
           pylint
           setuptools
           yamllint
-        ]
-      ))
+        ]))
     ];
     plugins = with pkgs.vimPlugins; [
       cmp-buffer
@@ -88,12 +87,10 @@
         plugin = nvim-treesitter.withAllGrammars;
         type = "lua";
         config = ''
-          require("nvim-treesitter.configs").setup({
+          require("nvim-treesitter").setup({
+            install_dir = vim.fn.stdpath("data") .. "/site",
             highlight = { enable = true },
             indent = { enable = true },
-            ensure_installed = {},
-            auto_install = false,
-            sync_install = false,
           })
         '';
       }
