@@ -7,7 +7,7 @@ pkgs.mkShell {
     pkgs.checkmake
     pkgs.gnumake
     pkgs.home-manager
-    pkgs.nixfmt-tree
+    pkgs.nixfmt
     pkgs.opencode
     pkgs.ormolu
     pkgs.ruby
