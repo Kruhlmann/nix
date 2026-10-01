@@ -4,6 +4,7 @@
     configPath = "${config.xdg.configHome}/mozilla/firefox";
     profiles.default = {
       id = 0;
+      path = "n72ccv78.default";
       isDefault = true;
       settings = {
         "browser.aboutConfig.showWarning" = false;
