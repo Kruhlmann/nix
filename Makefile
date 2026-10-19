@@ -13,11 +13,11 @@ FORCE:
 .PHONY: all
 all: install
 
-install-%: FORCE
+install-%: FORCE machines/%.nix
 	sudo make install-system-$*
 	make install-user
 
-install-system-%: FORCE install-symlinks
+install-system-%: FORCE install-symlinks machines/%.nix
 	cp machines/$*.nix /etc/nixos/configuration.nix
 	nixos-rebuild switch -j $(shell nproc) --upgrade-all --show-trace
 
