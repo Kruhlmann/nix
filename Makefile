@@ -7,21 +7,26 @@ MAKE_FILES=$(shell find . -name 'Makefile' -o -name 'makefile' -o -name 'GNUmake
 
 .ONESHELL:
 
+.PHONY: FORCE
+FORCE:
+
 .PHONY: all
 all: install
 
-.PHONY: install
-install:
-	sudo make install-system
+install-%: FORCE
+	sudo make install-system-$*
 	make install-user
 
-.PHONY: install-system
-install-system:
+install-system-%: FORCE install-symlinks
+	cp machines/$*.nix /etc/nixos/configuration.nix
+	nixos-rebuild switch -j $(shell nproc) --upgrade-all --show-trace
+
+.PHONY: install-syslinks
+install-symlinks:
 	nix-channel --add "https://nixos.org/channels/nixos-$(NIX_VERSION)" nixos && nix-channel --update
 	mkdir -p /etc/pkg
 	cp -rf ./system/* /etc/nixos/
 	cp -rf ./pkg/* /etc/pkg/
-	nixos-rebuild switch -j $(shell nproc) --upgrade-all --show-trace
 
 .PHONY: install-user
 install-user:

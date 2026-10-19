@@ -1,7 +1,10 @@
 { pkgs, ... }: {
+  boot.initrd.verbose = true;
+  boot.consoleLogLevel = 7;
   boot.kernelParams = [
     "splash"
-    "i915.enable_psr=0"
+    "systemd.show_status=1"
+    "rd.systemd.show_status=1"
   ];
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = true;
