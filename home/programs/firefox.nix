@@ -1,11 +1,32 @@
-{ config, ... }: {
+{ config, pkgs, ... }:
+let
+  nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/main.tar.gz") {
+    inherit pkgs;
+  };
+in
+{
   programs.firefox = {
     enable = true;
-    configPath = "${config.xdg.configHome}/mozilla/firefox";
+    configPath = ".mozilla/firefox";
     profiles.default = {
       id = 0;
-      path = "n72ccv78.default";
+      path = "ges";
       isDefault = true;
+      extensions.packages = with nur.repos.rycee.firefox-addons; [
+        facebook-container
+        plasma-integration
+        simplelogin
+        sponsorblock
+        betterttv
+        seventv
+        foxyproxy-standard
+        privacy-badger
+        ublock-origin
+        bitwarden
+        reddit-enhancement-suite
+        old-reddit-redirect
+        user-agent-string-switcher
+      ];
       settings = {
         "browser.aboutConfig.showWarning" = false;
         "browser.compactmode.show" = true;
@@ -41,6 +62,7 @@
         "devtools.command-button-screenshot.enabled" = true;
         "devtools.everOpened" = true;
         "devtools.toolbox.splitconsole.open" = false;
+        "extensions.autoDisableScopes" = 0;
         "general.autoScroll" = true;
         "gfx.webrender.all" = true;
         "layout.css.has-selector.enabled" = true;
