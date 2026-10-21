@@ -1,4 +1,6 @@
 { pkgs, config, ... }: {
+  xdg.configFile."xdg-desktop-portal-termfilechooser/config".source =
+    config.lib.file.mkOutOfStoreSymlink "/etc/xdg/xdg-desktop-portal-termfilechooser/config";
   home.file."${config.xdg.configHome}/nvim" = {
     source = res/nvim;
     recursive = true;

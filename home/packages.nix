@@ -1,0 +1,86 @@
+{ pkgs, ... }:
+let
+  punlock = pkgs.callPackage ../pkg/punlock/package.nix { };
+in
+{
+  nixpkgs.overlays = [ (self: super: { punlock = punlock; }) ];
+  home.packages = with pkgs; [
+    alacritty
+    arandr
+    autorandr
+    bat
+    batsignal
+    bitwarden-cli
+    brightnessctl
+    btop
+    cabextract
+    caffeine-ng
+    chromium
+    conky
+    dialog
+    discord
+    distrobox
+    dunst
+    entr
+    eza
+    fd
+    feh
+    file-roller
+    fzf
+    gamemode
+    gh
+    gimp
+    gnupg
+    graphviz
+    gruvbox-dark-gtk
+    htop
+    imagemagickBig
+    jdt-language-server
+    lazygit
+    libreoffice-fresh
+    luarocks
+    lutris
+    maim
+    millet
+    mpv
+    mullvad-vpn
+    nautilus
+    nautilus-open-any-terminal
+    networkmanagerapplet
+    obs-cli
+    obs-studio
+    page
+    papirus-icon-theme
+    pass
+    pavucontrol
+    pciutils
+    perf
+    protonmail-desktop
+    punlock
+    rofi
+    rustc
+    rustup
+    rusty-path-of-building
+    sc-im
+    sccache
+    sushi
+    teams-for-linux
+    texliveFull
+    thunderbird
+    tigervnc
+    tldr
+    trayer
+    tree
+    wireshark
+    xcape
+    xclip
+    xcolor
+    xdotool
+    xkbcomp
+    xmodmap
+    xrandr
+    zathura
+    zenity
+    zsh-autosuggestions
+  ];
+}

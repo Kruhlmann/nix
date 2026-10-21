@@ -182,6 +182,7 @@ in
     xauth
     xev
     xinit
+    yazi
     zip
   ];
 }
